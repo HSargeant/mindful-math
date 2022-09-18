@@ -5,7 +5,9 @@ const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
 router.get('/', dashboardController.getUserData)
 router.get('/notes', ensureAuth, dashboardController.getUserData)
-router.put('/updateGrade',ensureAuth,dashboardController.updateGrade)
+router.put('/updategrade',ensureAuth,dashboardController.updateGrade)
+router.post('/addtask',ensureAuth,dashboardController.addTask)
+
 
 
 module.exports = router

@@ -21,3 +21,7 @@ footer{
     border-bottom: #333 solid 1px;
     font-size: 1.07em;
 }
+
+.delete.material-icons{
+    font-size: 1.3em;
+}
