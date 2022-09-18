@@ -1,0 +1,59 @@
+<%- include('partials/header') -%>
+
+    <div class="container login-container">
+      <header class="center">
+        <nav class="grey darken-3">
+          <ul>
+            <li><a href="/">Home</a></li>
+              <li><a href="/login" class="login">Log in</a></li>
+              <li><a href="/signup" class="singup">Sign up</a></li>
+          </ul>
+        </nav>
+        <h1 class="hide">Movie Rank</h1>
+        <div class="logos"></div>
+      </header>
+      <div class="card center">
+        <div class="card-content">
+          <img class="mainLogo" src="logo.png" alt="site logo" />
+          <main class="container main">
+            <h2 class="bold center">Welcome Back</h2>
+            <div class="container">
+              <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+              <div class="alert alert-danger"><%= el.msg %></div>
+              <% }) %> <% } %> <% if (locals.messages.info) { %> <% messages.info.forEach( el => { %>
+              <div class="alert alert-danger"><%= el.msg %></div>
+              <% }) %> <% } %>
+              <div class="container login-container center">
+                <form action="/login" method="POST">
+                  <div class="row">
+                    <div class="col s12 input-field">
+                      <i class="material-icons prefix">email</i>
+                      <input tabindex="1" class="validate" type="email" name="email" id="email-input" />
+                      <label for="email-input">email</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12 input-field">
+                      <i class="material-icons prefix">lock</i>
+                      <input tabindex="2" minlength="8" class="validate" type="password" name="password" id="password-input" />
+                      <label for="password-input">password</label>
+                    </div>
+                  </div>
+                  <div class="row no-margin">
+                    <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field">
+                      <button tabindex="3" class="btn black-text bold waves-effect waves-light modal-submit width-100" type="submit" name="action">Login</button>
+                    </div>
+                  </div>
+                  <div class="row no-margin">
+                    <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field">
+                      <a href="/signup" tabindex="4" class="black-text width-100">Sign up </a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+<%- include('partials/footer') -%>

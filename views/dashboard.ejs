@@ -1,0 +1,73 @@
+<%- include('partials/header') -%>
+<%console.log(user)%>
+        <!-- 100hours project -->
+        <h2>Hello <%=user.username%></h2>
+        <select id="grade-input" name="gradeLevel" tabindex="8">
+           <% if(user.gradeLevel){%>
+            <option value="<%=user.gradeLevel %>"selected><%=user.gradeLevel %></option>
+            <option value="kindergarten" >Kindergarten</option>  
+            <option value="1st Grade" >1st Grade</option>  
+            <option value="2nd Grade" >2nd Grade</option>  
+            <option value="3rd Grade" >3rd Grade</option>  
+            <option value="4th Grade" >4th Grade</option>  
+            <option value="5th Grade" >5th Grade</option>  
+            <option value="6th Grade" >6th Grade</option>  
+            <option value="7th Grade" >7th Grade</option>  
+            <option value="8th Grade" >8th Grade</option>  
+            <option value="Algebra 1" >Algebra 1</option>  
+            <option value="Geometry" >Geometry</option>  
+            <option value="Algebra 2" >Algebra 2</option>  
+            <option value="Pre-Calculus" >Pre-Calculus</option> 
+            <%}else{ %>
+            <option value="" disabled selected>Choose your grade</option>
+            <option value="kindergarten" >Kindergarten</option>  
+            <option value="1st Grade" >1st Grade</option>  
+            <option value="2nd Grade" >2nd Grade</option>  
+            <option value="3rd Grade" >3rd Grade</option>  
+            <option value="4th Grade" >4th Grade</option>  
+            <option value="5th Grade" >5th Grade</option>  
+            <option value="6th Grade" >6th Grade</option>  
+            <option value="7th Grade" >7th Grade</option>  
+            <option value="8th Grade" >8th Grade</option>  
+            <option value="Algebra 1" >Algebra 1</option>  
+            <option value="Geometry" >Geometry</option>  
+            <option value="Algebra 2" >Algebra 2</option>  
+            <option value="Pre-Calculus" >Pre-Calculus</option>  
+           <% }%> 
+          </select>
+        <section class="resources">
+            <h2>Resources</h2>
+            <section class="relinks">
+
+            </section>
+        </section>
+        <section class="notes">
+            <h2>Notes</h2>
+            <section class="classNotes">
+
+            </section>
+        </section>
+        <section class="assignments">
+            <h2>Assignments</h2>
+            <section class="listItems">
+                <h3>Add an assignment</h3>
+                <form action="/addTask" method="POST"> 
+                    <input type="text" placeholder="Enter assignment" name="todoItem">
+                    <input type="date" placeholder="Due Date" name="dueDate">
+                    <input type="submit">
+                </form>
+
+   <section class="list">
+    <ul>
+        <% for(i=0; i<item.length; i++) {%>
+            <% if(item[i].date.split("-").slice(1) +"-"+item[i].date.split("-")[0]=="-"){%>
+                <li><%= item[i].task %><span class='fa fa-trash'></span></li>
+                <%} else {%>
+            <li><%= item[i].task %> <span><%=item[i].date.split("-").slice(1).join("-") +"-"+item[i].date.split("-")[0]  %></span> <span class='fa fa-trash'></span></li><%}%>
+            <% } %>
+    </ul>
+   </section>
+
+            </section>
+        </section>
+        <%- include('partials/footer') -%>

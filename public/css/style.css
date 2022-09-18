@@ -1,0 +1,23 @@
+footer{
+    margin-top: 25px;
+    padding: 25px 0 ;
+    width:100%;
+    text-align: center;
+}
+footer a{
+    margin-right: 1em;
+}
+footer{
+    color:#333 !important ;
+}
+#footer a{
+    border-bottom: #333 dotted 1px;
+    font-size: 1.05em;
+    color:#333 !important ;
+
+
+}
+#footer a:hover{
+    border-bottom: #333 solid 1px;
+    font-size: 1.07em;
+}

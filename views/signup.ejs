@@ -1,0 +1,100 @@
+<%- include('partials/header') -%>
+
+    <div class="container login-container">
+      <header class="center">
+        <nav class="grey darken-3">
+          <ul>
+            <li><a href="/">Home</a></li>
+              <li><a href="/login" class="login">Log in</a></li>
+              <li><a href="/signup" class="singup">Sign up</a></li>
+          </ul>
+        </nav>
+        <h1 class="hide">Movie Rank</h1>
+        <div class="logos">
+        </div>
+      </header>
+      <div class="card">
+        <div class="card-content">
+          <div class="center">
+            <img class="mainLogo" src="logo.png" alt="site logo" >
+          </div>
+          <main class="container main">
+            <h2 class="bold center">Welcome Back</h2>
+            <div class="container">
+              <% if (locals.messages.errors) { %>
+                <% messages.errors.forEach( el => { %>
+                  <div class="alert alert-danger"><%= el.msg %></div>
+                <% }) %>    
+              <% } %>
+              <% if (locals.messages.info) { %>
+                <% messages.info.forEach( el => { %>
+                  <div class="alert alert-danger"><%= el.msg %></div>
+                <% }) %>    
+              <% } %>
+            <div class="container login-container">
+              <form action="/signup" method="POST">
+                <div class="row">
+                  <div class="col s12 input-field">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input tabindex="1" class="validate" type="text" name='username' id="username-input">
+                    <label for="username-input">Username</label>
+                  </div>
+                  <div class="col s12 input-field">
+                    <i class="material-icons prefix">email</i>
+                    <input tabindex="1" class="validate" type="email" name='email' id="email-input">
+                    <label for="email-input">email</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 input-field">
+                    <i class="material-icons prefix">lock</i>
+                    <input tabindex="2"  minlength="8"  class="validate" type="password" name='password' id="password-input">
+                    <label for="password-input">password</label>
+                  </div>
+                  <div class="col s12 input-field">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input tabindex="4" minlength="8" class="validate" type="password" name='confirmPassword' id="confirmPassword-input">
+                    <label for="confirmPassword-input">confirm password</label>
+                  </div>
+                  <div class="col s12 input-field">
+                    <i class="material-icons prefix">school</i>
+                    <!-- <input tabindex="2"  minlength="8"  class="validate" type="text" name='grade-input' id="grade-input"> -->
+                      <!-- tab index doesn't work on select -->
+                    <select id="grade-input" name="gradeLevel" tabindex="8" class="validate">
+                      <option value="" disabled selected>Choose your grade</option>
+                      <option value="kindergarten" >Kindergarten</option>  
+                      <option value="1st Grade" >1st Grade</option>  
+                      <option value="2nd Grade" >2nd Grade</option>  
+                      <option value="3rd Grade" >3rd Grade</option>  
+                      <option value="4th Grade" >4th Grade</option>  
+                      <option value="5th Grade" >5th Grade</option>  
+                      <option value="6th Grade" >6th Grade</option>  
+                      <option value="7th Grade" >7th Grade</option>  
+                      <option value="8th Grade" >8th Grade</option>  
+                      <option value="Algebra 1" >Algebra 1</option>  
+                      <option value="Geometry" >Geometry</option>  
+                      <option value="Algebra 2" >Algebra 2</option>  
+                      <option value="Pre-Calculus" >Pre-Calculus</option>  
+                    </select>
+                    <label for="gradeLevel">Select Grade</label>
+                  </div>
+                </div>
+                <div class="row no-margin">
+                  <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field center">
+                    <button tabindex="3" class="btn black-text bold waves-effect waves-light modal-submit width-100" type="submit" name="action">Sign up</button>
+                  </div>
+                </div>
+                <div class="row no-margin">
+                  <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field center">
+                    <a href="/login" tabindex="4" class="black-text width-100">Log In
+                    </a>
+                  </div>
+                </div>
+                </form>
+              </div>
+          </main>
+        </div>
+      </div> 
+    </div>
+            
+    <%- include('partials/footer') -%>
