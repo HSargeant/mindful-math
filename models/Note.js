@@ -5,7 +5,7 @@ const NoteSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userId: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
@@ -15,7 +15,9 @@ const NoteSchema = new mongoose.Schema({
   },
   image:{
     type: String,
-    required: true,
+  },
+  cloudinaryId:{
+    type: String
   }
 },{ timestamps: true })
 

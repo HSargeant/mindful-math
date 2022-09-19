@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
   },
   gradeLevel:{
     type: String
-  }
+  },
 },{ timestamps: true })
 
 // Password hash middleware.

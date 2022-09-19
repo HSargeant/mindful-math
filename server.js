@@ -10,6 +10,7 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const indexRoutes = require('./routes/IndexRoutes')
 const dashboardRoutes = require('./routes/dashboardRoutes')
+const notesRoutes = require('./routes/notesRoutes')
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
@@ -53,6 +54,8 @@ app.use(flash());
   
 app.use('/', indexRoutes)
 app.use('/dashboard', dashboardRoutes)
+app.use('/notes', notesRoutes)
+
  
 app.listen(process.env.PORT, ()=>{
     console.log(`running on port ${process.env.PORT}`)

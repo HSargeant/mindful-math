@@ -1,0 +1,74 @@
+<%- include('partials/header') -%>
+
+<main class="container">
+    <div class="container-1280 center">
+        <h3>Add a Note</h3>
+    <form class="modalForm" action="/notes/createNote" method='POST' id="">
+        <div class="row">
+            <div class="col s12 input-field">
+                <input tabindex="1" class="validate" type="text" value="" name='title' id="restaurant-modal" required>
+                <label for="restaurant-modal">Title</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 input-field">
+                <input id="content" tabindex="7" class="validate" type="text" name='content' id="comment-modal" value="" required>
+                <label for="comment-modal"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- <div class="col s12 m6 l6 input-field">
+                <div class="btn">
+                    <span>File</span>
+                    <input type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                  </div>
+            </div> -->
+            <div class="file-field input-field col s12 m6 l6">
+                <div class="btn">
+                  <span>Upload Picture</span>
+                  <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+              </div>
+        </div>
+        <div class="row">
+            <div class="col s4 m6 l6 input-field">
+                <!-- tab index doesn't work on select -->
+
+            </div>
+            <div class="col s4 m2 l1">
+                <button class="width-100 btn waves-effect waves-light modal-submit center" type="submit" name="action">Submit
+                </button>
+            </div>
+            <div class="col s3 m2 l2">
+                <button id="cancel" class="width-100 btn waves-effect waves-light black center" type="button">Cancel</button>
+            </div>
+        </div>
+    </form>
+    </div>    
+</main>
+
+<script>
+    document.querySelector('#cancel').addEventListener('click',()=>{
+
+  if(confirm("Sure you want to cancel?")){
+    window.location.href = '/notes';
+  }else return ""
+
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.19.1/ckeditor.js" integrity="sha512-Ooi9IbjM2SIDjQ02ENbPFuuORT8F8Rc+rowcYfLneDwKRxw1+gVVj5tciVmV/APnA/Ys+qy1MbNKK3k2EaAHcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    CKEDITOR.replace('content',{
+    plugins: 'wysiwygarea, toolbar ,basicstyles, link'
+    })
+</script>
+
+<%- include('partials/footer') -%>

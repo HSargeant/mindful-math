@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const authController = require('../controllers/auth') 
+const authController = require('../controllers/authController') 
 const indexController = require('../controllers/indexController')
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 const passport = require('passport')
@@ -16,6 +16,5 @@ router.get('/auth/google/callback',passport.authenticate('google',{failureRedire
     console.log("redir")
     res.redirect('/dashboard')
 })
-
 
 module.exports = router

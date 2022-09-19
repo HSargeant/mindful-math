@@ -1,4 +1,14 @@
 <%- include('partials/header') -%>
+<header>
+    <nav class="nav-bar">
+        <div class="nav-content right">
+            <ul>
+                <li><a href="/logout">logout</a></li>
+            </ul>
+        </div>
+
+    </nav>
+</header>
         <!-- 100hours project -->
         <h2>Hello <%=user.username%></h2>
         <form action="/dashboard/updategrade?_method=PUT"
@@ -39,19 +49,27 @@
           <input type="submit">
         </form>
 
-        <section class="resources">
+        <section class="resources section">
             <h2>Resources</h2>
             <section class="relinks">
 
             </section>
         </section>
-        <section class="notes">
-            <h2>Notes</h2>
+        <section class="notes section">
+            <h2><a href="/notes">Notes</a></h2>
             <section class="classNotes">
+
+     <ul>
+        <% for(i=0; i<item.length; i++) {%>
+            <li><%= item[i].name %> <span>| due: <%= new Date(item[i].dueDate).toDateString() %></span>
+
+            </li>
+            <% } %>
+    </ul>
 
             </section>
         </section>
-        <section class="assignments">
+        <section class="assignments section">
             <h2>Assignments</h2>
             <section class="listItems">
                 <h3>Add an assignment</h3>

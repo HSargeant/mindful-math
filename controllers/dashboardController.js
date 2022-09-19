@@ -21,7 +21,7 @@ module.exports = {
     },
     updateGrade: async (req,res)=>{
         try{
-            await User.findOneAndUpdate({_id: req.user._id},{
+            await User.findOneAndUpdate({_id: req.user.id},{
                 gradeLevel: req.body.gradeLevel,
                          
             }, {
