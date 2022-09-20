@@ -1,56 +1,47 @@
 <%- include('partials/header') -%>
 
-<main>
-  <% let filtered = user.username %>
+<main class="container">
+    <% let filtered = user.username %>
 
-  <section class="TOTRbanner">
-        <h1 class="TOTRbanner-item">REVIEWS from <%=filtered.toUpperCase() %></h1>
-        <h2>Welcome <b><%=user.username %></b>!!</h2>
-  </section>
-  <p><a href="/notes/new">add a note</a></p>
-  <h3 class="page-title">There are <%=notes.length %> 
+    <section class="">
+        <h1 class="">Your Notes</h1>
+    </section>
+    <p><a href="/notes/new">add a note</a></p>
     <% if(notes.length==1) { %>
-    review here.
-  <% } else { %>  
-    notes here.
- <% } %></h3>
-  
- <section class="notes wrapper">
-  <section class="search"> 
-    <input id="search" type="search" placeholder="Search Notes"> 
-</section>
+    <h3 class="page-title">You have 1 note</h3>
+    <% } else { %>
+    <h3 class="page-title">You have <%=notes.length%> notes</h3>
+    <% } %>
 
-    <%notes.reverse().forEach(notes=>{ %>
-          <div class="review-card" data-id='<%=notes._id%>'>        
+    <section class="notes wrapper">
+        <section class="search">
+            <input id="search" type="search" placeholder="Search Notes" />
+        </section>
+
+        <%notes.reverse().forEach(note=>{ %>
+        <div class="review-card card" data-id="<%=notes._id%>">
             <i class="fa-solid fa-circle-user"></i>
             <div class="template-info">
-          
-<!-- Get username to try to put in head--> 
-<%if(user){%>
-
-  <%if(notes.user._id==user._id.toString()){%>
-    <span class="template-info_username"><a href="/notes/"><%=notes.user.username%></a></span>
-    <% filtered =notes.user.username %>
-    <% } else { %>
-      <span class="template-info_username"><a href="/notes/user/<%=notes.user._id.toString()%>"><%=notes.user.username%></a></span>
-      <% filtered =notes.user.username %>
-      <%}%>
-  <%}%>
-</span>
-
-                  <h2 class="template-info_restaurant"><%=notes.restaurant%></h2>
-                  <span class="template-info_location">Location: <%=notes.city%>, <%=notes.state%> -- <%=notes.country.split('-').join(' ')%></span>
-                  <h4 class="template-info_type">Type: <%=notes.foodType%></h4>
-                  <span class="template-info_user">Favorite dish: <%=notes.favDish%></span>
-                    </div>
-                  <p class="template-comment">"<%=notes.comment%>"</p>
-                  <%if(user._id.toString()==notes.user._id.toString()){%>
-                 <i class="fas fa-trash delete"></i>
-                 <a href="/notes/<%=notes._id%>" ><i class="fas fa-edit edit"></i></a>         
-                  <%}%>
-          </div>
-          
+                <h2 class="template-info_restaurant"><%=note.title%></h2>
+            </div>
+                <div class="template-info">
+                   <img src="<%=note.image%>" width="600px" class="materialboxed">
+                </div>
+            <p class="template-comment"><%-note.content%></p>
+            <form action="/notes/delete/<%= note._id %>?_method=DELETE"
+                method="POST"
+                class="" onsubmit="return confirm('Delete Note?')">
+                <button type="submit"  class="btn-floating btn-small right delete"><i class="material-icons">delete</i></button>
+            </form>
+            <a href="notes/edit/<%=note._id.toString()%>"  class="btn-floating btn-small"><i class="material-icons">edit</i></a>
+        </div>
         <%}) %>
-
-  </section>
-  </main>
+    </section>
+</main>
+<!-- <script>
+    document.querySelector(".delete").addEventListener('click',()=>{
+        console.log("Asdfa")
+        confirm("sure you want to delete?")
+    })
+</script> -->
+<%- include('partials/footer') -%>

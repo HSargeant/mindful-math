@@ -1,31 +1,29 @@
 <%- include('partials/header') -%>
+action="/notes/delete/<%= note._id %>?_method=DELETE"
+                method="POST"
 
 <main class="container">
     <div class="container-1280 center">
-        <h3>Add a Note</h3>
-    <form action="/notes/createnote" enctype="multipart/form-data" method='POST'  class="modalForm">
+        <h3>Edit Note</h3>
+        <form action="/notes/update/<%= note._id %>?_method=PUT" method="POST">
         <div class="row">
             <div class="col s12 input-field">
-                <input tabindex="1" class="validate" type="text" value="" name='title' id="restaurant-modal" required>
+                <input tabindex="1" class="validate" type="text" value="<%=note.title%>" name='title' id="restaurant-modal" required>
                 <label for="restaurant-modal">Title</label>
             </div>
         </div>
         <div class="row">
             <div class="col s12 input-field">
-                <textarea id="content" tabindex="7" class="validate" type="text" name='content' id="comment-modal" value="" required></textarea>
+                <textarea id="content" tabindex="7" class="validate" type="text" name='content' id="comment-modal" required><%=note.content%></textarea>
                 <label for="comment-modal"></label>
             </div>
         </div>
 
         <div class="row">
-
-            <div class="file-field col s12 m6 l6">
-                <div class="btn">
-                  <span>Upload Picture</span>
-                  <input type="file" name="file">
-                </div>
-                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text">
+            <div class=" col s12 m6 l6">
+                <div class="">
+                  <span>Image</span>
+                  <img src="<%=note.image%>" width="500px">
                 </div>
               </div>
         </div>

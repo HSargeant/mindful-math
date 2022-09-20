@@ -1,18 +1,4 @@
-<%- include('partials/header') -%>
-
-    <div class="container login-container">
-      <header class="center">
-        <nav class="grey darken-3">
-          <ul>
-            <li><a href="/">Home</a></li>
-              <li><a href="/login" class="login">Log in</a></li>
-              <li><a href="/signup" class="singup">Sign up</a></li>
-          </ul>
-        </nav>
-        <h1 class="hide">Math App</h1>
-        <div class="logos">
-        </div>
-      </header>
+<%- include('partials/login-header') -%>
       <div class="card">
         <div class="card-content">
           <div class="center">
@@ -83,11 +69,15 @@
                   <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field center">
                     <button tabindex="3" class="btn black-text bold waves-effect waves-light modal-submit width-100" type="submit" name="action">Sign up</button>
                   </div>
-                </div>
-                <div class="row no-margin">
                   <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field center">
-                    <a href="/login" tabindex="4" class="black-text width-100">Log In
-                    </a>
+                    <a href="/auth/google" class="btn red darken-1">
+                      <i class="fa-brands fa-google left"></i>Login with Google
+                  </a>
+                  </div>
+                  <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field center">
+                    <a href="/login" class="btn blue darken-1">
+                      <i class="fas fa-envelope left"></i>Login with Email
+                  </a>
                   </div>
                 </div>
                 </form>
@@ -95,6 +85,5 @@
           </main>
         </div>
       </div> 
-    </div>
             
-    <%- include('partials/footer') -%>
+    <%- include('partials/login-footer') -%>

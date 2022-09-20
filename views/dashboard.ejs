@@ -1,99 +1,101 @@
 <%- include('partials/header') -%>
-<header>
-    <nav class="nav-bar">
-        <div class="nav-content right">
-            <ul>
-                <li><a href="/logout">logout</a></li>
-            </ul>
-        </div>
-
-    </nav>
-</header>
-        <!-- 100hours project -->
-        <h2>Hello <%=user.username%></h2>
-        <form action="/dashboard/updategrade?_method=PUT"
-            method="POST">
-        <select id="grade-input" name="gradeLevel" tabindex="8">
-           <% if(user.gradeLevel){%>
-            <option value="<%=user.gradeLevel %>"selected><%=user.gradeLevel %></option>
-            <option value="kindergarten" >Kindergarten</option>  
-            <option value="1st Grade" >1st Grade</option>  
-            <option value="2nd Grade" >2nd Grade</option>  
-            <option value="3rd Grade" >3rd Grade</option>  
-            <option value="4th Grade" >4th Grade</option>  
-            <option value="5th Grade" >5th Grade</option>  
-            <option value="6th Grade" >6th Grade</option>  
-            <option value="7th Grade" >7th Grade</option>  
-            <option value="8th Grade" >8th Grade</option>  
-            <option value="Algebra 1" >Algebra 1</option>  
-            <option value="Geometry" >Geometry</option>  
-            <option value="Algebra 2" >Algebra 2</option>  
-            <option value="Pre-Calculus" >Pre-Calculus</option> 
-            <%}else{ %>
-            <option value="" disabled selected>Choose your grade</option>
-            <option value="kindergarten" >Kindergarten</option>  
-            <option value="1st Grade" >1st Grade</option>  
-            <option value="2nd Grade" >2nd Grade</option>  
-            <option value="3rd Grade" >3rd Grade</option>  
-            <option value="4th Grade" >4th Grade</option>  
-            <option value="5th Grade" >5th Grade</option>  
-            <option value="6th Grade" >6th Grade</option>  
-            <option value="7th Grade" >7th Grade</option>  
-            <option value="8th Grade" >8th Grade</option>  
-            <option value="Algebra 1" >Algebra 1</option>  
-            <option value="Geometry" >Geometry</option>  
-            <option value="Algebra 2" >Algebra 2</option>  
-            <option value="Pre-Calculus" >Pre-Calculus</option>  
-           <% }%> 
-          </select>
-          <input type="submit">
+<div class="row">
+    <div class="col s1 right">
+        <form action="/dashboard/updategrade?_method=PUT" method="POST">
+            <select id="grade-input" name="gradeLevel" tabindex="8">
+               <% if(user.gradeLevel){%>
+                <option value="<%=user.gradeLevel %>"selected><%=user.gradeLevel %></option>
+                <option value="kindergarten" >Kindergarten</option>  
+                <option value="1st Grade" >1st Grade</option>  
+                <option value="2nd Grade" >2nd Grade</option>  
+                <option value="3rd Grade" >3rd Grade</option>  
+                <option value="4th Grade" >4th Grade</option>  
+                <option value="5th Grade" >5th Grade</option>  
+                <option value="6th Grade" >6th Grade</option>  
+                <option value="7th Grade" >7th Grade</option>  
+                <option value="8th Grade" >8th Grade</option>  
+                <option value="Algebra 1" >Algebra 1</option>  
+                <option value="Geometry" >Geometry</option>  
+                <option value="Algebra 2" >Algebra 2</option>  
+                <option value="Pre-Calculus" >Pre-Calculus</option> 
+                <%}else{ %>
+                <option value="" disabled selected>Choose your grade</option>
+                <option value="kindergarten" >Kindergarten</option>  
+                <option value="1st Grade" >1st Grade</option>  
+                <option value="2nd Grade" >2nd Grade</option>  
+                <option value="3rd Grade" >3rd Grade</option>  
+                <option value="4th Grade" >4th Grade</option>  
+                <option value="5th Grade" >5th Grade</option>  
+                <option value="6th Grade" >6th Grade</option>  
+                <option value="7th Grade" >7th Grade</option>  
+                <option value="8th Grade" >8th Grade</option>  
+                <option value="Algebra 1" >Algebra 1</option>  
+                <option value="Geometry" >Geometry</option>  
+                <option value="Algebra 2" >Algebra 2</option>  
+                <option value="Pre-Calculus" >Pre-Calculus</option>  
+               <% }%> 
+            </select>
+            <input type="submit">
         </form>
+    </div>
+</div>
+        <!-- 100hours project -->
+        <div class="container">
 
-        <section class="resources section">
-            <h2>Resources</h2>
-            <section class="relinks">
-
+            <h2>Hello <%=user.username%></h2>
+            
+    
+            <section class="resources section">
+                <h2>Resources</h2>
+                <section class="relinks">
+    
+                </section>
             </section>
-        </section>
-        <section class="notes section">
-            <h2><a href="/notes">Notes</a></h2>
-            <section class="classNotes">
-
-     <ul>
-        <% for(i=0; i<item.length; i++) {%>
-            <li><%= item[i].name %> <span>| due: <%= new Date(item[i].dueDate).toDateString() %></span>
-
-            </li>
-            <% } %>
-    </ul>
-
+            <section class="flashcard section">
+                <h2><a href="/flashcards">FlashCards</a></h2>
+                <section class="relinks">
+    
+                </section>
             </section>
-        </section>
-        <section class="assignments section">
-            <h2>Assignments</h2>
-            <section class="listItems">
-                <h3>Add an assignment</h3>
-                <form action="/dashboard/addTask" method="POST"> 
-                    <input type="text" placeholder="Enter assignment" name="taskItem">
-                    <input type="date" placeholder="Due Date" name="dueDate">
-                    <input type="submit">
-                </form>
-
-   <section class="list">
-    <ul>
-        <% for(i=0; i<item.length; i++) {%>
-            <li><%= item[i].name %> <span>| due: <%= new Date(item[i].dueDate).toDateString() %></span>
-                <form
-                    action="/post/deletePost/<%= item[i]._id %>?_method=PUT"
-                    method="POST"
-                    class="col-3">
-                    <a class="btn-flat"><i class="delete material-icons" type="submit">delete</i></a>
-                </form>
-            </li>
-            <% } %>
-    </ul>
-   </section>
-
+            <section class="notes section">
+                <h2><a href="/notes">Notes</a></h2>
+                <section class="classNotes">
+    
+         <ul>
+            <% for(i=0; i<notes.length; i++) {%>
+                <li><%= notes[i].title %> </span>
+    
+                </li>
+                <% } %>
+        </ul>
+    
+                </section>
             </section>
-        </section>
+            <section class="assignments section">
+                <h2>Assignments</h2>
+                <section class="listItems">
+                    <h3>Add an assignment</h3>
+                    <form action="/dashboard/addTask" method="POST"> 
+                        <input type="text" placeholder="Enter assignment" name="taskItem">
+                        <input type="date" placeholder="Due Date" name="dueDate">
+                        <input type="submit">
+                    </form>
+    
+                    <section class="list">
+                     <ul>
+                         <% for(i=0; i<item.length; i++) {%>
+                             <li><%= item[i].name %> <span>| due: <%= new Date(item[i].dueDate).toDateString() %></span>
+                                <form action="/task/delete/<%= item[i].id %>?_method=DELETE"
+                                    method="POST"
+                                    class="" onsubmit="return confirm('Delete assignment?')">
+                                    <button type="submit"  class="btn-floating btn-small  delete"><i class="material-icons">delete</i></button>
+                                </form>
+                             </li>
+                             <% } %>
+                     </ul>
+                    </section>
+    
+                </section>
+            </section>
+        </div>
         <%- include('partials/footer') -%>

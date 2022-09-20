@@ -7,11 +7,11 @@ const { ensureAuth, ensureGuest } = require('../middleware/auth')
 router.get('/', ensureAuth,notesController.getNotes)
 router.get('/view/:id', ensureAuth, notesController.viewNote)
 router.get('/edit/:id', ensureAuth, notesController.editNote)
-router.put('/update', ensureAuth, notesController.updateNote)
+router.put('/update/:id', ensureAuth, notesController.updateNote)
 
 router.get('/new', ensureAuth, notesController.newNote)
-router.post('/createnote', ensureAuth, notesController.createNote)
-router.delete('/deletenote',ensureAuth, notesController.deleteNote)
+router.post('/createnote', upload.single("file"), notesController.createNote)
+router.delete('/delete/:id',ensureAuth, notesController.deleteNote)
 
 
 module.exports = router

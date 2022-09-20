@@ -23,30 +23,37 @@ module.exports = {
         }
     },
     createNote: async (req, res) => {
+        console.log(req.body,"------------------------------------------------------")
+
         try {
             // Upload image to cloudinary
-            if(req.body.image){
-                const result = await cloudinary.uploader.upload(req.file.path);
-
-                await Notes.create({
-                title: req.body.title,
-                image: result.secure_url,
-                cloudinaryId: result.public_id,
-                content: req.body.caption,
-                user: req.user.id,
-                });
-                console.log("note has been added!");
-                res.redirect("/notes");
-            }else{
-                await Notes.create({
+            // if(req.body.image){
+                if(req.file){
+                    const result = await cloudinary.uploader.upload(req.file.path);
+                    await Notes.create({
+                        title: req.body.title,
+                        image: result.secure_url,
+                        cloudinaryId: result.public_id,
+                        content: req.body.content,
+                        user: req.user.id,
+                        });
+                }else{
+                    await Notes.create({
                     title: req.body.title,
-                    content: req.body.caption,
+                    content: req.body.content,
                     user: req.user.id,
                     });
-                    console.log("note has been added!");
-                    res.redirect("/notes");
+                }
 
-            }
+                console.log("note has been added!");
+                res.redirect("/notes");
+            // }else{
+            //     req.body.user = req.user.id
+            //     await Notes.create(req.body);
+            //         console.log("note has been added!");
+            //         res.redirect("/notes");
+
+            // }
             
     
         } catch (err) {
@@ -65,22 +72,16 @@ module.exports = {
         if(note.user != req.user.id){
             res.redirect('/notes')
         }else{      
-            res.render('edit.ejs',{note: note,user:req.user.id,})
+            res.render('editNote.ejs',{note: note,user:req.user.id,})
         }
     },
     updateNote: async (req, res)=>{
+        console.log(req.params.id)
         try{
-            if(req.body.image){
-                // Upload image to cloudinary
-                const result = await cloudinary.uploader.upload(req.file.path);
-            }
-
             await Notes.findOneAndUpdate({_id: req.params.id},{
                 title: req.body.title,
-                image: result.secure_url,
-                cloudinaryId: result.public_id,
-                content: req.body.caption,
-                user: req.user.id,            
+                content: req.body.content,
+                user:req.user.id
             }, {
                 new: true,
                 runValidators: true
@@ -98,10 +99,10 @@ module.exports = {
             let note = await Notes.findById({ _id: req.params.id });
             // Delete image from cloudinary
             if(note.image){
-                await cloudinary.uploader.destroy(post.cloudinaryId);
+                await cloudinary.uploader.destroy(note.cloudinaryId);
             }
             // Delete post from db
-            await Post.remove({ _id: req.params.id });
+            await Notes.deleteOne({ _id: req.params.id });
             console.log("Deleted Note");
             res.redirect("/notes");
         } catch (err) {

@@ -12,12 +12,6 @@ module.exports = {
         }catch(err){
             console.log(err)
         }
-
-        try{
-            res.render('dashboard.ejs', {notes: notes})
-        }catch(err){
-            console.log(err)
-        }
     },
     updateGrade: async (req,res)=>{
         try{

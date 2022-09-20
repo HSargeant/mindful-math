@@ -11,6 +11,7 @@ const connectDB = require("./config/database");
 const indexRoutes = require('./routes/IndexRoutes')
 const dashboardRoutes = require('./routes/dashboardRoutes')
 const notesRoutes = require('./routes/notesRoutes')
+const flashcardRoutes = require('./routes/flashcardRoutes')
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
@@ -27,7 +28,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 //Body Parsing
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //Logging
@@ -55,6 +56,7 @@ app.use(flash());
 app.use('/', indexRoutes)
 app.use('/dashboard', dashboardRoutes)
 app.use('/notes', notesRoutes)
+app.use('/flashcards', flashcardRoutes)
 
  
 app.listen(process.env.PORT, ()=>{

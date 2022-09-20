@@ -19,5 +19,10 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
+    const selectInstances = M.FormSelect.init(elems);
+    var img = document.querySelectorAll('.materialboxed');
+    const imageInstances = M.Materialbox.init(img);
 });
+document.addEventListener('DOMContentLoaded', function() {
+    
+  });
