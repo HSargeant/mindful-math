@@ -1,3 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>replit</title>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+            integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
+    <body>
+    
+        <%- include('partials/login-footer') -%>
+		<div class="flex justify-center">
+			<div class="mb-3 xl:w-96">
+			  <select class="form-select appearance-none
+				block
+				w-full
+				px-3
+				py-1.5
+				text-base
+				font-normal
+				text-gray-700
+				bg-white bg-clip-padding bg-no-repeat
+				border border-solid border-gray-300
+				rounded
+				transition
+				ease-in-out
+				m-0
+				focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+				  <option selected>Open this select menu</option>
+				  <option value="1">One</option>
+				  <option value="2">Two</option>
+				  <option value="3">Three</option>
+			  </select>
+			</div>
+		  </div>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </body>
+</html>
+
+
+<!-- 
 <%- include('partials/login-header') -%>
       <div class="card">
         <div class="card-content">
@@ -44,8 +92,7 @@
                   </div>
                   <div class="col s12 input-field">
                     <i class="material-icons prefix">school</i>
-                    <!-- <input tabindex="2"  minlength="8"  class="validate" type="text" name='grade-input' id="grade-input"> -->
-                      <!-- tab index doesn't work on select -->
+     
                     <select id="grade-input" name="gradeLevel" tabindex="8" class="validate">
                       <option value="" disabled selected>Choose your grade</option>
                       <option value="kindergarten" >Kindergarten</option>  
@@ -86,4 +133,4 @@
         </div>
       </div> 
             
-    <%- include('partials/login-footer') -%>
+    <%- include('partials/login-footer') -%> -->

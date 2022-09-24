@@ -13,8 +13,22 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/flashcard.css" />
+    
+    
   </head>
   <body>
+    <header>
+      <nav class="nav-bar">
+          <div class="nav-content right">
+              <ul>
+                  <li><a href="/dashboard">Home</a></li>
+                  <li><a href="/notes">Notes</a></li>
+                  <li><a href="/logout">Logout</a></li>
+              </ul>
+          </div>
+  
+      </nav>
+  </header>
     <div class="container1">
         <div class="add-flashcard-con">
             <button id="add-flashcard">Add Flashcard</button>
@@ -27,10 +41,10 @@
                 <div class="card1">
                     <p class="question-div"><%=card.question %></p>
                     <a href="#" class="show-hide-btn">Show/Hide</a>
-                    <p class="answer-div hide"><%=card.answer%></p>
+                    <div class="answer-div hide"><p><%-card.answer%></p></div>
                     <div class="buttons-con">
                         <a href="/flashcards/edit/<%=card._id%>"><button class="edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
-                        <form action="/flashcards/<%=card._id%>?_method=DELETE" method="POST">
+                        <form action="/flashcards/<%=card._id%>?_method=DELETE" method="POST" onsubmit="return confirm('Delete Flashcard?')">
                         <button class="delete"><i class="fa-solid fa-trash-can"></i></button>
                         </form>
                     </div>
@@ -66,6 +80,12 @@
 
 
     <!-- Script -->
-    <script src="/js/flashcard.js"></script>
+  <script src="/js/flashcard.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.19.1/ckeditor.js" integrity="sha512-Ooi9IbjM2SIDjQ02ENbPFuuORT8F8Rc+rowcYfLneDwKRxw1+gVVj5tciVmV/APnA/Ys+qy1MbNKK3k2EaAHcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+      CKEDITOR.replace('answer',{
+      plugins: 'wysiwygarea, toolbar ,basicstyles, link'
+      })
+  </script>
   </body>
 </html>

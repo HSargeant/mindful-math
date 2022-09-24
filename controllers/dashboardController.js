@@ -4,6 +4,7 @@ const Note = require('../models/Note')
 
 module.exports = {
     getUserData: async (req,res)=>{
+        
         try{
             const taskItems = await Task.find({user:req.user.id,completed:false}).lean().sort({dueDate: 1})
             const notes = await Note.find({user:req.user.id}).lean().sort({createdAt: -1})
