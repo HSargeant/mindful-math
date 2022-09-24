@@ -88,7 +88,7 @@ module.exports = {
   
     User.findOne({$or: [
       {email: req.body.email},
-      {userName: req.body.userName}
+      {username: req.body.username}
     ]}, (err, existingUser) => {
       if (err) { return next(err) }
       if (existingUser) {
