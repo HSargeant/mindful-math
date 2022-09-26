@@ -36,11 +36,8 @@ module.exports = {
         console.log(req.params.id,"--------------------------------------------")
         try{
             await Task.findOneAndUpdate({_id: req.params.id},{
-                completed: true,
+                completed: true
                          
-            }, {
-                new: true,
-                runValidators: true
             })
             res.redirect('/dashboard')
             console.log('deleted')

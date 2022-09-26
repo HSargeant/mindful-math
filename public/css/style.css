@@ -243,3 +243,7 @@ nav .nav-wrapper {
     position: relative;
     height: 100%;
 }
+#modal{
+  overflow-y: hidden;
+  width: 100vw;
+}
