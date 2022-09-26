@@ -45,12 +45,15 @@
 
 // })()
 let modal = document.getElementById("modal");
+// let notesModal = document.getElementById("notesModal");
 
-document.querySelector('#addTask').addEventListener('click',()=>{
-    modalHandler(true)
-
-
-})
+if(document.querySelector('#addTask')){
+    document.querySelector('#addTask').addEventListener('click',()=>{
+        modalHandler(true)
+    
+    
+    })
+}
 document.querySelector('#modalCancel').addEventListener('click',()=>{
     modalHandler()
 
@@ -91,3 +94,12 @@ function modalHandler(val) {
                     })();
                 }
 
+
+const qs = document.querySelectorAll('.question')
+
+qs.forEach(elem=>{
+    elem.addEventListener('click',()=>{
+        elem.nextElementSibling.classList.toggle("hidden")
+    
+      })
+})

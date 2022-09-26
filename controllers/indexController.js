@@ -5,7 +5,6 @@ const Note = require('../models/Note')
 
 module.exports = {
     getIndex: async (req,res)=>{
-        console.log(req.user)
         if(!req.user){
             res.render('index.ejs')
 

@@ -4,7 +4,7 @@ const cloudinary = require("../middleware/cloudinary");
 module.exports = {
     getNotes: async (req, res) => {
         try {
-            const notes = await Notes.find({user: req.user.id}).lean()
+            const notes = await Notes.find({user: req.user.id}).lean().sort({createdAt: -1})
             
             res.render("allNotes.ejs", { notes: notes, user: req.user, });
         } catch (err) {

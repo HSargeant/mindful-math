@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flashcard App</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+<%- include('partials/main-header') -%>
+
     <link rel="stylesheet" href="/css/flashcard.css" />
-  </head>
   <body>
     <div class="container">   
    <form action="/flashcards/edit/<%=card._id%>?_method=PUT" method="POST" class="question-container" id="edit-question-card">
@@ -27,7 +15,7 @@
         <label for="question">Question:</label>
         <textarea class="input" name="question" id="question" placeholder="Type the question here..." rows="2" required="true"><%=card.question%></textarea>
         <label for="answer">Answer:</label>
-        <textarea name="answer" class="input" id="answer" rows="4" placeholder="Type the answer here..." required="true"><%=card.answer%></textarea>
+        <textarea name="answer" class="input" id="answer" rows="4" placeholder="Type the answer here..." required="true"><%-card.answer%></textarea>
         <label for="topic">Topic:</label>
         <input class="input" name="topic" id="topic" rows="4" placeholder="" value="<%=card.topic%>">
           <button type="submit" id="save-btn">Save</button>
@@ -40,5 +28,5 @@
         text-decoration: none;
       }
     </style>
-  </body>
-</html>
+
+<%- include('partials/main-footer') -%>
