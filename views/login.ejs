@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html>
+<%- include('partials/login-header') -%>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-<link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-</head>
-<body>
 
 <%let randomImage = pics[Math.floor(Math.random()*pics.length)]%>
 <section class="bg-white dark:bg-gray-900">
@@ -60,6 +49,8 @@
                       </svg>
                   </button>
                 </form>
+
+                <p>OR</p>
                 <div>
                   
                   <a href="/auth/google"
@@ -73,11 +64,11 @@
                     <a href="/signup" class="black-text width-100">Sign up </a>
                   </div>
                 </div>
+                <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field">
+                  <a href="/" class="black-text width-100 float-right"><i class="fa-sharp fa-solid fa-house fa-lg"></i> </a>
+                </div>
           </div>
       </div>
   </div>
 </section>
-<%- include('partials/login-footer') -%>
-<script src="https://cdn.tailwindcss.com"></script>
-
 </body>
