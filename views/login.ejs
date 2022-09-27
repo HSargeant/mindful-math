@@ -1,45 +1,74 @@
 <%- include('partials/login-header') -%>
-      <div class="card center">
-        <div class="card-content">
-          <img class="mainLogo" src="logo.png" alt="site logo" />
-          <main class="container main">
-            <h2 class="bold center">Welcome Back</h2>
-            <div class="container">
-              <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
-              <div class="alert alert-danger"><%= el.msg %></div>
-              <% }) %> <% } %> <% if (locals.messages.info) { %> <% messages.info.forEach( el => { %>
-              <div class="alert alert-danger"><%= el.msg %></div>
-              <% }) %> <% } %>
-              <div class="container login-container center">
-                <form action="/login" method="POST">
-                  <div class="row">
-                    <div class="col s12 input-field">
-                      <i class="material-icons prefix">email</i>
-                      <input tabindex="1" class="validate" type="email" name="email" id="email-input" />
-                      <label for="email-input">email</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col s12 input-field">
-                      <i class="material-icons prefix">lock</i>
-                      <input tabindex="2" minlength="8" class="validate" type="password" name="password" id="password-input" />
-                      <label for="password-input">password</label>
-                    </div>
-                  </div>
-                  <div class="row no-margin">
-                    <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field">
-                      <button tabindex="3" class="btn black-text bold waves-effect waves-light modal-submit width-100" type="submit" name="action">Login</button>
-                    </div>
-                  </div>
-                  <div class="row no-margin">
-                    <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field">
-                      <a href="/signup" tabindex="4" class="black-text width-100">Sign up </a>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </main>
-        </div>
+
+
+<%let randomImage = pics[Math.floor(Math.random()*pics.length)]%>
+<section class="bg-white dark:bg-gray-900">
+  <div class="flex justify-center min-h-screen">
+      <div class="hidden bg-cover lg:block lg:w-2/5 heroBack" style="background-image: url(<%=randomImage%>)">
       </div>
-<%- include('partials/login-footer') -%>
+      <div class="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
+          <div class="w-full">
+              <h1 class="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
+                  Welcome Back
+              </h1>
+
+              <p class="mt-4 text-gray-500 dark:text-gray-400">
+              </p>
+
+              <div class="mt-6">
+                  <h1 class="text-gray-500 dark:text-gray-300">Log In</h1>
+
+                  
+              </div>
+              <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+                <div class="alert alert-danger"><%= el.msg %></div>
+                <% }) %> <% } %> <% if (locals.messages.info) { %> <% messages.info.forEach( el => { %>
+                <div class="alert alert-danger"><%= el.msg %></div>
+                <% }) %> <% } %>
+
+              <form action="/login" method="POST" class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2 mb-10">
+                  <div>
+                      <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
+                      <input name="email" type="email" placeholder="name@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  </div>
+
+                  <div>
+                      <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Password</label>
+                      <input name="password" type="password" placeholder="Enter your password" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  </div>
+
+
+                  <button
+                      class="flex items-center justify-between w-2/5 px-6 py-3 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" type="submit">
+                      <span>Sign in </span>
+
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd"
+                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                              clip-rule="evenodd" />
+                      </svg>
+                  </button>
+                </form>
+
+                <p>OR</p>
+                <div>
+                  
+                  <a href="/auth/google"
+                      class="flex items-center justify-between w-1/3 px-6 py-3 tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-500 rounded-md hover:bg-red-400 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-50">
+                      <span>Use google account</span>
+
+                      <i class="fa-brands fa-google"></i>
+                  </a>
+
+                  <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field">
+                    <a href="/signup" class="black-text width-100">Sign up </a>
+                  </div>
+                </div>
+                <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field">
+                  <a href="/" class="black-text width-100 float-right"><i class="fa-sharp fa-solid fa-house fa-lg"></i> </a>
+                </div>
+          </div>
+      </div>
+  </div>
+</section>
+</body>

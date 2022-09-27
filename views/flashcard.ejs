@@ -1,71 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flashcard App</title>
+<link rel="stylesheet" href="/css/flashcard.css" />
+<%- include('partials/main-header') -%>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/css/flashcard.css" />
-  </head>
-  <body>
-    <div class="container1">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12 container1">
         <div class="add-flashcard-con">
-            <button id="add-flashcard">Add Flashcard</button>
+            <button id="add-flashcard" class="bg-blue-500">Add Flashcard</button>
         </div>
 
       <!-- Display Card of Question And Answers Here -->
-      <div id="card-con">
-        <div class="card-list-container">
+       <div id="card-con">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <%cards.forEach(card=>{ %>
-                <div class="card1">
-                    <p class="question-div"><%=card.question %></p>
-                    <a href="#" class="show-hide-btn">Show/Hide</a>
-                    <p class="answer-div hide"><%=card.answer%></p>
-                    <div class="buttons-con">
-                        <a href="/flashcards/edit/<%=card._id%>"><button class="edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
-                        <form action="/flashcards/<%=card._id%>?_method=DELETE" method="POST">
+                <div class="card1 ">
+                  <p class="question-div dark:text-white"><%=card.question%></p>
+                  <a  class="show-hide-btn bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 font-bold uppercase cursor-pointer">Show/Hide</a>
+                  <div class="answer-div hide dark:text-white"><p><%-card.answer%></p></div>
+                  <div class="buttons-con">
+                    <a href="/flashcards/edit/<%=card._id%>"><button class="edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
+                    <form action="/flashcards/<%=card._id%>?_method=DELETE" method="POST" onsubmit="return confirm('Delete Flashcard?')">
                         <button class="delete"><i class="fa-solid fa-trash-can"></i></button>
-                        </form>
+                      </form>
                     </div>
-                </div>
+                    <span class="dark:text-white topic"><%=card.topic%></span>
+                  </div>
            <% })%>
 
         </div>
       </div>
     </div>
 
-    <!-- Input form for users to fill question and answer -->
-    <form action="/flashcards/create" method="POST" class="question-container hide" id="add-question-card">
-      <h2>Add Flashcard</h2>
-      <div class="wrapper">
-        <!-- Error message -->
-        <div class="error-con">
-          <span class="hide" id="error">Input fields cannot be empty!</span>
-        </div>
-        <!-- Close Button -->
-        <i class="fa-solid fa-xmark" id="close-btn"></i>
-      </div>
+    <!-- component -->
+<!-- <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12 container1">
+  <div class="text-center pb-12">
+      <h2 class="text-base font-bold text-indigo-600">
+          We have the best equipment
+      </h2>
+      <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900">
+          Check our awesome team members
+      </h1>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <%cards.forEach(card=>{%>
+      <div class="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
+          <div class="mb-8">
+            <a href="#" class="show-hide-btn bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 font-bold uppercase">Show/Hide</a>
+             
+          </div>
+          <div class="text-center">
+              <p class="text-xl text-gray-700 font-bold mb-2 question-div"><%=card.question%></p>
+              <div class="mb-8">
+             
+              </div>
 
-      <label for="question">Question:</label>
-      <textarea class="input" name="question" id="question" placeholder="Type the question here..." rows="2" required="true"></textarea>
-      <label for="answer">Answer:</label>
-      <!-- <textarea name="answer" class="input"></textarea> -->
-      <textarea name="answer" class="input" id="answer" rows="4" placeholder="Type the answer here..." required="true"></textarea>
-      <label for="topic">Topic:</label>
-      <input class="input" name="topic" id="topic" rows="4" placeholder="">
-        <button type="submit" id="save-btn">Save</button>
-    </form>
+
+              <div class="answer-div hide"><p><%-card.answer%></p></div>
+                    <div class="buttons-con">
+                        <a href="/flashcards/edit/<%=card._id%>"><button class="edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
+                        <form action="/flashcards/<%=card._id%>?_method=DELETE" method="POST" onsubmit="return confirm('Delete Flashcard?')">
+                        <button class="delete"><i class="fa-solid fa-trash-can"></i></button>
+                        </form>
+                    </div>
+          </div>
+      </div>
+    <%})%>
+  </div>
+</section> -->
+
+    <!-- Input form for users to fill question and answer -->
+
+    <div class="flex items-center justify-center p-12">
+      <!-- Author: FormBold Team -->
+      <!-- Learn More: https://formbold.com -->
+      <div class="mx-auto w-full max-w-[550px] ">
+        <form action="/flashcards/create" method="POST" class=" hide" id="add-question-card">
+          <div class="mb-5">
+            <label
+              for="question"
+              class="mb-3 block text-base font-medium text-[#07074D] dark:text-white"
+            >
+              Question
+            </label>
+            <input
+              type="text"
+              name="question"
+              id="name"
+              placeholder="Enter question here.."
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-blue-500 focus:shadow-md"
+              value=""
+            />
+          </div>
+          <div class="mb-5">
+            <label
+              for="answer"
+              class="mb-3 block text-base font-medium text-[#07074D] dark:text-white"
+            >
+              Answer
+            </label>
+            <textarea
+              rows="4"
+              name="answer"
+              id="answer"
+              placeholder="Type your message"
+              class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            ></textarea>
+          </div>
+          
+          <div class="mb-5">
+            <label
+              for="topic"
+              class="mb-3 block text-base font-medium text-[#07074D] dark:text-white"
+            >
+              Topic
+            </label>
+            <input
+              type="text"
+              name="topic"
+              id="topic"
+              placeholder="Enter your topic"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              value=""
+            />
+          </div>
+          <div>
+            <button
+              class="hover:shadow-form rounded-md bg-blue-500 py-3 px-8 text-base font-semibold text-white outline-none"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
 
 
 
     <!-- Script -->
-    <script src="/js/flashcard.js"></script>
-  </body>
-</html>
+  <script src="/js/flashcard.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+  <script>
+    ClassicEditor
+        .create( document.querySelector( '#answer' ),{})
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+<%- include('partials/main-footer') -%>
+
