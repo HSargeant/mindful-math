@@ -9,6 +9,4 @@ router.put('/updategrade',ensureAuth,dashboardController.updateGrade)
 router.post('/addtask',ensureAuth,dashboardController.addTask)
 router.put('/:id',ensureAuth,dashboardController.markComplete)
 
-
-
 module.exports = router

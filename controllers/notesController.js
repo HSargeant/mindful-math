@@ -23,8 +23,6 @@ module.exports = {
         }
     },
     createNote: async (req, res) => {
-        console.log(req.body,"------------------------------------------------------")
-
         try {
             // Upload image to cloudinary
             // if(req.body.image){
