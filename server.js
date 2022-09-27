@@ -27,7 +27,6 @@ app.set("view engine", "ejs");
 
 app.use(cors())
 
-
 //Static Folder
 app.use(express.static("public"));
 
@@ -66,55 +65,3 @@ app.use('/flashcards', flashcardRoutes)
 app.listen(process.env.PORT, ()=>{
     console.log(`running on port ${process.env.PORT}`)
 })    
-
-
-
-
-
-
-
-
-
-
-
-// const PORT = process.env.PORT || 8000
-// console.log(process.env.PORT)
-
-// // const fetch = require('node-fetch');
-// const MongoClient = require("mongodb").MongoClient
-
-// let db
-// const dbName = process.env.DBNAME
-// const connectionString = process.env.MONGO_URL
-// MongoClient.connect(connectionString,{ useUnifiedTopology: true })
-//     .then(client => {
-//         console.log(`Connected to ${dbName} Database`)
-//         db = client.db(dbName)
-//     })
-
-// app.set('view engine', 'ejs')
-// app.use(express.static('public'))
-// app.use(express.urlencoded({ extended: true }))
-// app.use(express.json())
-// app.enable('trust proxy')
-
-// app.get('/',async (req, res)=>{
-    
-//         const assignments= await db.collection('assignments').find().sort({date: 1}).toArray()
-//         const notes = await db.collection('notes').find().toArray()
-//         const grade = await db.collection('grade-level').find().toArray()
-//         res.render('index.ejs', { assign: assignments,notes: notes,grade: grade})
-        
-//     // res.render('index.ejs')
-
-// })
-
-// app.post('/addTask', async (req, res) => {
-//     req.body.todoItem=req.body.todoItem.trim()
-//     if(!req.body.todoItem) {
-//         res.redirect('/')
-//     return}
- 
-//     const rep = await db.collection('assignments').insertOne({task: req.body.todoItem,date:req.body.dueDate, completed: false}) 
-//     res.redirect('/')
-// })
