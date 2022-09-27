@@ -1,32 +1,86 @@
 <%- include('partials/main-header') -%>
 
-    <link rel="stylesheet" href="/css/flashcard.css" />
-  <body>
-    <div class="container">   
-   <form action="/flashcards/edit/<%=card._id%>?_method=PUT" method="POST" class="question-container" id="edit-question-card">
-        <h2>Add Flashcard</h2>
-        <div class="wrapper">
-          <div class="error-con">
-            <span class="hide" id="error">Input fields cannot be empty!</span>
-          </div>
-          <a href="/flashcards"><i class="fa-solid fa-xmark" id="close-btn"></i></a>
-        </div>
-  
-        <label for="question">Question:</label>
-        <textarea class="input" name="question" id="question" placeholder="Type the question here..." rows="2" required="true"><%=card.question%></textarea>
-        <label for="answer">Answer:</label>
-        <textarea name="answer" class="input" id="answer" rows="4" placeholder="Type the answer here..." required="true"><%-card.answer%></textarea>
-        <label for="topic">Topic:</label>
-        <input class="input" name="topic" id="topic" rows="4" placeholder="" value="<%=card.topic%>">
-          <button type="submit" id="save-btn">Save</button>
-      </form>
-    </div>
+    <!-- component -->
+<div class="flex items-center justify-center p-12">
+  <!-- Author: FormBold Team -->
+  <!-- Learn More: https://formbold.com -->
+  <div class="mx-auto w-full max-w-[550px] ">
+    <form action="/flashcards/edit/<%=card._id%>?_method=PUT" method="POST" class="question-container" id="edit-question-card">
+      <div class="mb-5">
+        <label
+          for="question"
+          class="mb-3 block text-base font-medium text-[#07074D] dark:text-white"
+        >
+          Question
+        </label>
+        <input
+          type="text"
+          name="question"
+          id="name"
+          placeholder="Enter question here.."
+          class="w-full rounded-md border border-[#e0e0e0] bg-white dark:bg-gray-600 py-3 px-6 text-white font-medium text-black outline-none focus:border-blue-500 focus:shadow-md"
+          value="<%=card.question%>"
+        />
+      </div>
+      <div class="mb-5">
+        <label
+          for="answer"
+          class="mb-3 block text-base font-medium text-[#07074D] dark:text-white"
+        >
+          Answer
+        </label>
+        <textarea
+          rows="4"
+          name="answer"
+          id="answer"
+          placeholder="Type your message"
+          class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white dark:bg-gray-600 py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        ><%-card.answer%></textarea>
+      </div>
+      
+      <div class="mb-5">
+        <label
+          for="topic"
+          class="mb-3 block text-base font-medium text-[#07074D] dark:text-white"
+        >
+          Topic
+        </label>
+        <input
+          type="text"
+          name="topic"
+          id="topic"
+          placeholder="Enter your topic"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white dark:bg-gray-600 py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          value="<%=card.topic%>"
+        />
+      </div>
+      <div>
+        <button
+          class="hover:shadow-form rounded-md bg-blue-500 py-3 px-8 text-base font-semibold text-white outline-none"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
 
     <script src="/js/flashcard.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+    <script>
+      ClassicEditor
+          .create( document.querySelector( '#answer' ),{})
+          .catch( error => {
+              console.error( error );
+          } );
+  </script>
     <style>
-      a{
-        text-decoration: none;
-      }
+.ck.ck-editor__main>.ck-editor__editable {
+  background-color:gray;
+}
     </style>
 
 <%- include('partials/main-footer') -%>
+
+

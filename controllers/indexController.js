@@ -1,6 +1,7 @@
 const Task = require('../models/Task')
 const User = require('../models/User')
 const Note = require('../models/Note')
+const Cards = require('../models/Flashcard')
 
 
 module.exports = {
@@ -9,9 +10,18 @@ module.exports = {
             res.render('index.ejs')
 
         }else{
-            const taskItems = await Task.find({user:req.user.id,completed:false}).lean().sort({dueDate: 1})
-            const notes = await Note.find({user:req.user.id}).lean().sort({createdAt: -1})
-            res.render('dashboard.ejs', { item: taskItems, user: req.user, notes:notes})
+            try{
+                const taskItems = await Task.find({user:req.user.id,completed:false}).lean().sort({dueDate: 1})
+                const notes = await Note.find({user:req.user.id}).lean().sort({createdAt: -1})
+                const cards = await Cards.find({user:req.user.id}).lean().sort({createdAt: -1})
+                const response = await fetch('https://zenquotes.io/api/quotes')
+                const data= await response.json()
+    
+                res.render('dashboard.ejs', { taskItems: taskItems, user: req.user, notes:notes,data:data,cards:cards})
+    
+            }catch(err){
+                console.log(err)
+            }
         }
     }
 }
