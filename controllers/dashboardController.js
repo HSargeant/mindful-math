@@ -2,7 +2,7 @@ const Task = require('../models/Task')
 const User = require('../models/User')
 const Note = require('../models/Note')
 const Cards = require('../models/Flashcard')
-
+const fetch = require('node-fetch')
 
 module.exports = {
     getUserData: async (req,res)=>{

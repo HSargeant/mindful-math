@@ -13,7 +13,7 @@ const dashboardRoutes = require('./routes/dashboardRoutes')
 const notesRoutes = require('./routes/notesRoutes')
 const flashcardRoutes = require('./routes/flashcardRoutes')
 //Use .env file in config folder
-require("dotenv").config({ path: "./config/.env" });
+require("dotenv").config({ path: "./config/.env" })
 
 // Passport config
 require("./config/passport")(passport);
