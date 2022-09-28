@@ -2,18 +2,15 @@ const Task = require('../models/Task')
 const User = require('../models/User')
 const Note = require('../models/Note')
 const Cards = require('../models/Flashcard')
-const fetch = require('node-fetch')
 
 module.exports = {
     getUserData: async (req,res)=>{
-        
         try{
             const taskItems = await Task.find({user:req.user.id,completed:false}).lean().sort({dueDate: 1})
             const notes = await Note.find({user:req.user.id}).lean().sort({createdAt: -1})
             const cards = await Cards.find({user:req.user.id}).lean().sort({createdAt: -1})
             const response = await fetch('https://zenquotes.io/api/quotes')
             const data= await response.json()
-
             res.render('dashboard.ejs', { taskItems: taskItems, user: req.user, notes:notes,data:data,cards:cards})
 
         }catch(err){
@@ -23,8 +20,7 @@ module.exports = {
     updateGrade: async (req,res)=>{
         try{
             await User.findOneAndUpdate({_id: req.user.id},{
-                gradeLevel: req.body.gradeLevel,
-                         
+                gradeLevel: req.body.gradeLevel,                        
             }, {
                 new: true,
                 runValidators: true
@@ -38,8 +34,7 @@ module.exports = {
     markComplete: async (req,res)=>{
         try{
             await Task.findOneAndUpdate({_id: req.params.id},{
-                completed: true
-                         
+                completed: true       
             })
             res.redirect('/dashboard')
             console.log('deleted')

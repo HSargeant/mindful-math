@@ -6,6 +6,7 @@ const MongoStore = require("connect-mongo");
 const methodOverride = require("method-override");
 const flash = require("express-flash");
 const logger = require("morgan");
+const PORT = 8000
 const cors = require("cors")
 const connectDB = require("./config/database");
 const indexRoutes = require('./routes/IndexRoutes')
@@ -59,6 +60,6 @@ app.use('/dashboard', dashboardRoutes)
 app.use('/notes', notesRoutes)
 app.use('/flashcards', flashcardRoutes)
 
-app.listen(8000 ||process.env.PORT, ()=>{
-    console.log(`running on port ${8000}`)
+app.listen(process.env.PORT||PORT, ()=>{
+    console.log(`running on port ${PORT}`)
 })
