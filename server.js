@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -46,7 +45,6 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({mongoUrl: process.env.MONGO_URL})
-
 }))
 
 // Passport middleware
@@ -61,7 +59,6 @@ app.use('/dashboard', dashboardRoutes)
 app.use('/notes', notesRoutes)
 app.use('/flashcards', flashcardRoutes)
 
- 
-app.listen(process.env.PORT, ()=>{
-    console.log(`running on port ${process.env.PORT}`)
-})    
+app.listen(8000 ||process.env.PORT, ()=>{
+    console.log(`running on port ${8000}`)
+})
