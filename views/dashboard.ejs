@@ -103,8 +103,17 @@
                         <div class="flex-grow flex justify-between items-center">
                           <div class="self-center">
                             <p class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100 cursor-pointer question"><%=cards[i].question%></p>
+                 
+                                <span class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100 hidden answer">Answer: <%- cards[i].answer %></span>
 
-                            <p class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100 hidden answer">Answer: <%=cards[i].answer%></p>
+                              
+                          </div>
+                          <div class="self-center">
+                            <p class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100 cursor-pointer question"><%=cards[i].topic%></p>
+                 
+                               
+
+                              
                           </div>
                         </div>
                       </div>
@@ -141,9 +150,12 @@
                     <% notes.forEach(note=>{%>
                     <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
+                        <a href="#<%=note._id%>">
+
                         <div>
                           <p class="font-semibold"><%=note.title%></p>
                         </div>
+                        </a>
                       </td>
                       <td class="px-4 py-3 text-sm"><%=note.topic%></td>
                       <td class="px-4 py-3 text-sm"><%=note.createdAt.toDateString()%></td>
@@ -154,6 +166,20 @@
                         </form>
                       </td>
                     </tr>
+                                   <!-- note modal -->
+                    <!-- note modal -->
+                    <div class="modal w-full h-full" id="<%=note._id%>">
+                      <div class="modal-box dark:bg-gray-600">
+                          <h3 class="font-bold text-lg text-black dark:text-white"><%=note.title%></h3>
+                          <span class="text-black text-sm dark:text-white"><%=note.topic%></span>
+                          <a href="<%=note.image%>" target="_blank"><img src="<%=note.image%>" class="w-full" /></a>
+                          <div class="py-4 text-black dark:text-white"><%-note.content%></div>
+                          <div class="modal-action">
+                              <a href="#" class="btn">Close</a>
+                          </div>
+                      </div>
+                  </div>
+                  <!--  -->
                     <%})%>
                   </tbody>
                 </table>

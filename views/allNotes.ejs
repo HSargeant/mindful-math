@@ -2,90 +2,72 @@
 <!-- floating button -->
 <a href="/notes/new" id="addNote" class="fixed z-50 bottom-10 right-8 bg-blue-500 w-20 h-20 rounded-full flex justify-center items-center text-white hover:bg-blue-600 text-4xl" id="addNote"><i class="fa-solid fa-plus"></i></a>
 <div class="p-2 text-center quote">
-  <h1 class="">Your Notes</h1>
-  <p><a href="/notes/new">add a note</a></p>
-  <% if(notes.length==1) { %>
-  <h3 class="page-title">You have 1 note</h3>
-  <% } else { %>
-  <h3 class="page-title">You have <%=notes.length%> notes</h3>
-  <% } %>
+    <h2 class="text-4xl">Class Notes</h2>
+    <% if(notes.length==1) { %>
+    <h3 class="page-title">You have 1 note</h3>
+    <% } else { %>
+    <h3 class="page-title">You have <%=notes.length%> notes</h3>
+    <% } %>
 </div>
-
 <section class="search flex justify-center">
-  <input id="search" type="search" placeholder="Search Notes" />
+    <input id="search" type="search" placeholder="Search Notes" />
 </section>
-
 <div class="mt-4 mx-4">
-  <div class="w-full overflow-hidden rounded-lg shadow-xs">
-    <div class="w-full overflow-x-auto">
-      <table class="w-full">
-        <thead>
-          <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-            <th class="px-4 py-3">Title</th>
-            <th class="px-4 py-3">Topic</th>
-            <th class="px-4 py-3">Date</th>
-            <th class="px-4 py-3"></th>
-          </tr>
-        </thead>
-        <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-          <% notes.forEach(note=>{%>
-          <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-            <td class="px-4 py-3">
-              <div>
-                <p class="font-semibold"><%=note.title%></p>
-              </div>
-            </td>
-            <td class="px-4 py-3 text-sm"><%=note.topic%></td>
-            <td class="px-4 py-3 text-sm"><%=note.createdAt.toDateString()%></td>
-            
-            <td class="px-4 py-3 text-sm">
-              <a href="/notes/edit/<%=note._id%>"><i class="fas fa-edit"></i></a>
-            </td>
-            <td class="px-4 py-3 text-sm">
-              <form action="/notes/delete/<%= note._id %>?_method=DELETE" method="POST" class="" onsubmit="return confirm('Delete Note?')">
-                <button type="submit"><i class="fas fa-trash"></i></button>
-              </form>
-            </td>
-          </tr>
-          <%})%>
-        </tbody>
-      </table>
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+        <div class="w-full overflow-x-auto">
+            <table class="w-full">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">Title</th>
+                        <th class="px-4 py-3">Topic</th>
+                        <th class="px-4 py-3">Date</th>
+                        <th class="px-4 py-3">Edit</th>
+                        <th class="px-4 py-3">Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    <% notes.forEach(note=>{%>
+                    <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
+                        <td class="px-4 py-3">
+                            <a href="#<%=note._id%>">
+                                <div>
+                                    <p class="font-semibold"><%=note.title%></p>
+                                </div>
+                            </a>
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            <a href="#<%=note._id%>">
+                            <%=note.topic%>
+                        </a>
+                        </td>
+                        <td class="px-4 py-3 text-sm"><%=note.createdAt.toLocaleDateString()%></td>
+
+                        <td class="px-4 py-3 text-sm">
+                            <a href="/notes/edit/<%=note._id%>"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            <form action="/notes/delete/<%= note._id %>?_method=DELETE" method="POST" class="" onsubmit="return confirm('Delete Note?')">
+                                <button type="submit"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <!-- note modal -->
+                    <div class="modal w-full h-full" id="<%=note._id%>">
+                        <div class="modal-box dark:bg-gray-600">
+                            <h3 class="font-bold text-lg text-black dark:text-white"><%=note.title%></h3>
+                            <span class="text-black text-sm dark:text-white"><%=note.topic%></span>
+                            <a href="<%=note.image%>" target="_blank"><img src="<%=note.image%>" class="w-full" /></a>
+                            <div class="py-4 text-black dark:text-white"><%-note.content%></div>
+                            <div class="modal-action">
+                                <a href="#" class="btn">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <%})%>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
 </div>
-<!-- <main class="container">
-  <section class="">
-    <h1 class="">Your Notes</h1>
-  </section>
-  <p><a href="/notes/new">add a note</a></p>
-  <% if(notes.length==1) { %>
-  <h3 class="page-title">You have 1 note</h3>
-  <% } else { %>
-  <h3 class="page-title">You have <%=notes.length%> notes</h3>
-  <% } %>
-
-  <section class="notes wrapper">
-    <section class="search">
-      <input id="search" type="search" placeholder="Search Notes" />
-    </section>
-
-    <%notes.reverse().forEach(note=>{ %>
-    <div class="review-card card" data-id="<%=notes._id%>">
-      <i class="fa-solid fa-circle-user"></i>
-      <div class="template-info">
-        <h2 class="template-info_restaurant"><%=note.title%></h2>
-      </div>
-      <div class="template-info">
-        <img src="<%=note.image%>" width="600px" class="materialboxed" />
-      </div>
-      <p class="template-comment"><%-note.content%></p>
-      <form action="/notes/delete/<%= note._id %>?_method=DELETE" method="POST" class="" onsubmit="return confirm('Delete Note?')">
-        <button type="submit" class="btn-floating btn-small right delete"><i class="material-icons">delete</i></button>
-      </form>
-      <a href="notes/edit/<%=note._id.toString()%>" class="btn-floating btn-small"><i class="material-icons">edit</i></a>
-    </div>
-    <%}) %>
-  </section>
-</main> -->
-
 <%- include('partials/main-footer') -%>

@@ -1,99 +1,98 @@
-<%- include('partials/header') -%>
-action="/notes/delete/<%= note._id %>?_method=DELETE"
-                method="POST"
 
-<main class="container">
-    <div class="container-1280 center">
-        <h3>Edit Note</h3>
-        <form action="/notes/update/<%= note._id %>?_method=PUT" method="POST">
-        <div class="row">
-            <div class="col s12 input-field">
-                <input tabindex="1" class="validate" type="text" value="<%=note.title%>" name='title' id="restaurant-modal" required>
-                <label for="restaurant-modal">Title</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 input-field">
-                <textarea id="content" tabindex="7" class="validate" type="text" name='content' id="comment-modal" required><%=note.content%></textarea>
-                <label for="comment-modal"></label>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class=" col s12 m6 l6">
-                <div class="">
-                  <span>Image</span>
-                  <img src="<%=note.image%>" width="500px">
+                <%- include('partials/main-header') -%>
+                <div class="flex items-center justify-center p-12">
+                  <div class="mx-auto w-full max-w-[550px]">
+                    <form action="/notes/update/<%=note._id%>?_method=PUT" method='POST'  class="modalForm">
+                      <div class="mb-5">
+                        <label
+                          for="name"
+                          class="mb-3 block text-black text-gray-800 dark:text-white"
+                        >
+                          Title
+                        </label>
+                        <input
+                          type="text"
+                          name="title"
+                          id="title"
+                          class="w-full rounded-md border border-blue-500 bg-white py-3 px-6 text-black font-medium outline-none focus:border-[#6A64F1] focus:shadow-md "
+                          value="<%=note.title%>"
+                        />
+                      </div>
+                      <div class="mb-5">
+                        <label
+                          for="name"
+                          class="mb-3 block text-black text-gray-800 dark:text-white"
+                        >
+                          Topic
+                        </label>
+                        <input
+                          type="text"
+                          name="topic"
+                          id="noteTopic"
+                          class="w-full rounded-md border border-blue-500 bg-white py-3 px-6 text-black font-medium outline-none focus:border-[#6A64F1] focus:shadow-md "
+                          value="<%=note.topic%>"
+                        />
+                      </div>
+                      <div class="mb-5">
+                        <label
+                          for="message"
+                          class="mb-3 block text-black text-gray-800 dark:text-white"
+                        >
+                          Content
+                        </label>
+                        <textarea
+                          rows="4"
+                          name="content"
+                          id="content"
+                          placeholder="Type your message"
+                          class="w-full resize-none rounded-md border border-blue-500 bg-gray-100 py-3 px-6 text-black text-black outline-none focus:border-[#6A64F1] focus:shadow-md "
+                        ><%=note.title%></textarea>
+                      </div>
+                      <%if(note.image){%>
+                        <div class="mb-5">
+                          Click For Full Image
+                          <a href="<%=note.image%>" target="_blank"><img src="<%=note.image%>" alt="upload of note"></a>
+                        </div>
+                      <%}%>
+                      <div>
+                        <button
+                        type="submit"
+                          class="hover:shadow-form rounded-md bg-blue-500 py-3 px-8 text-base font-semibold text-white outline-none"
+                        >
+                          Update
+                        </button>
+                        <a
+                        href="/notes"
+                          class="hover:shadow-form rounded-md bg-gray-400 py-3 px-8 text-base font-semibold text-white outline-none"
+                        >
+                          Cancel
+                      </a>
+                      </div>
+                
+                    </form>
+                  </div>
                 </div>
-              </div>
-        </div>
-        <div class="row">
-            <div class="col s4 m6 l6 input-field">
-
-            </div>
-            <div class="col s4 m2 l1">
-                <button class="width-100 btn waves-effect waves-light modal-submit center" type="submit" name="action" value="Upload">Submit
-                </button>
-            </div>
-            <div class="col s3 m2 l2">
-                <button id="cancel" class="width-100 btn waves-effect waves-light black center" type="button">Cancel</button>
-            </div>
-        </div>
-    </form>
-    </div>    
-</main>
-
-<script>
-    document.querySelector('#cancel').addEventListener('click',()=>{
-
-  if(confirm("Sure you want to cancel?")){
-    window.location.href = '/notes';
-  }else return ""
-
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.19.1/ckeditor.js" integrity="sha512-Ooi9IbjM2SIDjQ02ENbPFuuORT8F8Rc+rowcYfLneDwKRxw1+gVVj5tciVmV/APnA/Ys+qy1MbNKK3k2EaAHcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script>
-    CKEDITOR.replace('content',{
-    plugins: 'wysiwygarea, toolbar ,basicstyles, link'
-    })
-</script>
-<%- include('partials/footer') -%>
-
-<!-- ------------------------------------------------------------------------------- -->
-
-<!-- 
-
-<%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
-      <div class="col-6">
-          <div>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-          </div>
-          <div class="mt-5">
-            <h2>Add a post</h2>
-            <form action="/notes/createnote" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
-              </div>
-              <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="content"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
-          </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-<%- include('partials/footer') -%> -->
+                <script>
+                    document.querySelector('#cancel').addEventListener('click',()=>{
+                
+                  if(confirm("Sure you want to cancel?")){
+                    window.location.href = '/notes';
+                  }else return ""
+                
+                })
+                </script>
+                <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+                <script>
+                  ClassicEditor
+                      .create( document.querySelector( '#content' ),{})
+                      .catch( error => {
+                          console.error( error );
+                      } );
+                </script>
+                <style>
+                  .ck.ck-editor__main>.ck-editor__editable {
+                    color:black !important;
+                  }
+                      </style>
+                <%- include('partials/main-footer') -%>

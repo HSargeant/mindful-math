@@ -5,7 +5,6 @@ const notesController = require('../controllers/notesController')
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
 router.get('/', ensureAuth,notesController.getNotes)
-router.get('/view/:id', ensureAuth, notesController.viewNote)
 router.get('/edit/:id', ensureAuth, notesController.editNote)
 router.put('/update/:id', ensureAuth, notesController.updateNote)
 

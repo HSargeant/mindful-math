@@ -13,6 +13,9 @@ const NoteSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  topic:{
+    type: String,
+  },
   image:{
     type: String,
   },

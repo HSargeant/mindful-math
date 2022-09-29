@@ -14,14 +14,6 @@ module.exports = {
     newNote: async (req, res) => {  
         res.render("newNote.ejs", { user: req.user});
     },
-    viewNote: async (req, res) => {
-        try {
-            const notes = await Notes.find({_id: req.params._id}).lean()
-            res.render("note.ejs", { note: notes, user: req.user, });
-        } catch (err) {
-            console.log(err);
-        }
-    },
     createNote: async (req, res) => {
         try {
             // Upload image to cloudinary
@@ -34,11 +26,13 @@ module.exports = {
                         cloudinaryId: result.public_id,
                         content: req.body.content,
                         user: req.user.id,
+                        topic:req.body.topic
                         });
                 }else{
                     await Notes.create({
                     title: req.body.title,
                     content: req.body.content,
+                    topic:req.body.topic,
                     user: req.user.id,
                     });
                 }
