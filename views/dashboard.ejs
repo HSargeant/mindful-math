@@ -1,10 +1,11 @@
 <%- include('partials/main-header') -%>
+<%console.log(user)%>
 
           <!-- Quote -->
           <div class="p-2 text-center quote">
             <%let index = Math.floor(Math.random()*data.length)%>
-            <p class="quoteP">"<%=data[index].q%>"</p>
-            <span class="quoteAuthor">- <%=data[index].a%></span>
+            <p class="quoteP">"<%=data[index].q%>" <span class="quoteAuthor">- <%=data[index].a%></span></p>
+            
           </div>
 
           <div id="tasks" class="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
@@ -17,7 +18,7 @@
                   </div>
                   <div class="relative w-full max-w-full flex-grow flex-1 text-right">
                     <a
-                      href="#"
+                      href="/dashboard/assignments"
                       class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"
                     >
@@ -59,7 +60,12 @@
                       <% taskItems.forEach(item=>{%>
                       <tr class="text-gray-700 dark:text-gray-100">
                         <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left"><%=item.name%></th>
-                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4"><%=item.dueDate.toDateString()%></td>
+                        <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4"><%=item.dueDate.toDateString()%>
+                          <% console.log(new Date()>item.dueDate)%>
+                        <%if(new Date()>item.dueDate){%>
+                          <i class="fa-solid fa-circle-exclamation" title="Overdue"></i>
+                          <%}%>
+                        </td>
                         <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4">
                           <div class="flex flex-col">
                             <form action="dashboard/<%=item._id %>?_method=PUT" method="POST" class="" onsubmit="return confirm('Mark Complete?')">
@@ -95,7 +101,7 @@
                 </div>
                 <div class="block w-full">
                   <ul class="my-1">
-                    <%for(i=0; i<=10; i++){%> <%if(cards[i]){%>
+                    <%for(i=0; i<cards.length; i++){%> 
                     <li class="flex px-4">
                       <div class="flex-grow flex items-center border-b border-gray-100 dark:border-gray-400 text-sm text-gray-600 dark:text-gray-100 py-2">
                         <i class="fa-regular fa-circle-question text text-xl pr-5"></i>
@@ -119,7 +125,7 @@
                       </div>
                     </li>
 
-                    <%}%> <% }%>
+                     <% }%>
                   </ul>
                 </div>
               </div>
@@ -128,18 +134,28 @@
           </div>          
 
           <!-- Notes -->
-          <div class="mt-4 mx-4">
+          
+          <div class="mt-4 mx-4 dark:bg-gray-800 rounded-t mb-0 px-0 border-0">
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               
               <div class="w-full overflow-x-auto">
-                <div>
-                  <a href="/notes">
-                    Recent Notes
-                  </a>
+                <div class="flex flex-wrap items-center px-4 py-2">
+                  <div class="relative w-full max-w-full flex-grow flex-1">
+                    <h3  class="font-semibold text-base text-gray-900 dark:text-gray-50">Notes</h3>
+                  </div>
+                  <div class="relative flex-grow flex-1">
+                    <a
+                      href="/notes"
+                      class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                    >
+                      See all
+                    </a>
+                  </div>
                 </div>
-                <table class="w-full">
+                <table class="items-center w-full bg-transparent border-collapse">
                   <thead>
-                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <tr class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       <th class="px-4 py-3">Title</th>
                       <th class="px-4 py-3">Topic</th>
                       <th class="px-4 py-3">Date</th>
@@ -148,7 +164,7 @@
                   </thead>
                   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                     <% notes.forEach(note=>{%>
-                    <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
+                    <tr class="text-gray-700 dark:text-gray-100">
                       <td class="px-4 py-3">
                         <a href="#<%=note._id%>">
 

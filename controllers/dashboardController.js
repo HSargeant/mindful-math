@@ -2,19 +2,26 @@ const Task = require('../models/Task')
 const User = require('../models/User')
 const Note = require('../models/Note')
 const Cards = require('../models/Flashcard')
-const fetch = require('node-fetch');
 
 
 module.exports = {
     getUserData: async (req,res)=>{
         try{
-            const taskItems = await Task.find({user:req.user.id,completed:false}).lean().sort({dueDate: 1})
-            const notes = await Note.find({user:req.user.id}).lean().sort({createdAt: -1})
-            const cards = await Cards.find({user:req.user.id}).lean().sort({createdAt: -1})
+            const taskItems = await Task.find({user:req.user.id,completed:false}).lean().sort({dueDate: 1}).limit(5)
+            const notes = await Note.find({user:req.user.id}).lean().sort({createdAt: -1}).limit(5)
+            const cards = await Cards.find({user:req.user.id}).lean().sort({createdAt: -1}).limit(7)
             const response = await fetch('https://zenquotes.io/api/quotes')
             const data= await response.json()
             res.render('dashboard.ejs', { taskItems: taskItems, user: req.user, notes:notes,data:data,cards:cards})
 
+        }catch(err){
+            console.log(err)
+        }
+    },
+    getAssignments: async (req,res)=>{
+        try{
+            const taskItems = await Task.find({user:req.user.id,completed:false}).lean().sort({dueDate: 1})
+            res.render('assignments.ejs', { items: taskItems,user:req.user})
         }catch(err){
             console.log(err)
         }
@@ -38,20 +45,21 @@ module.exports = {
             await Task.findOneAndUpdate({_id: req.params.id},{
                 completed: true       
             })
-            res.redirect('/dashboard')
+            res.redirect("back")
             console.log('deleted')
         }catch(err){
             console.log(err)
         }
     },
     addTask: async (req,res)=>{
+        console.log(req.body.dueDate)
         try{
             await Task.create({
                 name: req.body.taskItem,
                 user: req.user.id,
-                dueDate: req.body.dueDate
+                dueDate: req.body.dueDate +" 23:59:59"
             })
-            res.redirect('/dashboard')
+            res.redirect('back')
             console.log('task added')
         }catch(err){
             console.log(err)

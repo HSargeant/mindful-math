@@ -6,12 +6,15 @@
     </div>
     <!-- Display Card of Question And Answers Here -->
     <div id="card-con">
+        <section class="search"> 
+            <input id="search" type="search" placeholder="Search characters">
+        </section> 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <%cards.forEach(card=>{ %>
             <div class="card1">
                 <p class="question-div dark:text-white"><%=card.question%></p>
                 <a class="show-hide-btn bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 font-bold uppercase cursor-pointer">Show/Hide</a>
-                <div class="answer-div hide dark:text-white"><p><%-card.answer%></p></div>
+                <div class="answer-div hide dark:text-white"><p>A: <%-card.answer%></p></div>
                 <div class="buttons-con">
                     <a href="/flashcards/edit/<%=card._id%>">
                         <button class="edit"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -55,6 +58,7 @@
                     id="answer"
                     placeholder="Type your message"
                     class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#6A64F1] focus:shadow-md"
+
                 ></textarea>
             </div>
 

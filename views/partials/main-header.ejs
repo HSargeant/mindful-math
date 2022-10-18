@@ -1,18 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" >
-  <head >
+<html lang="en" class="">
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Mindful Math</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
     <style>
       /* Compiled dark classes from Tailwind */
       .dark .dark\:divide-gray-700 > :not([hidden]) ~ :not([hidden]) {
@@ -134,33 +125,21 @@
         }
       }
     </style>
-    <script>
-      const setup = () => {
-        const getTheme = () => {
-          if (window.localStorage.getItem("dark")) {
-            return JSON.parse(window.localStorage.getItem("dark"));
-          }
-          return !!window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-        };
-      
-        const setTheme = (value) => {
-          window.localStorage.setItem("dark", value);
-        };
-      
-        return {
-          loading: true,
-          isDark: getTheme(),
-          toggleTheme() {
-            this.isDark = !this.isDark;
-            setTheme(this.isDark);
-          },
-        };
-      };
-    </script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" type="text/css" /> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
   </head>
 
-  <body >
-    <div x-data="setup()" :class="{ 'dark': isDark }">
+  <body class="dark">
+    <div>
       <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
         <!-- Header -->
         <div class="fixed w-full flex items-center justify-between h-14 text-white z-10">
@@ -194,7 +173,7 @@
                   <option value="Algebra 2">Algebra 2</option>
                   <option value="Pre-Calculus">Pre-Calculus</option>
                   <%}else{ %>
-                  <option value="" disabled selected>Choose your grade</option>
+                  <option value="" disabled selected>Choose your grade/subject</option>
                   <option value="kindergarten">Kindergarten</option>
                   <option value="1st Grade">1st Grade</option>
                   <option value="2nd Grade">2nd Grade</option>
@@ -214,13 +193,14 @@
               </form>
             </div>
             <ul class="flex items-center">
+              <!-- light /dark toggle -->
               <li>
-                <button aria-hidden="true" @click="toggleTheme" class="group p-2 transition-colors duration-200 rounded-full shadow-md bg-blue-200 hover:bg-blue-200 dark:bg-gray-50 dark:hover:bg-gray-200 text-gray-900 focus:outline-none">
+                <button aria-hidden="true" class="group p-2 transition-colors duration-200 rounded-full shadow-md bg-blue-200 hover:bg-blue-200 dark:bg-gray-50 dark:hover:bg-gray-200 text-gray-900 focus:outline-none" id="toggle">
                   <svg
                     x-show="isDark"
                     width="24"
                     height="24"
-                    class="fill-current text-gray-700 group-hover:text-gray-500 group-focus:text-gray-700 dark:text-gray-700 dark:group-hover:text-gray-500 dark:group-focus:text-gray-700"
+                    class="fill-current text-gray-700 group-hover:text-gray-500 group-focus:text-gray-700 dark:text-gray-700 dark:group-hover:text-gray-500 dark:group-focus:text-gray-700 dark-svg"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -237,7 +217,7 @@
                     x-show="!isDark"
                     width="24"
                     height="24"
-                    class="fill-current text-gray-700 group-hover:text-gray-500 group-focus:text-gray-700 dark:text-gray-700 dark:group-hover:text-gray-500 dark:group-focus:text-gray-700"
+                    class="fill-current text-gray-700 group-hover:text-gray-500 group-focus:text-gray-700 dark:text-gray-700 dark:group-hover:text-gray-500 dark:group-focus:text-gray-700 light-svg"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -247,6 +227,7 @@
                   </svg>
                 </button>
               </li>
+              <!--  -->
               <li>
                 <div class="block w-px h-6 mx-3 bg-gray-400 dark:bg-gray-700"></div>
               </li>
@@ -354,13 +335,13 @@
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/resources"
                   class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
                     <i class="fa-solid fa-laptop"></i>
                   </span>
-                    <span class="ml-2 text-sm tracking-wide truncate">Resources<br>(coming soon)</span>
+                    <span class="ml-2 text-sm tracking-wide truncate">Resources</span>
                 </a>
               </li>
               <li class="px-5 hidden md:block">

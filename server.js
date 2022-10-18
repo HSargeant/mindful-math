@@ -13,6 +13,7 @@ const indexRoutes = require('./routes/IndexRoutes')
 const dashboardRoutes = require('./routes/dashboardRoutes')
 const notesRoutes = require('./routes/notesRoutes')
 const flashcardRoutes = require('./routes/flashcardRoutes')
+const resourceRoutes = require('./routes/resourceRoutes')
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" })
 
@@ -59,6 +60,7 @@ app.use('/', indexRoutes)
 app.use('/dashboard', dashboardRoutes)
 app.use('/notes', notesRoutes)
 app.use('/flashcards', flashcardRoutes)
+app.use('/resources', resourceRoutes)
 
 app.listen(process.env.PORT||PORT, ()=>{
     console.log(`running on port ${PORT}`)

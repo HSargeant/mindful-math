@@ -8,7 +8,7 @@
       </div>
       <div class="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
           <div class="w-full">
-              <h1 class="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
+              <h1 class="text-3xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
                   Welcome Back
               </h1>
 
@@ -16,7 +16,7 @@
               </p>
 
               <div class="mt-6">
-                  <h1 class="text-gray-500 dark:text-gray-300">Log In</h1>
+                  <h1 class="text-gray-600 dark:text-gray-300">Log In With Email Address</h1>
 
                   
               </div>
@@ -26,7 +26,7 @@
                 <div class="alert alert-danger"><%= el.msg %></div>
                 <% }) %> <% } %>
 
-              <form action="/login" method="POST" class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2 mb-10">
+              <form action="/login" method="POST" class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2 mb-10">
                   <div>
                       <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
                       <input name="email" type="email" placeholder="name@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
@@ -39,7 +39,7 @@
 
 
                   <button
-                      class="flex items-center justify-between w-32 px-6 py-3 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" type="submit">
+                      class="flex items-center justify-between w-32 px-6 py-3 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-800 focus:ring-opacity-50" type="submit">
                       <span>Sign in </span>
 
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
@@ -49,21 +49,21 @@
                       </svg>
                   </button>
                 </form>
-
-                <p>OR</p>
+                
+                <p class ="mb-10">OR</p>
                   <a href="/auth/google">
                       <button
-                          class="flex items-center justify-between px-6 py-3 tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-500 rounded-md hover:bg-red-400 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-50">
+                          class="flex items-center justify-between px-6 py-3 tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-800 focus:ring-opacity-50">
                           <i class="fa-brands fa-google"></i>
                           <span class="pl-2 text-xs md:text-base">Use google account </span>
     
                     </button>
 
                   </a>
-
-                <div class="col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field">
-                  <a href="/signup" class="black-text width-100">Sign up </a>
-                 </div>
+                  <div class="my-10 col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field">
+                    Need an Account? 
+                    <a href="/signup" class="black-text width-100 underline">Sign up </a>
+                </div>
                 <div class="fixed z-50 top-10 right-8 w-15 h-15 rounded-full flex justify-center items-center text-4xl">
                   <a href="/" class="black-text width-100 float-right"><i class="fa-sharp fa-solid fa-house fa-lg"></i> </a>
                 </div>
