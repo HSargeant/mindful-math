@@ -11,7 +11,7 @@ module.exports = {
     if (req.user) {
       return res.redirect('/dashboard')
     }
-    const pictures = ["/images/pic1.png","/images/pic2.avif","/images/pic3.webp","/images/pic4.webp","/images/pic5.webp",]
+    const pictures = ["/images/pic1.png","/images/pic2.avif","/images/pic3.webp","/images/pic4.webp","/images/pic5.webp"]
     res.render('login', {pics:pictures})
   },
   postLogin: (req, res, next) => {
@@ -63,8 +63,8 @@ module.exports = {
     if (req.user) {
       return res.redirect('/dashboard')
     }
-    const pictures = ["/images/pic1.png","/images/pic2.avif","/images/pic3.webp","/images/pic4.webp","/images/pic5.webp",]
-    res.render('signup', {pics:pictures    })
+    const pictures = ["/images/pic1.png","/images/pic2.avif","/images/pic3.webp","/images/pic4.webp","/images/pic5.webp"]
+    res.render('signup', {pics:pictures})
 
   },
   postSignup: (req, res, next) => {
