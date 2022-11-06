@@ -1,4 +1,3 @@
-
 // dark/tight toggle
 let main=  document.querySelector("body")
 let tog =  document.querySelector("#toggle")

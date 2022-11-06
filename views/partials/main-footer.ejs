@@ -28,7 +28,8 @@
                             @click="showDatepicker = !showDatepicker"
                             @keydown.escape="showDatepicker = false"
                             class="w-full pl-4 pr-10 py-3 leading-none rounded-lg shadow-sm  focus:shadow-outline text-gray-800 font-medium border-gray-700"
-                            placeholder="Select date">
+                            placeholder="Select date"
+                            id="dater">
   
                             <div class="absolute top-0 right-0 px-3 py-2">
                                 <svg class="h-6 w-6 text-gray-400"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -131,6 +132,7 @@
                         this.month = today.getMonth();
                         this.year = today.getFullYear();
                         this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
+                        // console.log(today,this.month,this.year,this.datepickerValue,"---")
                     },
   
                     isToday(date) {
@@ -142,9 +144,12 @@
   
                     getDateValue(date) {
                         let selectedDate = new Date(this.year, this.month, date);
+                        console.log("Selected date:",selectedDate)
                         this.datepickerValue = selectedDate.toDateString();
+                        console.log("vALUE:",this.datepickerValue)
+                        console.log(selectedDate.getMonth(),"seslecteded date get  full")
   
-                        this.$refs.date.value = selectedDate.getFullYear() +"-"+ ('0'+ selectedDate.getMonth()).slice(-2) +"-"+ ('0' + selectedDate.getDate()).slice(-2);
+                        this.$refs.date.value =  this.datepickerValue
   
                         console.log(this.$refs.date.value);
   

@@ -3,7 +3,6 @@ const User = require('../models/User')
 const Note = require('../models/Note')
 const Cards = require('../models/Flashcard')
 
-
 module.exports = {
     getUserData: async (req,res)=>{
         try{
