@@ -51,12 +51,13 @@ module.exports = {
         }
     },
     addTask: async (req,res)=>{
-        console.log(req.body.dueDate)
+        console.log(req.body.dueDate +" 12:59:59")
+        console.log(req.body.dueDate,"--------------------------------------------------------------------")
         try{
             await Task.create({
                 name: req.body.taskItem,
                 user: req.user.id,
-                dueDate: req.body.dueDate +" 23:59:59"
+                dueDate: req.body.dueDate +" 12:59:59"
             })
             res.redirect('back')
             console.log('task added')
