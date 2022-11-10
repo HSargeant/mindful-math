@@ -6,12 +6,12 @@
     </div>
     <!-- Display Card of Question And Answers Here -->
     <div id="card-con">
-        <section class="search"> 
-            <input id="search" type="search" placeholder="Search characters">
+        <section class="search "> 
+            <input id="search" type="search" placeholder="Filter cards" class="bg-transparent">
         </section> 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
             <%cards.forEach(card=>{ %>
-            <div class="card1">
+            <div class="card1 border-solid border-2 border-slate-200 dark:border-gray-600	">
                 <p class="question-div dark:text-white"><%=card.question%></p>
                 <a class="show-hide-btn bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 font-bold uppercase cursor-pointer">Show/Hide</a>
                 <div class="answer-div hide dark:text-white"><p>A: <%-card.answer%></p></div>
