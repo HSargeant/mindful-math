@@ -207,7 +207,10 @@ textarea:focus {
     grid-template-columns: 1fr;
     gap: 1.2em;
   }
+
 }
+
+
 
 nav {
     color: #fff;

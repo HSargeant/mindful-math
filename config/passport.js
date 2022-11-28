@@ -34,8 +34,9 @@ module.exports = function (passport) {
   passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.NODE_ENV =="production"? 'https://math-study-app-demo.herokuapp.com/auth/google/callback' : 'http://localhost:8000/auth/google/callback'
+    callbackURL: process.env.NODE_ENV =="production"? 'https://minful-math-demo.up.railway.app/' : 'http://localhost:8000/auth/google/callback'
     // callbackURL:'http://localhost:8000/auth/google/callback'
+    // https://math-study-app-demo.herokuapp.com/auth/google/callback
    },
    async(accessToken,refreshToken,profile,done)=>{ 
  

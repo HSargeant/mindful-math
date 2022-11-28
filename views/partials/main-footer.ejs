@@ -144,14 +144,14 @@
   
                     getDateValue(date) {
                         let selectedDate = new Date(this.year, this.month, date);
-                        console.log("Selected date:",selectedDate)
+                        // console.log("Selected date:",selectedDate)
                         this.datepickerValue = selectedDate.toDateString();
-                        console.log("vALUE:",this.datepickerValue)
+                        // console.log("vALUE:",this.datepickerValue)
                         // console.log(selectedDate.getMonth(),"seslecteded date get  full")
   
                         this.$refs.date.value =  this.datepickerValue
   
-                        console.log(this.$refs.date.value);
+                        // console.log(this.$refs.date.value);
   
                         this.showDatepicker = false;
                     },
