@@ -1,5 +1,4 @@
 <%- include('partials/main-header') -%>
-<%console.log(user.gradeLevel)%>
 <div class="p-2 text-center quote overflow-hidden">
     <h2 class="text-4xl">Resources</h2>
     <h5><i class="fa-solid fa-person-digging"></i>--Under Contruction--<i class="fa-solid fa-person-digging"></i></h5>
@@ -227,7 +226,6 @@
 		let gradeLevel=document.querySelector("#grade-input").value
         let resLink = document.querySelector("#topicSelect");
         resLink.addEventListener("change", () => {
-            // console.log(links[grade].khan[resLink])
             document.querySelector("#khanTopicLink").innerHTML = links[gradeLevel].khan[resLink.value]?`<a href=${links[gradeLevel].khan[resLink.value]}>click here</a>`:"";
             document.querySelector("#ixlTopicLink").innerHTML = links[gradeLevel].ixl[resLink.value]?`<a href=${links[gradeLevel].ixl[resLink.value]}>click here</a>`:"";
         });

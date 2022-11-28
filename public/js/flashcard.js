@@ -23,7 +23,6 @@ addQuestion.addEventListener("click", () => {
 
 show.forEach(x=>{
   x.addEventListener('click',()=>{
-    console.log(x.parentElement)
     x.parentElement.classList.toggle("flipped")
     x.nextElementSibling.classList.toggle("hide")
 

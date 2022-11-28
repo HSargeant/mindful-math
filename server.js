@@ -61,7 +61,6 @@ app.use('/dashboard', dashboardRoutes)
 app.use('/notes', notesRoutes)
 app.use('/flashcards', flashcardRoutes)
 app.use('/resources', resourceRoutes)
-console.log(process.env.NODE_ENV,"----------")
 
 app.listen(process.env.PORT||PORT, ()=>{
     console.log(`running on port ${PORT}`)

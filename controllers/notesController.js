@@ -68,7 +68,6 @@ module.exports = {
         }
     },
     updateNote: async (req, res)=>{
-        console.log(req.params.id)
         try{
             await Notes.findOneAndUpdate({_id: req.params.id},{
                 title: req.body.title,

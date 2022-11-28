@@ -132,7 +132,6 @@
                         this.month = today.getMonth();
                         this.year = today.getFullYear();
                         this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
-                        // console.log(today,this.month,this.year,this.datepickerValue,"---")
                     },
   
                     isToday(date) {
@@ -144,14 +143,11 @@
   
                     getDateValue(date) {
                         let selectedDate = new Date(this.year, this.month, date);
-                        // console.log("Selected date:",selectedDate)
                         this.datepickerValue = selectedDate.toDateString();
-                        // console.log("vALUE:",this.datepickerValue)
-                        // console.log(selectedDate.getMonth(),"seslecteded date get  full")
+
   
                         this.$refs.date.value =  this.datepickerValue
   
-                        // console.log(this.$refs.date.value);
   
                         this.showDatepicker = false;
                     },
