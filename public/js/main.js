@@ -14,6 +14,7 @@ if(localStorage.getItem("theme")=="light"){
     dark.classList.remove("hidden")
 }
 
+
 tog.addEventListener("click",()=>{
     console.log("click")
     main.classList.toggle("dark")

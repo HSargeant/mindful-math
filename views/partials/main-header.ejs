@@ -5,7 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Mindful Math</title>
+    
     <style>
+        body {
+   background-color: rgba(55, 65, 81) !important;
+  }
       /* Compiled dark classes from Tailwind */
       .dark .dark\:divide-gray-700 > :not([hidden]) ~ :not([hidden]) {
         border-color: rgba(55, 65, 81);
@@ -125,6 +129,7 @@
           width: calc(100% - 16rem);
         }
       }
+    
     </style>
     <link rel="icon" href="/icon.png" />
     <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" /> -->
@@ -140,7 +145,7 @@
 
   </head>
 
-  <body class="dark">
+  <body class="dark" id="body">
     <div>
       <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
         <!-- Header -->

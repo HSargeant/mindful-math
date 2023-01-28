@@ -39,13 +39,13 @@ closeBtn.addEventListener(
 );
 
 // Submit Question
-cardButton.addEventListener(
-  "click",
-  (submitQuestion = () => {
-    const tempQuestion = question.value
-    const tempAnswer = answer.value
-    if (!tempQuestion || !tempAnswer) {
-      errorMessage.classList.remove("hide");
-    }
-  })
-);
+// cardButton.addEventListener(
+//   "click",
+//   (submitQuestion = () => {
+//     const tempQuestion = question.value
+//     const tempAnswer = answer.value
+//     if (!tempQuestion || !tempAnswer) {
+//       errorMessage.classList.remove("hide");
+//     }
+//   })
+// );

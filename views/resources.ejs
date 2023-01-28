@@ -242,8 +242,8 @@
 		let gradeLevel=document.querySelector("#grade-input").value
         let resLink = document.querySelector("#topicSelect");
         resLink.addEventListener("change", () => {
-            document.querySelector("#khanTopicLink").innerHTML = links[gradeLevel].khan[resLink.value]?`<a href=${links[gradeLevel].khan[resLink.value]}>click here</a>`:"";
-            document.querySelector("#ixlTopicLink").innerHTML = links[gradeLevel].ixl[resLink.value]?`<a href=${links[gradeLevel].ixl[resLink.value]}>click here</a>`:"";
+            document.querySelector("#khanTopicLink").innerHTML = links[gradeLevel].khan[resLink.value]?`<a href=${links[gradeLevel].khan[resLink.value]} target="_blank">click here</a>`:"";
+            document.querySelector("#ixlTopicLink").innerHTML = links[gradeLevel].ixl[resLink.value]?`<a href=${links[gradeLevel].ixl[resLink.value]} target="_blank">click here</a>`:"";
         });
     </script>
     <%- include('partials/main-footer') -%>
