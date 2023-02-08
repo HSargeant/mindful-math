@@ -33,7 +33,8 @@ module.exports = function (passport) {
       break
     case "cyclic":
       url="https://mindful-math.cyclic.app/auth/google/callback"
-    case "production":
+      break
+    case "railway":
       url="https://minful-math-demo.up.railway.app/auth/google/callback"
       break
     default:
