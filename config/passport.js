@@ -31,6 +31,8 @@ module.exports = function (passport) {
     case "heroku":
       url="https://math-study-app-demo.herokuapp.com/auth/google/callback"
       break
+    case "cyclic":
+      url="https://mindful-math.cyclic.app/auth/google/callback"
     case "production":
       url="https://minful-math-demo.up.railway.app/auth/google/callback"
       break
