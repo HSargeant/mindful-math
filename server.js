@@ -71,11 +71,6 @@ const connectDB = async ()=>{
         })
 
         console.log("conneceted to database")
-        
-        app.listen(process.env.PORT||PORT, ()=>{
-          console.log(`running on port ${PORT}`)
-        })
-
     } catch (error) {
         console.log(error)
         process.exit(1)
@@ -83,4 +78,8 @@ const connectDB = async ()=>{
 }
 
 //Connect To Database
-connectDB();
+connectDB().then(()=>{
+  app.listen(process.env.PORT||PORT, ()=>{
+    console.log(`running on port ${PORT}`)
+  })
+})
