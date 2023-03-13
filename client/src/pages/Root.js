@@ -12,7 +12,7 @@ export default function Root() {
         setUser(data.user)
       });
   }, []);
-  console.log("logged in:",user)
+  // console.log("logged in:",user)
   return (
       <Outlet context={{ user, setUser}} />
   );

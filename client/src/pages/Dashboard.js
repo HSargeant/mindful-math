@@ -3,25 +3,23 @@ import TaskC from "../components/TaskC.js";
 import NotesC from "../components/NotesC";
 import FlashcardC from "../components/FlashcardC";
 import { useState,useEffect } from "react";
+import { API_BASE } from "../constants";
 
 export default function Dashboard() { 
-
-
-const [quote,setQuote]= useState([])
+const [quote,setQuote]= useState({})
 useEffect(()=>{
-  fetch('https://zenquotes.io/api/quotes')
-  .then(res=>res.json())
-  .then(data=>{
-    let index = Math.floor(Math.random()*data.length)
-    setQuote(data[index])
-
+  const getData= async ()=>{
+    const res = await fetch(API_BASE+'/api/dashboard/quote',{ credentials: "include" })
+    const  data = await res.json()
+    console.log("the quote: ",data)
+    setQuote(data)
+  }
+  // getData()
   },[])
-      
-})
 
   return (
     // <Main >
-    <>
+    <> 
       <div className="p-2 text-center quote">
         <p className="quoteP">{quote.q}</p>
         <span className="quoteAuthor">{quote.a}</span>
