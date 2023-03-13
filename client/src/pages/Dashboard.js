@@ -16,9 +16,10 @@ useEffect(()=>{
   }
   // getData()
   },[])
+  console.log(  (window.document!==undefined))
 
   return (
-    // <Main >
+    <Main >
     <> 
       <div className="p-2 text-center quote">
         <p className="quoteP">{quote.q}</p>
@@ -32,6 +33,6 @@ useEffect(()=>{
       {/* <script src="/main.js" /> */}
       </>
 
-    // </Main> 
+    </Main> 
   )
 }

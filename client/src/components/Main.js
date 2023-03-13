@@ -1,9 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import {Link} from "react-router-dom";
 import {useOutletContext} from "react-router-dom"
 
 export default function Main({children}){
     const {user}= useOutletContext()
+    const main = useRef(null)
+    const [dark,setDark] = useState(true)
+    console.log("main: ",main.current?.classList)
+    
     const showImage=()=>{
         if(user) {
           return <img className="w-7 h-7 md:w-10 md:h-10 mr-2 rounded-md overflow-hidden" src={user.image} alt={""} layout="fill"/>
@@ -34,52 +38,35 @@ export default function Main({children}){
       };
 
 useEffect(()=>{
-    if(typeof window !== "undefined"){
+    if(typeof window.document!=undefined){
         let main=  window.document.querySelector(".dark")
-        let tog =  window.document.querySelector("#toggle")
-        let light = window.document.querySelector(".light-svg") 
-        let dark = window.document.querySelector(".dark-svg")
 
+    
         if(localStorage.getItem("theme")=="light"){
-            main.classList.remove("dark")
-            dark.classList.add("hidden")
-            light.classList.remove("hidden")
+            main?.classList.remove("dark")
+            setDark(false)
 
+    
         }else{
-            main.classList.add("dark")
-            light.classList.add("hidden")
-            dark.classList.remove("hidden")
+            main?.classList.add("dark")
+            setDark(true)
         }
-
-        tog.addEventListener("click",()=>{
-            console.log(localStorage.getItem("theme"))
-            main.classList.toggle("dark",)
-            if(main.classList.value=="dark"){
-            localStorage.setItem("theme","dark")
-            dark.classList.remove("hidden")
-            light.classList.add("hidden")
-            }else{
-                localStorage.setItem("theme","light")
-                dark.classList.add("hidden")
-                light.classList.remove("hidden")
-            }
-        })
-
-let modal = window.document.getElementById("modal");
-// let notesModal = document.getElementById("notesModal");
-
-if(window.document.querySelector('#addTask')){
+    
+    let modal = window.document.getElementById("modal");
+    // let notesModal = document.getElementById("notesModal");
+    
+    if(window.document.querySelector('#addTask')){
     window.document.querySelector('#addTask').addEventListener('click',()=>{
         modalHandler(true)
     
     
     })
-}
-window.document.querySelector('#modalCancel').addEventListener('click',()=>{
+    }
+    window.document.querySelector('#modalCancel').addEventListener('click',()=>{
     modalHandler()
-})
-
-function modalHandler(val) {
+    })
+    
+    function modalHandler(val) {
                     if (val) {
                         fadeIn(modal);
                     } else {
@@ -99,7 +86,7 @@ function modalHandler(val) {
                 }
                 function fadeIn(el, display) {
                     window.document.body.style.overflow = 'hidden';
-
+    
                     el.style.opacity = 0;
                     el.style.display = display || "flex";
                     (function fade() {
@@ -111,11 +98,17 @@ function modalHandler(val) {
                     })();
                 }
       }
+
 },[])
+const handleLightDark=()=>{
+    setDark(!dark)
+
+
+}
 
     return (
         <>
-            <div className="dark" id="mainBody">
+            <div className={dark? "dark": ""} id="mainBody" ref={main} >
                 <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
                 {/* <!-- Header --> */}
                     <div className="fixed w-full flex items-center justify-between h-14 text-white z-10">
@@ -140,9 +133,9 @@ function modalHandler(val) {
                             <ul className="flex items-center">
                                     {/* <!-- light /dark toggle --> */}
                                 <li>
-                                    <button aria-hidden="true" className="group p-2 transition-colors duration-200 rounded-full shadow-md bg-blue-200 hover:bg-blue-200 dark:bg-gray-50 dark:hover:bg-gray-200 text-gray-900 focus:outline-none" id="toggle">
-                                        <svg
-                                        x-show="isDark"
+                                    <button aria-hidden="true" className="group p-2 transition-colors duration-200 rounded-full shadow-md bg-blue-200 hover:bg-blue-200 dark:bg-gray-50 dark:hover:bg-gray-200 text-gray-900 focus:outline-none" id="toggle"
+                                    onClick={handleLightDark}>
+                                        {dark ? <svg
                                         width="24"
                                         height="24"
                                         className="fill-current text-gray-700 group-hover:text-gray-500 group-focus:text-gray-700 dark:text-gray-700 dark:group-hover:text-gray-500 dark:group-focus:text-gray-700 dark-svg"
@@ -158,9 +151,8 @@ function modalHandler(val) {
                                         strokeWidth="2"
                                         d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
                                         />
-                                        </svg>
+                                        </svg> :
                                         <svg
-                                        x-show="!isDark"
                                         width="24"
                                         height="24"
                                         className="fill-current text-gray-700 group-hover:text-gray-500 group-focus:text-gray-700 dark:text-gray-700 dark:group-hover:text-gray-500 dark:group-focus:text-gray-700 light-svg"
@@ -171,7 +163,7 @@ function modalHandler(val) {
                                      
                                         >
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                                        </svg>
+                                        </svg>}
                                     </button>
                                 </li>
                                     {/* <!--  --> */}

@@ -4,6 +4,7 @@ import { API_BASE } from "../constants";
 
 export default function Root() {
   const [user, setUser] = useState();
+  const [messages, setMessages] = useState()
   // api call to get logged in user
   useEffect(() => {
     fetch(API_BASE + "/api/user", { credentials: "include" })
@@ -14,6 +15,6 @@ export default function Root() {
   }, []);
   // console.log("logged in:",user)
   return (
-      <Outlet context={{ user, setUser}} />
+      <Outlet context={{ user, setUser, setMessages,messages}} />
   );
 }

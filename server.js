@@ -24,7 +24,7 @@ require("./config/passport")(passport);
 
 
 //Using EJS for views
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 
 app.use(cors({
   origin: (origin, callback) => callback(null, true),

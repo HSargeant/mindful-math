@@ -19,6 +19,7 @@ import Index from "./pages/Index"
 import Main from "./components/Main"
 import Dashboard from "./pages/Dashboard"
 import './index.css';
+import "./dark.css"
 // Hi everyone
 const router = createBrowserRouter([
   {
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
         },
         {
           path:"/dashboard",
-          element: <ProtectedRoute><Main><Dashboard /></Main></ProtectedRoute>,
+          element: <ProtectedRoute><Dashboard /></ProtectedRoute>,
         
         },
         {

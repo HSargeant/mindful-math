@@ -1,11 +1,38 @@
-import {Link} from "react-router-dom"
+import {Link, useOutletContext,useNavigate} from "react-router-dom"
 import { API_BASE } from "../constants"
 export default function Login(){
+  const {user,setUser,messages, setMessages} = useOutletContext()
     const image=()=>{
         const pictures = ["/images/pic1.png","/images/pic2.avif","/images/pic3.webp","/images/pic4.webp","/images/pic5.webp"]
         let index = Math.floor(Math.random()*pictures.length)
         return pictures[index]
     }
+    const navigate=useNavigate()
+
+    const handleSubmit = async (event) => {
+      // setSeeError(false)
+      event.preventDefault();
+      try{
+        const form = event.currentTarget;
+        const response = await fetch(API_BASE + form.getAttribute('action'), {
+          method: form.method,
+          body: new URLSearchParams(new FormData(form)),
+          credentials: "include"
+        });
+        const data = await response.json();
+        if (data.messages.errors) {
+          // console.log(data.messages.errors[0].msg)
+          setMessages(data.messages.errors[0].msg);
+          // setSeeError(true)
+        }
+        if (data.user) {
+          setUser(data.user);
+          navigate("/dashboard");
+        }
+      }catch(err){
+        console.error(err)
+      }
+    };
 
 
     return (
@@ -34,7 +61,7 @@ export default function Login(){
                     <div className="alert alert-danger"><%= el.msg %></div>
                     <% }) %> <% } %> */}
     
-                  <form action="/login" method="POST" className="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2 mb-10">
+                  <form action="/login" method="POST" onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2 mb-10" >
                       <div>
                           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
                           <input name="email" type="email" placeholder="name@example.com" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
@@ -43,6 +70,7 @@ export default function Login(){
                       <div>
                           <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Password</label>
                           <input name="password" type="password" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                          {messages&&<div>{messages}</div>}
                       </div>
     
     
