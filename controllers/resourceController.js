@@ -185,8 +185,7 @@ const links = {
 module.exports = {
     getResources: async (req, res) => {
         try {
-            res.render("resources.ejs", { user: req.user,links:links});
-            // res.json(topics);
+            res.json(links);
         } catch (err) {
             console.log(err);
         }

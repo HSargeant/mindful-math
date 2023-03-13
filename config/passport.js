@@ -27,7 +27,7 @@ module.exports = function (passport) {
 
   // google
   let url=""
-  switch(process.env.NODE_ENV){
+  switch(process.env.HOST){
     case "heroku":
       url="https://math-study-app-demo.herokuapp.com/auth/google/callback"
       break

@@ -4,9 +4,8 @@ const cloudinary = require("../middleware/cloudinary");
 module.exports = {
     getCards: async (req, res) => {
         try {
-            const cards = await Cards.find({user: req.user.id}).lean()
-            
-            res.render("flashcard.ejs", { cards: cards, user: req.user});
+            const cards = await Cards.find({user: req.user.id}).lean()         
+            res.json(cards)
         } catch (err) {
             console.log(err);
         }
@@ -14,21 +13,19 @@ module.exports = {
     editCard: async (req, res) => {
         try {
             const card = await Cards.findById({_id: req.params.id}).lean()
-            
-            res.render("editFlashcard.ejs", { card: card, user: req.user});
+            res.json(card)
         } catch (err) {
             console.log(err);
         }
     },
-    viewCardsByTopic: async (req, res) => {
-        try {
-            const cards = await Cards.find({topic: req.params.id}).lean()
-            
-            res.render("flashcard.ejs", { cards: cards, user: req.user});
-        } catch (err) {
-            console.log(err);
-        }
-    },
+    // viewCardsByTopic: async (req, res) => {
+    //     try {
+    //         const cards = await Cards.find({topic: req.params.id}).lean()
+    //         res.json({cards: cards})
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // },
     createCard: async (req, res) => {
         try {
             await Cards.create({
@@ -38,7 +35,7 @@ module.exports = {
                 topic: req.body.topic.trim()
             });
             console.log("card has been added!");
-            res.redirect("/flashcards");
+            res.send("card has been added");
         } catch (err) {
             console.log(err);
         }
@@ -55,7 +52,7 @@ module.exports = {
                 new: true,
                 runValidators: true
             })
-            res.redirect('/flashcards')
+            res.send("updated")
             console.log('updated')
         }catch(err){
             console.log(err)
@@ -73,9 +70,10 @@ module.exports = {
             // Delete post from db
             await Cards.deleteOne({ _id: req.params.id });
             console.log("Deleted Note");
-            res.redirect("/flashcards");
+            res.send("deleted")
         } catch (err) {
-            res.redirect("/flashcards");
+            res.json(err)
+            console.error(err)
         }
-        },
+    },
 };

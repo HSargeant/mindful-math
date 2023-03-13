@@ -3,15 +3,8 @@ const validator = require('validator')
 const User = require('../models/User')
 
 module.exports = {
-  getIndex: (req,res)=>{
-          res.render('index.ejs')
-  },
-  getLogin :(req, res) => {
-    if (req.user) {
-      return res.redirect('/dashboard')
-    }
-    const pictures = ["/images/pic1.png","/images/pic2.avif","/images/pic3.webp","/images/pic4.webp","/images/pic5.webp"]
-    res.render('login', {pics:pictures})
+  getUser: (req, res) => {
+    res.json(req.user || null );
   },
   postLogin: (req, res, next) => {
     const validationErrors = []
@@ -22,7 +15,7 @@ module.exports = {
   
     if (validationErrors.length) {
       req.flash('errors', validationErrors)
-      return res.redirect('/login')
+      return res.json(req.flash())
     }
     req.body.email = validator.normalizeEmail(req.body.email, { 
       gmail_remove_dots: false,
@@ -31,16 +24,16 @@ module.exports = {
     passport.authenticate('local', (err, user, info) => {
       if (err) { 
         return next(err) 
-      }
+      } 
       if (!user) {
         req.flash('errors', info)
-        return res.redirect('/login')
+        return res.json(req.flash())
       }
       req.logIn(user, (err) => {
         if (err) { return next(err) }
-        req.flash('success', { msg: 'Success! You are logged in.' })
         // res.redirect('/dashboard')
-        res.redirect(req.session.returnTo || '/dashboard')
+        req.flash("success", { msg: "Success! You are logged in." });
+        res.json({ user, messages: req.flash() });
       })
     })(req, res, next)
   },
@@ -54,17 +47,9 @@ module.exports = {
         req.session.destroy((err) => {
           if (err) console.log('Error : Failed to destroy the session during logout.', err)
           req.user = null
-          res.redirect('/')
+          res.send({success:true})
         })
     });
-  },
-  getSignup: (req, res) => {
-    if (req.user) {
-      return res.redirect('/dashboard')
-    }
-    const pictures = ["/images/pic1.png","/images/pic2.avif","/images/pic3.webp","/images/pic4.webp","/images/pic5.webp"]
-    res.render('signup', {pics:pictures})
-
   },
   postSignup: (req, res, next) => {
     const validationErrors = []
@@ -74,7 +59,7 @@ module.exports = {
   
     if (validationErrors.length) {
       req.flash('errors', validationErrors)
-      return res.redirect('/signup')
+      return res.json(req.flash() );
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
   
@@ -93,7 +78,7 @@ module.exports = {
       if (err) { return next(err) }
       if (existingUser) {
         req.flash('errors', { msg: 'Account with that email address or username already exists.' })
-        return res.redirect('/signup')
+        return res.json(req.flash());
       }
       user.save((err) => {
         if (err) { return next(err) }
@@ -101,7 +86,7 @@ module.exports = {
           if (err) {
             return next(err)
           }
-          res.redirect('/dashboard')
+          res.json({ user, messages: req.flash() });
         })
       })
     })

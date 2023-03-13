@@ -4,8 +4,9 @@ const upload = require("../middleware/multer");
 const flashcardController = require('../controllers/flashcardController') 
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
+// "/api/flashcards"
 router.get('/', ensureAuth,flashcardController.getCards)
-router.get('/view/:topic', ensureAuth, flashcardController.viewCardsByTopic)
+// router.get('/view/:topic', ensureAuth, flashcardController.viewCardsByTopic)
 router.get('/edit/:id', ensureAuth, flashcardController.editCard)
 router.put('/edit/:id', ensureAuth, flashcardController.updateCard)
 
