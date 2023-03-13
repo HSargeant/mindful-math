@@ -61,7 +61,7 @@ app.use(flash());
 
 app.use('/', indexRoutes)
 app.use('/api/dashboard', dashboardRoutes)
-app.use('/api/task', taskRoutes)
+app.use('/api/tasks', taskRoutes)
 app.use('/api/notes', notesRoutes)
 app.use('/api/flashcards', flashcardRoutes)
 app.use('/api/resources', resourceRoutes)

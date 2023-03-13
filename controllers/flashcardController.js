@@ -10,6 +10,14 @@ module.exports = {
             console.log(err);
         }
     },
+    getCardsDash: async (req, res) => {
+        try {
+            const cards = await Cards.find({user:req.user.id}).lean().sort({createdAt: -1}).limit(7)        
+            res.json(cards)
+        } catch (err) {
+            console.log(err);
+        }
+    },
     editCard: async (req, res) => {
         try {
             const card = await Cards.findById({_id: req.params.id}).lean()

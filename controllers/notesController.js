@@ -10,6 +10,14 @@ module.exports = {
             console.log(err);
         }
     },
+    getNotesDash: async (req, res) => {
+        try {
+            const notes = await Notes.find({user:req.user.id}).lean().sort({createdAt: -1}).limit(5)
+            res.json(notes)
+        } catch (err) {
+            console.log(err);
+        }
+    },
 
     createNote: async (req, res) => {
         try {

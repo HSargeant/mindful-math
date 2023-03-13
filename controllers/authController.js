@@ -4,7 +4,7 @@ const User = require('../models/User')
 
 module.exports = {
   getUser: (req, res) => {
-    res.json(req.user || null );
+    res.json({user: req.user || null} );
   },
   postLogin: (req, res, next) => {
     const validationErrors = []

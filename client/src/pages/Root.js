@@ -8,8 +8,11 @@ export default function Root() {
   useEffect(() => {
     fetch(API_BASE + "/api/user", { credentials: "include" })
       .then((res) => res.json())
-      .then((res) => setUser(res.user));
+      .then((data) => {
+        setUser(data.user)
+      });
   }, []);
+  console.log("logged in:",user)
   return (
       <Outlet context={{ user, setUser}} />
   );

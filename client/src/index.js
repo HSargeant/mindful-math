@@ -16,6 +16,8 @@ import EditFlashcard from "./pages/EditFlashcard.js"
 import NewNote from './pages/NewNote';
 import ProtectedRoute from './components/ProtectedRoute.js';
 import Index from "./pages/Index"
+import Main from "./components/Main"
+import Dashboard from "./pages/Dashboard"
 import './index.css';
 // Hi everyone
 const router = createBrowserRouter([
@@ -29,33 +31,39 @@ const router = createBrowserRouter([
         //   element: <Login />,
         // },
         {
+          index: true,
+          element: <Index /> //users will land at the login page
+        },
+        {
+          path: "/login",
+          element: <Login />
+        },
+        {
+          path: "/signup",
+          element: <Signup />,
+        },
+        {
           path: "/logout",
           element: <ProtectedRoute><Logout /></ProtectedRoute>,
         },
         {
-          index: true,
-          element: <Index /> //users will land at the login page
+          path:"/dashboard",
+          element: <ProtectedRoute><Main><Dashboard /></Main></ProtectedRoute>,
+        
         },
-      {
-        path: "/signup",
-        element: <Signup />,
-      },
-      {
-        path: "/notes",
-        element: <ProtectedRoute><Notes /></ProtectedRoute>,
-      },
-      {
-        path: "/flascards",
-        element: <ProtectedRoute><Flashcards /></ProtectedRoute>,
-      },
-      {
-        path: "/notes/new",
-        element: <ProtectedRoute><NewNote /></ProtectedRoute>
-      },
-      {
-        path: "/login",
-        element: <Login />
-      },
+        {
+          path: "/notes/new",
+          element: <ProtectedRoute><Main><NewNote /></Main></ProtectedRoute>
+        },
+        {
+          path: "/flashcards",
+          element: <ProtectedRoute><Main><Flashcards /></Main></ProtectedRoute>,
+        },
+        {
+          path: "/notes",
+          element: <ProtectedRoute><Main><Notes /></Main></ProtectedRoute>,
+        },
+
       // {
       //   path:"",
       //   element:<ProtectedRoute/>
