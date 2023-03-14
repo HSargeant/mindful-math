@@ -87,13 +87,13 @@ export default function Login(){
                     </form>
                     
                     <p className ="mb-10">OR</p>
-                      <Link to={API_BASE + "/auth/google"}>
                           <button
                               className="flex items-center justify-between px-6 py-3 tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-800 focus:ring-opacity-50">
                               <i className="fa-brands fa-google"></i>
+                      <a href={API_BASE + "/auth/google"}>
                               <span className="pl-2 text-xs md:text-base">Use google account </span>
+                      </a>
                         </button>
-                      </Link>
                       <div className="my-10 col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field">
                         Need an Account? 
                         <Link to="/signup" className="black-text width-100 underline">
