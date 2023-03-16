@@ -16,7 +16,6 @@ useEffect(()=>{
   }
   // getData()
   },[])
-  console.log(  (window.document!==undefined))
 
   return (
     <Main >

@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom"
 import { useEffect,useState } from "react"
 import {API_BASE} from "../constants"
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function NotesC(){
     const [notes,setNotes]= useState([])
@@ -8,7 +9,6 @@ export default function NotesC(){
         const getData= async ()=>{
             const res = await fetch(API_BASE + '/api/notes/dashboard', { credentials: "include" } )
             const data = await res.json()
-            console.log("notes: ", data)
             setNotes(data)
         }
         getData()
@@ -39,6 +39,10 @@ const handleDelete = async (event) => {
     // }else return
 
 	};
+
+  const createHTML=(text)=>{
+    return {__html: text};
+  }
 
     return(
         <div className="mt-4 mx-4 dark:bg-gray-800 rounded-t mb-0 px-0 border-0">
@@ -88,13 +92,13 @@ const handleDelete = async (event) => {
                                     </td>
                                     <td className="px-4 py-3 text-sm">
                                     <a href={"#"+note._id}>
-                                        {note.createdAt}
+                                        {new Date(note.createdAt).toDateString()}
                                     </a>
                                     </td>
                         
                                     <td className="px-4 py-3 text-sm">
                                     <form action={API_BASE+`/api/notes/delete/${note._id}?_method=DELETE`} method="POST" className="" onSubmit={handleDelete}>
-                                        <button type="submit"><i className="fas fa-trash">dd</i></button>
+                                        <button type="submit"><DeleteIcon/></button>
                                     </form>
                                     </td>
                                 </tr>
@@ -105,7 +109,7 @@ const handleDelete = async (event) => {
                                         <h3 className="font-bold text-lg text-black dark:text-white">{note.title}</h3>
                                         <span className="text-black text-sm dark:text-white">{note.topic}</span>
                                         <a href={note?.image} target="_blank"><img src={note?.image} className="w-full" /></a>
-                                        <div className="py-4 text-black dark:text-white">{note.content}</div>
+                                        <div dangerouslySetInnerHTML={createHTML(note.content)}className="py-4 text-black dark:text-white"></div>
                                         <div className="modal-action">
                                             <a href="#" className="btn">Close</a>
                                         </div>

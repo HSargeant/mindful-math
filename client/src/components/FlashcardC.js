@@ -8,7 +8,7 @@ export default function FlashcardC(){
         const getData= async ()=>{
             const res = await fetch(API_BASE + '/api/flashcards/dashboard', { credentials: "include" } )
             const data = await res.json()
-            console.log("cards: ", data)
+            // console.log("cards: ", data)
             setCards(data)
         }
         getData()
@@ -17,6 +17,10 @@ export default function FlashcardC(){
 
     function showansw(elem){
         elem.target.nextElementSibling.classList.toggle("hidden")
+      }
+      const create=(x)=>{
+        return {__html: "Answer: "+ x};
+
       }
     return(
         <div className="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
@@ -49,7 +53,7 @@ export default function FlashcardC(){
                                 <div className="self-center">
                                 <p className="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100 cursor-pointer question" onClick={showansw}>{card.question||""}</p>
                         
-                                    <span className="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100 hidden answer">{`Answer: ${card.answer}`}</span>
+                                    <span className="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100 hidden answer">{"Answer: "+  `${card.answer.replace(/(<([^>]+)>)/ig, '')}`} </span>
 
                 
                                 </div>

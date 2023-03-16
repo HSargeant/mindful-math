@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom"
+import image from "../images/40274.jpg"
 export default function Index() {
   return (
     <>
@@ -26,7 +27,7 @@ export default function Index() {
                     </div>
                 </div>
                 <div className=" lg:block lg:w-1/2" style={{clipPath:"polygon(10% 0, 100% 0%, 100% 100%, 0 100%)"}}>
-                    <div className="h-full object-cover" style={{background: "url('/images/40274.jpg') no-repeat"}}>
+                    <div className="h-full object-cover" style={{background: `url(${image}) no-repeat`}}>
                         <div className="h-full bg-blue-500 opacity-10"></div>
                     </div>
                 </div>

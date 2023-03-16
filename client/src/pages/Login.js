@@ -1,11 +1,21 @@
 import {Link, useOutletContext,useNavigate} from "react-router-dom"
 import { API_BASE } from "../constants"
 import image from "../Login-Register-Images"
-import {useState} from "react"
+import {useState,useEffect} from "react"
+import { Box, Button, Container, Grid, TextField, Typography,Link as MLink,InputAdornment,IconButton } from '@mui/material';
+import GoogleIcon from '@mui/icons-material/Google';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 export default function Login(){
   const {user,setUser,messages, setMessages} = useOutletContext()
-  const [seeError,setSeeError]= useState(false)
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate=useNavigate()
+  const [showPassword, setShowPassword] = useState(false);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleSubmit = async (event) => {
     event.preventDefault();
     try{
@@ -19,8 +29,7 @@ export default function Login(){
       console.log(data)
       if (data.errors) {
         // console.log(data.messages.errors[0].msg)
-        setMessages(data.errors[0].msg);
-        setSeeError(true)
+        setErrorMsg(data.errors[0].msg);
       }
       if (data.user) {
         setUser(data.user);
@@ -30,67 +39,143 @@ export default function Login(){
       console.error(err)
     }
   };
+  const cancelError=()=>{
+    setErrorMsg("")
+  }
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="flex justify-center min-h-screen">
         <div className="hidden bg-cover lg:block lg:w-2/5 heroBack" style={{backgroundImage: `url(${image})`}}/>
-        <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
-            <div className="w-full">
-                <h1 className="text-3xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
-                    Welcome Back
-                </h1>
-                <p className="mt-4 text-gray-500 dark:text-gray-400">
-                </p>
-                <div className="mt-6">
-                    <h1 className="text-gray-600 dark:text-gray-300">Log In With Email Address</h1>  
-                </div>
-                <form action="/login" method="POST" onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2 mb-10" >
-                    <div>
-                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
-                        <input name="email" type="email" placeholder="name@example.com" 
-                          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" 
-                          onChange={()=>setSeeError(false)}
-                        />
-                        {seeError&&messages&&<p style={{color:"red",fontWeight:"500"}} >{messages}</p>}
-                    </div>
-                    <div>
-                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Password</label>
-                        <input name="password" type="password" placeholder="Enter your password" 
-                          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" 
-                          onChange={()=>setSeeError(false)}
-                        />
-                    </div>
-                    <button
-                        className="flex items-center justify-between w-32 px-6 py-3 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-800 focus:ring-opacity-50" type="submit">
-                        <span>Sign in </span>
-  
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd"
-                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                clipRule="evenodd" />
-                        </svg>
-                    </button>
-                  </form>
-                  
-                  <p className ="mb-10">OR</p>
-                  <a href={API_BASE+"/auth/google"}
-                    className=" px-6 py-3 tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-800 focus:ring-opacity-50">
-                    <i className="fa-brands fa-google"></i>
-                    <span className="pl-2 text-xs md:text-base">Use google account </span>
-                  </a>
-                    <div className="my-10 col s8 offset-s2 m6 offset-m3 l6 offset-l3 input-field">
-                      Need an Account?
-                      <Link to="/signup" className="black-text width-100 underline ml-2" >
-                        Sign up
-                        </Link>
-                  </div>
-                  <div className="fixed z-50 top-10 right-8 w-15 h-15 rounded-full flex justify-center items-center text-4xl">
-                    <Link to="/" className="black-text width-100 float-right">       
-                      <i className="fa-sharp fa-solid fa-house fa-lg"></i> 
-                    </Link>
-                  </div>
-            </div>
-        </div>
+        <Box
+        component="main"
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          flexGrow: 1,
+          minHeight: '100%'
+        }}
+      >
+        <Container maxWidth="sm">
+          <form action="/login" method="POST" onSubmit={handleSubmit}>
+            <Box sx={{ my: 3 }}>
+              <Typography
+                color="textPrimary"
+                variant="h4"
+              >
+              <div className="Welcome">
+                Welcome<br/>
+              </div>
+              </Typography>
+              <Typography
+                color="textSecondary"
+                gutterBottom
+                variant="body2"
+              >
+              </Typography>
+            </Box>
+            {/* <Grid
+              container
+              spacing={3}
+            > */}
+   
+              <Grid
+                item
+                xs={12}
+                md={6}
+              >
+                <a href={API_BASE+"/auth/google"} style={{width:'100%'}}>
+                <Button
+                  style={{backgroundColor:"#DB4437"}}
+                  fullWidth
+                  size="large"
+                  startIcon={<GoogleIcon />}
+                  variant="contained"
+                >
+                  Sign in with Google
+                </Button>
+                </a>
+              </Grid>
+            {/* </Grid> */}
+            <Box
+              sx={{
+                pb: 1,
+                pt: 3
+              }}
+            >
+              <Typography
+                align="center"
+                color="textSecondary"
+                variant="body1"
+              >
+                or login with email address
+              </Typography>
+            </Box>
+            <TextField
+              fullWidth
+              label="Email Address"
+              margin="normal"
+              name="email"
+
+              type="email"
+              variant="outlined"
+              className="form-label"
+              onChange={cancelError}
+            />
+            <TextField
+              fullWidth
+              label="Password"
+              margin="normal"
+              name="password"
+              type={showPassword ? 'text' : 'password'}
+              variant="outlined"
+              onChange={cancelError}
+              InputProps={{
+                endAdornment: <InputAdornment position="end">
+                  <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </IconButton>
+
+                </InputAdornment>,
+              }}
+            />
+             {errorMsg ? <div style={{fontWeight:"bold",color:"red"}}> {errorMsg}</div>:""}
+            <Box sx={{ py: 2 }}>
+              <Button 
+              style={{ backgroundColor:"#2563eb"}}
+                
+                fullWidth
+                size="large"
+                type="submit"
+                variant="contained"
+              >
+                Sign In
+              </Button>
+            </Box>
+            <Typography
+              color="textSecondary"
+              variant="body2"
+            >
+              Don&apos;t have an account?
+              {' '}
+              <MLink
+                to="/signup"
+                  variant="subtitle2"
+                  underline="hover"
+                  component={Link}
+                >
+                  Sign Up
+                </MLink>
+              
+            </Typography>
+          </form>
+        </Container>
+      </Box>
+          
+        
       </div>
     </section>
         

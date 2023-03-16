@@ -1,21 +1,25 @@
 import { useState, useEffect,useRef } from "react";
 import {Link} from "react-router-dom";
 import {useOutletContext} from "react-router-dom"
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import LaptopIcon from '@mui/icons-material/Laptop';
+import HomeIcon from '@mui/icons-material/Home';
+import StyleIcon from '@mui/icons-material/Style';
+import ArticleIcon from '@mui/icons-material/Article';
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
+import avatar from "../images/dummy-avatar.jpg"
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 
 export default function Main({children}){
     const {user}= useOutletContext()
-    const main = useRef(null)
-    const [dark,setDark] = useState(true)
-    console.log("main: ",main.current?.classList)
+    const [dark,setDark] = useState(localStorage.getItem("theme")==="dark")
     
-    const showImage=()=>{
-        if(user) {
-          return <img className="w-7 h-7 md:w-10 md:h-10 mr-2 rounded-md overflow-hidden" src={user.image} alt={""} layout="fill"/>
-        }else{
-          return <img className="w-7 h-7 md:w-10 md:h-10 mr-2 rounded-md overflow-hidden" src="https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar.jpg" alt={""} layout="fill"/>
-        }
-      }
-
     const options = [
         {value: '', text: 'Choose your grade/subject'},
         {value: 'kindergarten', text: 'Kindergarten'},
@@ -39,18 +43,10 @@ export default function Main({children}){
 
 useEffect(()=>{
     if(typeof window.document!=undefined){
-        let main=  window.document.querySelector(".dark")
-
-    
-        if(localStorage.getItem("theme")=="light"){
-            main?.classList.remove("dark")
-            setDark(false)
-
-    
-        }else{
-            main?.classList.add("dark")
-            setDark(true)
+        if(!localStorage.getItem("theme")){
+            localStorage.setItem("theme","dark")
         }
+
     
     let modal = window.document.getElementById("modal");
     // let notesModal = document.getElementById("notesModal");
@@ -101,34 +97,49 @@ useEffect(()=>{
 
 },[])
 const handleLightDark=()=>{
+    localStorage.getItem("theme")=="dark" ? localStorage.setItem("theme","light") : localStorage.setItem("theme","dark")
     setDark(!dark)
+    
 
 
 }
 
     return (
         <>
-            <div className={dark? "dark": ""} id="mainBody" ref={main} >
+            <div className={dark? "dark": ""} id="mainBody">
                 <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
                 {/* <!-- Header --> */}
                     <div className="fixed w-full flex items-center justify-between h-14 text-white z-10">
                         <div className="flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-800 dark:bg-gray-800 border-none">
                             
-                            {showImage()}
+                        <img className="w-7 h-7 md:w-10 md:h-10 mr-2 rounded-md overflow-hidden" src={user?.image||avatar } alt={""} layout="fill"/>
 
                             <span className="hidden md:block"></span>
                         </div>
                         <div className="flex justify-between items-center h-14 bg-blue-800 dark:bg-gray-800 header-right">
-                            <div className="bg-white rounded flex items-center text-black max-w-xl mr-4 p-2 shadow-sm border border-gray-200">
-                                <form action="/dashboard/updategrade?_method=PUT" method="POST">
-                                    <select id="grade-input" name="gradeLevel" value={selected} onChange={handleChange}>
-                                        {options.map(option => (
-                                            <option key={option.value} value={option.value}>
-                                                {option.text}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </form>
+                            <div className="">
+                            {/* <div className="bg-white rounded flex items-center text-black max-w-xl shadow-sm border border-gray-200"> */}
+                                {/* <FormControl action="/dashboard/updategrade?_method=PUT" method="POST" sx={{ m: 1, minWidth: 120 }} size="small">
+        <Select
+          labelId="demo-simple-select-helper-label"
+          id="demo-simple-select-helper"
+          displayEmpty
+         
+
+        //   value={age}
+        //   label="Age"
+        //   onChange={handleChange}
+        >
+            {options.map(option=>{
+                return(
+                    <MenuItem value={option.value}>
+                    <em>{option.text}</em>
+                  </MenuItem>
+
+                )
+            })}
+        </Select>
+                                </FormControl> */}
                             </div>
                             <ul className="flex items-center">
                                     {/* <!-- light /dark toggle --> */}
@@ -199,14 +210,7 @@ const handleLightDark=()=>{
                                 <li>
                                     <Link to="/dashboard" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                         <span className="inline-flex justify-center items-center ml-4">
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                                        ></path>
-                                        </svg>
+                                        <HomeIcon fontSize="small"/>
                                         </span>
                                         <span className="ml-2 text-sm tracking-wide truncate">Dashboard</span>
                                         
@@ -217,7 +221,7 @@ const handleLightDark=()=>{
                                         
 
                                         <span className="inline-flex justify-center items-center ml-4">
-                                        <i className="fa-solid fa-clipboard-list"></i>
+                                        <ContentPasteIcon fontSize="small"/>
                                         </span>
                                         <span className="ml-2 text-sm tracking-wide truncate">Agenda</span>
                                         
@@ -228,26 +232,7 @@ const handleLightDark=()=>{
                                    
 
                                     <span className="inline-flex justify-center items-center ml-4">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="1"
-                                    d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"
-                                    />
-                                    <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="1"
-                                    d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"
-                                    />
-                                    <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="1"
-                                    d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"
-                                    />
-                                    </svg>
+                                    < ArticleIcon fontSize="small"/>
                                     </span>
                                     <span className="ml-2 text-sm tracking-wide truncate">Notes</span>
                                     
@@ -257,14 +242,7 @@ const handleLightDark=()=>{
                                     <Link to="/flashcards" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                        
                                         <span className="inline-flex justify-center items-center ml-4">
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                        d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z"
-                                        />
-                                        <path
-                                        d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z"
-                                        />
-                                        </svg>
+                                        <StyleIcon fontSize="small"/>
                                         </span>
                                         <span className="ml-2 text-sm tracking-wide truncate">Flashcards</span>
                                         
@@ -275,11 +253,11 @@ const handleLightDark=()=>{
                                     <Link to="/resources" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                     
                                         <span className="inline-flex justify-center items-center ml-4">
-                                        <i className="fa-solid fa-laptop"></i>
+                                        <LaptopIcon fontSize="small"/>
                                         </span>
                                         <span className="ml-2 text-sm tracking-wide truncate">
                                         Resources<br />
-                                        (coming soon)
+                                        
                                         </span>
                                         
                                     </Link>
@@ -293,9 +271,7 @@ const handleLightDark=()=>{
                                     <Link to="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                         <span className="inline-flex justify-center items-center ml-4">
                                        
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                        </svg>
+                                       <PersonIcon fontSize="small"/>
                                         </span>
                                         <span className="ml-2 text-sm tracking-wide truncate">Profile</span>
 
@@ -307,15 +283,7 @@ const handleLightDark=()=>{
                                         
 
                                         <span className="inline-flex justify-center items-center ml-4">
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                                        ></path>
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        </svg>
+                                       <SettingsIcon fontSize="small"/>
                                         </span>
                                         <span className="ml-2 text-sm tracking-wide truncate">Settings</span>
                                         
@@ -342,7 +310,7 @@ const handleLightDark=()=>{
             <div className="hidden py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
                 <div role="alert" className="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                     <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                        <form action="/dashboard/addTask" method="POST">
+                        <form action="api/dashboard/addTask" method="POST">
                             <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Add an Assignment</h1>
                             <label htmlFor="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Title</label>
                             <input

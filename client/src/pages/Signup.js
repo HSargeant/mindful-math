@@ -78,7 +78,7 @@ export default function Signup(){
     
                 <a href={API_BASE+"/auth/google"} style={{width:'100%'}}>
                 <Button
-                  color="error"
+                style={{backgroundColor:"#DB4437"}}
                   fullWidth
                   size="large"
                   startIcon={<GoogleIcon />}
@@ -213,8 +213,8 @@ export default function Signup(){
             </Box>
             {errorMsg ? <div style={{fontWeight:"bold",color:"red"}}> {errorMsg}</div>:""}
             <Box sx={{ py: 2 }}>
-              <Button style={{ backgroundColor:"#0D2E5E"}}
-                color="primary"
+              <Button style={{ backgroundColor:"#2563eb"}}
+                
                 fullWidth
                 size="large"
                 type="submit"
