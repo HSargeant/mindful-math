@@ -1,7 +1,9 @@
-node_modules
+*node_modules
 .env
 examplereviews.js
 output1.css
 output.css
 style.css
 normalize.css
+client
+build

@@ -72,7 +72,10 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
     <script>
       ClassicEditor
-          .create( document.querySelector( '#answer' ),{})
+          .create( document.querySelector( '#answer' ),{
+            plugins: MathType,
+            toolbar: [ 'MathType', 'ChemType' ]
+          })
           .catch( error => {
               console.error( error );
           } );
