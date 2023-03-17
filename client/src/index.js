@@ -16,7 +16,6 @@ import EditFlashcard from "./pages/EditFlashcard.js"
 import NewNote from './pages/NewNote';
 import ProtectedRoute from './components/ProtectedRoute.js';
 import Index from "./pages/Index"
-import Main from "./components/Main"
 import Dashboard from "./pages/Dashboard"
 import './index.css';
 import "./dark.css"
@@ -54,15 +53,15 @@ const router = createBrowserRouter([
         },
         {
           path: "/notes/new",
-          element: <ProtectedRoute><Main><NewNote /></Main></ProtectedRoute>
+          element: <ProtectedRoute><NewNote /></ProtectedRoute>
         },
         {
           path: "/flashcards",
-          element: <ProtectedRoute><Main><Flashcards /></Main></ProtectedRoute>,
+          element: <ProtectedRoute><Flashcards /></ProtectedRoute>,
         },
         {
           path: "/notes",
-          element: <ProtectedRoute><Main><Notes /></Main></ProtectedRoute>,
+          element: <ProtectedRoute><Notes /></ProtectedRoute>,
         },
 
       // {
