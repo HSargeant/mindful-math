@@ -11,6 +11,8 @@ import Signup from './pages/Signup';
 import Logout from './pages/Logout';
 import Flashcards from './pages/Flashcards';
 import Notes from './pages/Notes';
+import Agenda from './pages/Agenda';
+import Resources from './pages/Resources';
 import EditNote from "./pages/EditNote.js"
 import EditFlashcard from "./pages/EditFlashcard.js"
 import NewNote from './pages/NewNote';
@@ -62,6 +64,14 @@ const router = createBrowserRouter([
         {
           path: "/notes",
           element: <ProtectedRoute><Notes /></ProtectedRoute>,
+        },
+        {
+          path: "/agenda",
+          element: <ProtectedRoute><Agenda /></ProtectedRoute>,
+        },
+        {
+          path: "/resources",
+          element: <ProtectedRoute><Resources /></ProtectedRoute>,
         },
 
       // {

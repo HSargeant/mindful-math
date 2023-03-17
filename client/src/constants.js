@@ -1,2 +1,2 @@
-export const API_BASE = process.env.NODE_ENV =='production' ? "https://reactors-techdive.up.railway.app" :'http://localhost:8000'
-console.log(API_BASE)
+export const API_BASE = process.env.NODE_ENV =='production' ? "http://localhost:8000" :'http://localhost:8000'
+// console.log(API_BASE)

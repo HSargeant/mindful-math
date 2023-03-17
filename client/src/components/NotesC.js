@@ -109,7 +109,7 @@ const handleDelete = async (event) => {
                                         <h3 className="font-bold text-lg text-black dark:text-white">{note.title}</h3>
                                         <span className="text-black text-sm dark:text-white">{note.topic}</span>
                                         <a href={note?.image} target="_blank"><img src={note?.image} className="w-full" /></a>
-                                        <div dangerouslySetInnerHTML={createHTML(note.content)}className="py-4 text-black dark:text-white"></div>
+                                        <div dangerouslySetInnerHTML={createHTML(note.content)} className="py-4 text-black dark:text-white"></div>
                                         <div className="modal-action">
                                             <a href="#" className="btn">Close</a>
                                         </div>

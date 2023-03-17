@@ -1,8 +1,8 @@
 import Main from "../components/Main"
-export default function Resources(){
+export default function Agenda(){
     return(
         <Main>
-            resources
+        agenda
         </Main>
     )
 }

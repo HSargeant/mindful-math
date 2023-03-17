@@ -3,7 +3,7 @@ import CK from './CK';
 
 export default function AddFlashcard(){
     const [editorLoaded, setEditorLoaded] = useState(false);
-    const [data, setData] = useState();
+    const [answer, setAnswer] = useState();
     const addCard=()=>{
         const addQuestionCard = window.document.getElementById("add-question-card");
         const container = window.document.querySelector(".container1");
@@ -39,11 +39,11 @@ export default function AddFlashcard(){
                         <CK
                 name="description"
                 onChange={(data) => {
-                setData(data);
+                setAnswer(data);
                 }}
                 editorLoaded={editorLoaded}
             />
-       {JSON.stringify(data)}
+       {/* {JSON.stringify(data)} */}
                         {/* <textarea
                             rows="4"
                             name="answer"
