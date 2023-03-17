@@ -21,6 +21,7 @@ import Index from "./pages/Index"
 import Dashboard from "./pages/Dashboard"
 import './index.css';
 import "./dark.css"
+import { element } from 'prop-types';
 // Hi everyone
 const router = createBrowserRouter([
   {
@@ -55,11 +56,28 @@ const router = createBrowserRouter([
         },
         {
           path: "/notes/new",
-          element: <ProtectedRoute><NewNote /></ProtectedRoute>
+          element: <ProtectedRoute><NewNote /></ProtectedRoute>,
+          children:[
+            {
+              path:"/notes/edit/:id",
+              element: <ProtectedRoute><EditNote /></ProtectedRoute>
+            },
+            {
+              path:"/notes/new",
+              element: <ProtectedRoute><NewNote /></ProtectedRoute>
+            },
+
+          ]
         },
         {
           path: "/flashcards",
           element: <ProtectedRoute><Flashcards /></ProtectedRoute>,
+          children:[
+            {
+              path:"/flashcards/edit/:id",
+              element: <ProtectedRoute><EditFlashcard /></ProtectedRoute>
+            }
+          ]
         },
         {
           path: "/notes",
