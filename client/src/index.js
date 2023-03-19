@@ -22,7 +22,7 @@ import Dashboard from "./pages/Dashboard"
 import './index.css';
 import "./dark.css"
 import { element } from 'prop-types';
-// Hi everyone
+
 const router = createBrowserRouter([
   {
     path: "/",

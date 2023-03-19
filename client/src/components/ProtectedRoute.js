@@ -1,8 +1,7 @@
-import { useNavigate,useOutletContext,Navigate } from 'react-router-dom';
+import { useNavigate,useOutletContext } from 'react-router-dom';
 const ProtectedRoute = ({children}) => {
   const navigate=useNavigate()
   const {user} = useOutletContext()
-  // console.log(user)
-  return user ? children : navigate("/login")
+  return user ? children : navigate("/")
 };
 export default ProtectedRoute

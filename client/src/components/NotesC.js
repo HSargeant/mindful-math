@@ -1,42 +1,39 @@
-import {Link} from "react-router-dom"
+import {Link,useNavigate} from "react-router-dom"
 import { useEffect,useState } from "react"
 import {API_BASE} from "../constants"
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function NotesC(){
     const [notes,setNotes]= useState([])
+    const navigate = useNavigate()
     useEffect(()=>{
         const getData= async ()=>{
             const res = await fetch(API_BASE + '/api/notes/dashboard', { credentials: "include" } )
             const data = await res.json()
+            console.log(data)
             setNotes(data)
         }
         getData()
-    },[setNotes])
+    },[])
 
 const handleDelete = async (event) => {
 		event.preventDefault();
-        console.log("Delete")
-    // const confirm = window.confirm("Are you sure you want to delete this record?")
-	// 	if(confirm){
-    //   try{
-    //     const form = event.currentTarget;
-    //     await fetch(form.getAttribute('action'), {
-    //       method: form.method,
-    //       credentials: "include"
-    //     });
-    //     if(fromExamsPage){
-    //       // navigate(0)
-    //       setExams(exams.filter(exam=>exam._id!==examId))
-    //     }else navigate("/exams")
-
-    //   }catch(err){
-    //     console.log(err)
-    //     if(fromExamsPage){
-    //       navigate(0)
-    //     }else navigate("/exams")
-    //   }
-    // }else return
+    console.log(event.target.className)
+      // console.log("Delete")
+    const confirm = window.confirm("Are you sure you want to delete this note?")
+		if(confirm){
+      try{
+        // const form = event.currentTarget;
+        // await fetch(form.getAttribute('action'), {
+        //   method: form.method,
+        //   credentials: "include"
+        // });  
+        setNotes(notes.filter(elem=>elem._id!==event.target.className))
+ 
+      }catch(err){
+        console.error(err)
+      }
+    }else return
 
 	};
 
@@ -76,13 +73,11 @@ const handleDelete = async (event) => {
                     {
                         notes.map(note=>{
                             return(
-                                <>
-                                <tr className="text-gray-700 dark:text-gray-100">
+                          
+                                <tr className="text-gray-700 dark:text-gray-100" key={note._id}>
                                     <td className="px-4 py-3">
                                     <a href={"#"+note._id} style={{display:"block",width:"100%"}}>
-                                        
-                                            <p className="font-semibold">{note.title}</p>
-                                        
+                                      <p className="font-semibold">{note.title}</p>
                                     </a>
                                     </td>
                                     <td className="px-4 py-3 text-sm">
@@ -97,25 +92,12 @@ const handleDelete = async (event) => {
                                     </td>
                         
                                     <td className="px-4 py-3 text-sm">
-                                    <form action={API_BASE+`/api/notes/delete/${note._id}?_method=DELETE`} method="POST" className="" onSubmit={handleDelete}>
+                                    <form action={API_BASE+`/api/notes/delete/${note._id}?_method=DELETE`} method="POST" className={note._id} onSubmit={handleDelete}>
                                         <button type="submit"><DeleteIcon/></button>
                                     </form>
                                     </td>
                                 </tr>
-                                    {/* <!-- note modal -->
-                                    <!-- note modal --> */}
-                                <div className="modal w-full h-full" id={note._id}>
-                                    <div className="modal-box dark:bg-gray-600">
-                                        <h3 className="font-bold text-lg text-black dark:text-white">{note.title}</h3>
-                                        <span className="text-black text-sm dark:text-white">{note.topic}</span>
-                                        <a href={note?.image} target="_blank"><img src={note?.image} className="w-full" /></a>
-                                        <div dangerouslySetInnerHTML={createHTML(note.content)} className="py-4 text-black dark:text-white"></div>
-                                        <div className="modal-action">
-                                            <a href="#" className="btn">Close</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                </>
+                              
                             )
                         })
                     }
@@ -123,6 +105,23 @@ const handleDelete = async (event) => {
                 </table>
               </div>
             </div>
+            {/* <!-- note modal -->
+          <!-- note modal --> */}
+            {notes.map((note,i)=>{
+              return(
+                <div className="modal w-full h-full" id={note._id} key={i}>
+                  <div className="modal-box dark:bg-gray-600">
+                      <h3 className="font-bold text-lg text-black dark:text-white">{note.title}</h3>
+                        <span className="text-black text-sm dark:text-white">{note.topic}</span>
+                      <a href={note?.image} target="_blank"><img src={note?.image} className="w-full" /></a>
+                      <div dangerouslySetInnerHTML={createHTML(note.content)} className="py-4 text-black dark:text-white"></div>
+                      <div className="modal-action">
+                        <a href="#" className="btn">Close</a>
+                      </div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
     )
 }

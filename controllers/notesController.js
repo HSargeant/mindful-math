@@ -73,10 +73,12 @@ module.exports = {
         }
     },
     updateNote: async (req, res)=>{
+        console.log(req.body)
         try{
             await Notes.findOneAndUpdate({_id: req.params.id},{
                 title: req.body.title,
                 content: req.body.content,
+                topic: req.body.topic,
                 user:req.user.id
             }, {
                 new: true,

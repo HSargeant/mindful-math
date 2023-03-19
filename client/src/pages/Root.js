@@ -7,7 +7,7 @@ export default function Root() {
   // api call to get logged in user
   useEffect( () => {
       const getUser= async ()=>{
-        const res = fetch(API_BASE + "/api/user", { credentials: "include" })
+        const res = await fetch(API_BASE + "/api/user", { credentials: "include" })
         const data = await res.json()
         setUser(data.user)
       }
