@@ -57,27 +57,18 @@ const router = createBrowserRouter([
         {
           path: "/notes/new",
           element: <ProtectedRoute><NewNote /></ProtectedRoute>,
-          children:[
-            {
-              path:"/notes/edit/:id",
-              element: <ProtectedRoute><EditNote /></ProtectedRoute>
-            },
-            {
-              path:"/notes/new",
-              element: <ProtectedRoute><NewNote /></ProtectedRoute>
-            },
-
-          ]
         },
         {
           path: "/flashcards",
           element: <ProtectedRoute><Flashcards /></ProtectedRoute>,
-          children:[
-            {
-              path:"/flashcards/edit/:id",
-              element: <ProtectedRoute><EditFlashcard /></ProtectedRoute>
-            }
-          ]
+        },
+        {
+          path:"/flashcards/edit/:id",
+          element: <ProtectedRoute><EditFlashcard /></ProtectedRoute>
+        },
+        {
+          path:"/notes/edit/:id",
+          element: <ProtectedRoute><EditNote /></ProtectedRoute>
         },
         {
           path: "/notes",
