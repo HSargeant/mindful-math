@@ -98,7 +98,7 @@ export default  function Notes(){
 					<section className="mx-auto w-3/4 ">
 							<input id="search" className="bg-transparent " type="search" placeholder="Search Notes" onKeyUp={filterCards} />
 					</section>
-          <div className="mt-4 mx-4 dark:bg-gray-800 rounded-t mb-0 px-0 border-0 lg:w-3/4 sm:w-full mx-auto">
+          <div className="mt-4 dark:bg-gray-800 rounded-t mb-0 px-0 border-0 lg:w-3/4 sm:w-full mx-auto">
             <div className="w-full overflow-hidden rounded-lg shadow-xs">
               
               <div className="w-full overflow-x-auto">

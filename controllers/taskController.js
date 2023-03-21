@@ -29,13 +29,14 @@ module.exports = {
         }
     },
     addTask: async (req,res)=>{
+        console.log(req.body.dueDate)
         try{
-            await Task.create({
-                name: req.body.taskItem,
+            const task = await Task.create({
+                name: req.body.item,
                 user: req.user.id,
-                dueDate: req.body.dueDate +" 12:59:59"
+                dueDate: req.body.dueDate
             })
-            res.send('added')
+            res.json(task)
             console.log('task added')
         }catch(err){
             console.log(err)

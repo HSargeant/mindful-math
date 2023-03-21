@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function AddFlashcard(){
     const [editorLoaded, setEditorLoaded] = useState(false);
-    const [answer, setAnswer] = useState();
+    const [answer, setAnswer] = useState("");
     const navigate=useNavigate()
     const addCard=()=>{
         const addQuestionCard = window.document.getElementById("add-question-card");
@@ -57,7 +57,7 @@ export default function AddFlashcard(){
                     </label>
                     <input name="answer" hidden value={answer}/>
                     <CK
-                        setAnser={setAnswer}
+                        setAnswer={setAnswer}
                         editorLoaded={editorLoaded}
                     />
        {/* {JSON.stringify(data)} */}

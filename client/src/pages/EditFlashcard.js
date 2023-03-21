@@ -1,7 +1,7 @@
 import { useState, useEffect} from 'react';
 import CK from '../components/CK';
 import { API_BASE } from '../constants';
-import { useNavigate,useLocation} from 'react-router-dom';
+import { useNavigate,useLocation,Link} from 'react-router-dom';
 import Main from "../components/Main"
 
 export default function EditFlashcard(){
@@ -103,9 +103,9 @@ export default function EditFlashcard(){
                         <button className="hover:shadow-form rounded-md bg-blue-500 py-3 px-8 text-base font-semibold text-white outline-none" type="submit">
                             Submit
                         </button>
-                        <button id="close-btn" className="hover:shadow-form rounded-md bg-gray-500 py-3 px-8 text-base font-semibold text-white outline-none" type="button">
+                        <Link to="/flashcards" className="hover:shadow-form rounded-md bg-gray-500 py-3 px-8 text-base font-semibold text-white outline-none" type="button">
                             Cancel
-                        </button>
+                        </Link>
                     </div>
                 </form>
             </div>

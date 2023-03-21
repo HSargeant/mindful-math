@@ -20,42 +20,43 @@ module.exports = {
     },
 
     createNote: async (req, res) => {
-        try {
-            // Upload image to cloudinary
-            // if(req.body.image){
-                if(req.file){
-                    const result = await cloudinary.uploader.upload(req.file.path);
-                    await Notes.create({
-                        title: req.body.title,
-                        image: result.secure_url,
-                        cloudinaryId: result.public_id,
-                        content: req.body.content,
-                        user: req.user.id,
-                        topic:req.body.topic
-                        });
-                }else{
-                    await Notes.create({
-                    title: req.body.title,
-                    content: req.body.content,
-                    topic:req.body.topic,
-                    user: req.user.id,
-                    });
-                }
+        console.log(req.body)
+        // try {
+        //     // Upload image to cloudinary
+        //     // if(req.body.image){
+        //         if(req.file){
+        //             const result = await cloudinary.uploader.upload(req.file.path);
+        //             await Notes.create({
+        //                 title: req.body.title,
+        //                 image: result.secure_url,
+        //                 cloudinaryId: result.public_id,
+        //                 content: req.body.content,
+        //                 user: req.user.id,
+        //                 topic:req.body.topic
+        //                 });
+        //         }else{
+        //             await Notes.create({
+        //             title: req.body.title,
+        //             content: req.body.content,
+        //             topic:req.body.topic,
+        //             user: req.user.id,
+        //             });
+        //         }
 
-                console.log("note has been added!");
-                res.json({succes:true});
-            // }else{
-            //     req.body.user = req.user.id
-            //     await Notes.create(req.body);
-            //         console.log("note has been added!");
-            //         res.redirect("/notes");
+        //         console.log("note has been added!");
+        //         res.json({succes:true});
+        //     // }else{
+        //     //     req.body.user = req.user.id
+        //     //     await Notes.create(req.body);
+        //     //         console.log("note has been added!");
+        //     //         res.redirect("/notes");
 
-            // }
+        //     // }
             
     
-        } catch (err) {
-            console.log(err);
-        }
+        // } catch (err) {
+        //     console.log(err);
+        // }
     },
     editNote: async (req,res)=>{
 

@@ -14,9 +14,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import AddTaskModal from "./AddTaskModal";
 
 
-export default function Main({children}){
+export default function Main({children,setItems,items}){
     const {user}= useOutletContext()
     const [dark,setDark] = useState(localStorage.getItem("theme")==="dark")
     
@@ -53,6 +54,7 @@ useEffect(()=>{
     
     if(window.document.querySelector('#addTask')){
     window.document.querySelector('#addTask').addEventListener('click',()=>{
+        console.log("click")
         modalHandler(true)
     
     
@@ -306,43 +308,9 @@ const handleLightDark=()=>{
                 </div>
             </div>
             {/* <!-- modal --> */}
+            <AddTaskModal setItems={setItems} items={items}/>
 
-            <div className="hidden py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
-                <div role="alert" className="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-                    <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                        <form action="api/dashboard/addTask" method="POST">
-                            <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Add an Assignment</h1>
-                            <label htmlFor="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Title</label>
-                            <input
-                            id="name"
-                            name="taskItem"
-                            className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border dark:bg-gray-800 dark:border-gray-700 dark:text-gray-50"
-                            />
-                            <label htmlFor="dueDate" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Due Date</label>
-                            <div className="relative mb-5 mt-2">
-                                <input
-                                id="dueDate"
-                                name="dueDate"
-                                type="date"
-                                className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-1/2 h-10 flex items-center pl-16 text-sm border-gray-300 rounded border dark:bg-gray-800 dark:border-gray-700 dark:text-gray-50"
-                                />
-                            </div>
-
-                            <div className="flex items-center justify-start w-full">
-                                <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
-
-                                <button
-                                type="button"
-                                className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
-                                id="modalCancel"
-                                >
-                                Cancel
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            
             <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer />
         </>
     )
