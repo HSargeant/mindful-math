@@ -9,9 +9,9 @@ module.exports = {
             const taskItems = await Task.find({user:req.user.id,completed:false}).lean().sort({dueDate: 1}).limit(5)
             const notes = await Note.find({user:req.user.id}).lean().sort({createdAt: -1}).limit(5)
             const cards = await Cards.find({user:req.user.id}).lean().sort({createdAt: -1}).limit(7)
-            const response = await fetch('https://zenquotes.io/api/quotes')
-            const data= await response.json()
-            res.render('dashboard.ejs', { taskItems: taskItems, user: req.user, notes:notes,data:data,cards:cards})
+            // const response = await fetch('https://zenquotes.io/api/quotes')
+            // const data= await response.json()
+            res.render('dashboard.ejs', { taskItems: taskItems, user: req.user, notes:notes,cards:cards})
 
         }catch(err){
             console.log(err)
