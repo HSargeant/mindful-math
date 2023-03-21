@@ -12,7 +12,6 @@ export default function AddFlashcard(){
         const container = window.document.querySelector(".container1");
         container.classList.toggle("hide");
         addQuestionCard.classList.toggle("hide");
-        
     }
     useEffect(() => {
         setEditorLoaded(true);
@@ -35,7 +34,6 @@ export default function AddFlashcard(){
         // if (data.messages) setMessages(data.messages);
         navigate(0); //change to update state and close modal
     };
-console.log(answer)
     return (
         <div className="flex items-center justify-center p-12">
             <div className="mx-auto w-full max-w-[550px]">

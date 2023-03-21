@@ -1,6 +1,16 @@
 import {Link} from "react-router-dom"
 import image from "../images/40274.jpg"
+import { useEffect } from "react"
+import { useNavigate,useOutletContext } from "react-router-dom"
 export default function Index() {
+  const {user} =useOutletContext()
+  const navigate=useNavigate()
+
+  useEffect(()=>{
+    if(user){
+      navigate("/dashboard")
+    }
+  },[])
   return (
     <>
     <div className="w-full">

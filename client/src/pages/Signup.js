@@ -20,12 +20,11 @@ export default function Signup(){
     const { setUser, user } = useOutletContext();
     const [errorMsg, setErrorMsg] = useState("");
     const navigate = useNavigate();
-    // useEffect(() => {
-    //   if (user) {
-    //     navigate("/exams");
-    //     return;
-    //   }
-    // });
+    useEffect(()=>{
+      if(user){
+        navigate("/dashboard")
+      }
+    })
     const [showPassword, setShowPassword] = useState(false);
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
@@ -103,15 +102,15 @@ export default function Signup(){
             </Box>
           <form action="/signup" method="POST" onSubmit={handleSubmit}>
             <Box sx={{ my: 1 }}>
-              <Typography
-                color="textPrimary"
-                gutterBottom
-                variant="h5"
-              >
-              <div className="registerHeader">
-                Create a new account
-              </div>
-              </Typography>
+				<Typography
+					color="textPrimary"
+					gutterBottom
+					variant="h5"
+				>
+					<div className="registerHeader">
+						Create a new account
+					</div>
+				</Typography>
             </Box>
             <TextField
             required={true}
@@ -124,53 +123,53 @@ export default function Signup(){
 			  type="text"
             />
             <TextField
-            required={true}
-              fullWidth
-              label="Last Name"
-			  id="lastName"
-              margin="normal"
-              name="lastName"
-              variant="outlined"
-			  type="text"
-        onChange={cancelError}
+				required={true}
+				fullWidth
+				label="Last Name"
+				id="lastName"
+				margin="normal"
+				name="lastName"
+				variant="outlined"
+				type="text"
+        		onChange={cancelError}
             />
             <TextField
-            required={true}
-              fullWidth
-              label="Email Address"
-              margin="normal"
-              name="email"
-              type="email"
-			  id="exampleInputEmail1"
-              variant="outlined"
-			  aria-describedby="emailHelp"
-        onChange={cancelError}
+				required={true}
+				fullWidth
+				label="Email Address"
+				margin="normal"
+				name="email"
+				type="email"
+				id="exampleInputEmail1"
+				variant="outlined"
+				aria-describedby="emailHelp"
+				onChange={cancelError}
             />
 			<Typography
                 color="textSecondary"
                 gutterBottom
                 variant="body2"
-              >
+            	>
                 We'll never share your email address.
-              </Typography>
+            </Typography>
             <TextField
-              required={true}
-              fullWidth
-              label="Password"
-              margin="normal"
-              name="password"
-			        id="password"
-              variant="outlined"
-              onChange={cancelError}
+				required={true}
+				fullWidth
+				label="Password"
+				margin="normal"
+				name="password"
+				id="password"
+				variant="outlined"
+				onChange={cancelError}
 
-              type={showPassword ? 'text' : 'password'}
-              InputProps={{
-                endAdornment: <InputAdornment position="end">
-                  <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
+              	type={showPassword ? 'text' : 'password'}
+              	InputProps={{
+					endAdornment: <InputAdornment position="end">
+					<IconButton
+					aria-label="toggle password visibility"
+					onClick={handleClickShowPassword}
+					onMouseDown={handleMouseDownPassword}
+					>
                   {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                 </IconButton>
 

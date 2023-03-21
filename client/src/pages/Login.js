@@ -12,6 +12,11 @@ export default function Login(){
   const [errorMsg, setErrorMsg] = useState("");
   const navigate=useNavigate()
   const [showPassword, setShowPassword] = useState(false);
+  useEffect(()=>{
+    if(user){
+      navigate("/dashboard")
+    }
+  },[])
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };

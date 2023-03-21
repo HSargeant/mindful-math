@@ -37,10 +37,10 @@ module.exports = {
     createCard: async (req, res) => {
         try {
             await Cards.create({
-                question: req.body.question.trim(),
-                answer: req.body.answer.trim(),
+                question: req.body.question?.trim(),
+                answer: req.body.answer?.trim(),
                 user: req.user.id,
-                topic: req.body.topic.trim()
+                topic: req.body.topic?.trim()
             });
             console.log("card has been added!");
             res.send("card has been added");
@@ -49,13 +49,13 @@ module.exports = {
         }
     },
     updateCard: async (req, res)=>{
+        console.log( req.body)
         try{
-          
             await Cards.findOneAndUpdate({_id: req.params.id},{
-                question: req.body.question.trim(),
-                answer: req.body.answer.trim(),
+                question: req.body.question?.trim(),
+                answer: req.body.answer?.trim(),
                 user: req.user.id,
-                topic: req.body.topic.trim()          
+                topic: req.body.topic?.trim()          
             }, {
                 new: true,
                 runValidators: true
@@ -68,6 +68,7 @@ module.exports = {
     },
 
     deleteCard: async (req, res) => {
+        console.log("hiy")
         try {
             // Find post by id
             let note = await Cards.findById({ _id: req.params.id });
