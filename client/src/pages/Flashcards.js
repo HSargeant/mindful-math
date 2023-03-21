@@ -4,6 +4,9 @@ import CardItem from "../components/CardItem";
 import { useState,useEffect } from "react";
 import Search from "../components/Search"
 import "../flashcard.css"
+import { API_BASE } from "../constants";
+
+
 export default function Flashcards(){
     const [cards,setCards] =useState([])
     const addCard=()=>{
@@ -13,63 +16,15 @@ export default function Flashcards(){
       addQuestionCard.classList.toggle("hide");
       
   }
-
-    useEffect(()=>{
-      // if(window!==undefined){
-      //   const container = document.querySelector(".container1");
-      //   const addQuestionCard = document.getElementById("add-question-card");
-      //   // const editQuestionCard = document.getElementById("edit-question-card");
-      //   const cardButton = document.getElementById("save-btn");
-      //   const question = document.getElementById("question");
-      //   const answer = document.getElementById("answer");
-      //   const errorMessage = document.getElementById("error");
-      //   // const addQuestion = document.getElementById("add-flashcard");
-      //   const closeBtn = document.getElementById("close-btn");
-      //   const show = document.querySelectorAll(".show-hide-btn")
-      //   // const editQuestion = document.querySelector(".edit")
-
-
-      //     //Add question when user clicks 'Add Flashcard' button
-      //     addQuestion.addEventListener("click", () => {
-      //       container.classList.add("hide");
-      //       addQuestionCard.classList.remove("hide");
-      //     });
-      //     // editQuestion.addEventListener("click", () => {
-      //     //   container.classList.add("hide");
-      //     //   editQuestionCard.classList.remove("hide");
-      //     // });
-
-      //     show.forEach(x=>{
-      //       x.addEventListener('click',()=>{
-      //         x.parentElement.classList.toggle("flipped")
-      //         x.nextElementSibling.classList.toggle("hide")
-
-      //       })
-      //     })
-
-      //     //Hide Create flashcard Card
-      //     closeBtn.addEventListener(
-      //       "click",
-      //       (() => {
-      //         container.classList.remove("hide");
-      //         addQuestionCard.classList.add("hide");
-      //       })
-      //     );
-
-      //     // Submit Question
-      //     // cardButton.addEventListener(
-      //     //   "click",
-      //     //   (submitQuestion = () => {
-      //     //     const tempQuestion = question.value
-      //     //     const tempAnswer = answer.value
-      //     //     if (!tempQuestion || !tempAnswer) {
-      //     //       errorMessage.classList.remove("hide");
-      //     //     }
-      //     //   })
-      //     // );
-
-      // }
-    })
+  useEffect(() => {
+    const getData= async ()=>{
+        const res= await fetch(API_BASE + "/api/flashcards",{credentials:"include"})
+        const data= await res.json()
+        setCards(data)
+    }
+    getData()
+  }, []);
+  
 
     return(
         <Main>
@@ -82,7 +37,7 @@ export default function Flashcards(){
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
               {cards.map((card,i)=>{
                   return(
-                    <CardItem card={card} key={card._id}/>
+                    <CardItem card={card} key={card._id} />
                   )
                 }) 
               }

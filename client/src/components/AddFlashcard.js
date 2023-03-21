@@ -1,9 +1,12 @@
 import { useState, useEffect} from 'react';
 import CK from './CK';
+import { API_BASE } from '../constants';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddFlashcard(){
     const [editorLoaded, setEditorLoaded] = useState(false);
     const [answer, setAnswer] = useState();
+    const navigate=useNavigate()
     const addCard=()=>{
         const addQuestionCard = window.document.getElementById("add-question-card");
         const container = window.document.querySelector(".container1");
@@ -14,11 +17,29 @@ export default function AddFlashcard(){
     useEffect(() => {
         setEditorLoaded(true);
       }, []);
-
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        
+        try {
+            const form = event.currentTarget;
+            const response = await fetch(API_BASE + form.getAttribute("action"), {
+            method: form.method,
+            body: new FormData(form),
+            credentials: "include",
+            });
+            const data = await response.json();
+            console.log("response: ",data)
+        } catch (err) {
+            console.log("Error:" + err);
+        }
+        // if (data.messages) setMessages(data.messages);
+        navigate(0); //change to update state and close modal
+    };
+console.log(answer)
     return (
         <div className="flex items-center justify-center p-12">
             <div className="mx-auto w-full max-w-[550px]">
-                <form action="/flashcards/create" method="POST" className="hide" id="add-question-card">
+                <form action="/api/flashcards/create" method="POST" className="hide" id="add-question-card" onSubmit={handleSubmit}>
                     <div className="mb-5">
                         <label htmlFor="question" className="mb-3 block text-base font-medium text-[#07074D] dark:text-white">
                             Question
@@ -33,16 +54,14 @@ export default function AddFlashcard(){
                         />
                     </div>
                     <div className="mb-5">
-                        <label htmlFor="answer" className="mb-3 block text-base font-medium text-[#07074D] dark:text-white">
-                            Answer
-                        </label>
-                        <CK
-                name="description"
-                onChange={(data) => {
-                setAnswer(data);
-                }}
-                editorLoaded={editorLoaded}
-            />
+                    <label htmlFor="answer" className="mb-3 block text-base font-medium text-[#07074D] dark:text-white">
+                        Answer
+                    </label>
+                    <input name="answer" hidden value={answer}/>
+                    <CK
+                        setAnser={setAnswer}
+                        editorLoaded={editorLoaded}
+                    />
        {/* {JSON.stringify(data)} */}
                         {/* <textarea
                             rows="4"

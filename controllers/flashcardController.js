@@ -4,7 +4,7 @@ const cloudinary = require("../middleware/cloudinary");
 module.exports = {
     getCards: async (req, res) => {
         try {
-            const cards = await Cards.find({user: req.user.id}).lean()         
+            const cards = await Cards.find({user: req.user.id}).lean().sort({createdAt: -1})     
             res.json(cards)
         } catch (err) {
             console.log(err);

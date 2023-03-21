@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-export default function CKeditorC({ onChange, editorLoaded, name, value }) {
+export default function CKeditorC({ setAnser, editorLoaded, name, value }) {
     const editorRef = useRef();
     const { CKEditor, ClassicEditor } = editorRef.current || {};
 useEffect(() => {
@@ -13,14 +13,15 @@ useEffect(() => {
             {editorLoaded ? (
                 <CKEditor
                     type="ffs"
-                    name={name}
+                    name="answer"
                     editor={ClassicEditor}
                     data={value}
                     onChange={(event, editor) => {
                         const data = editor.getData();
-                        onChange(data);
+                        setAnser(data);
                     }}
                 />
+
             ) : (
                 <div>Editor loading</div>
             )}
