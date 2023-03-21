@@ -29,7 +29,6 @@ module.exports = {
         }
     },
     addTask: async (req,res)=>{
-        console.log(req.body.dueDate)
         try{
             const task = await Task.create({
                 name: req.body.item,
