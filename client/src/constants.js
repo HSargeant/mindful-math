@@ -1,6 +1,7 @@
-const Cards = require('../models/Flashcard')
+export const API_BASE = process.env.NODE_ENV =='production' ? "http://localhost:8000" :'http://localhost:8000'
+// console.log(API_BASE)
 
-const links = {
+export const links = {
     "Kindergarten": {
         topics: ["Counting and place value","add and subtract","measurement and geomerty"],
         khan: {
@@ -109,10 +110,10 @@ const links = {
     "4th Grade": {
         topics: ["Place VAlue", "Multiply by 1-digit numbers", "Multiply by 2-digit numbers", "Division", "Factors multiples and patterns","add and subtract fractions","multiply fractions","decimals","area and perimeter","units of measurement"],
         khan: {
-           
+        
         },
         ixl: {
-       
+    
         },
         "other sites": {},
     },
@@ -124,70 +125,45 @@ const links = {
         "other sites": {},
     },
     "6th Grade": {
-        topics: ["Coming Soon"],
+        topics: [],
         khan: {},
         ixl: {},
         "other sites": {},
     },
     "7th Grade": {
-        topics: ["Coming Soon"],
+        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
         khan: {},
         ixl: {},
         "other sites": {},
     },
     "8th Grade": {
-        topics: ["Coming Soon"],
+        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
         khan: {},
         ixl: {},
         "other sites": {},
     },
     "Algebra 1": {
-        topics: ["Coming Soon"],
+        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
         khan: {},
         ixl: {},
         "other sites": {},
     },
     Geometry: {
-        topics: ["Coming Soon"],
+        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
         khan: {},
         ixl: {},
         "other sites": {},
     },
     "Algebra 2": {
-        topics: ["Coming Soon"],
+        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
         khan: {},
         ixl: {},
         "other sites": {},
     },
     "Pre-Calculus": {
-        topics: ["Coming Soon"],
+        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
         khan: {},
         ixl: {},
         "other sites": {},
     },
-};
-
-// const topics ={
-//     "2nd Grade":["Add and subtract within 20","Add and subtract within 100","Add and subtract within 1000","Place Value","Money and time","Measurement","Geometry","Data"],
-//     "3rd Grade":["1-digit multiplication","Addition, subtraction, and estimation","Intro to division","Fractions","Comparing fractions","Problem Solving"],
-//     "4th Grade":[],
-//     "5th Grade":[],
-//     "6th Grade":[],
-//     "7th Grade":[],
-//     "8th Grade":[],
-//     "Algebra 1":[],
-//     "Geometry":[],
-//     "Algebra 2":[],
-//     "Pre-Calculus":[]
-// }
-
-
-module.exports = {
-    getResources: async (req, res) => {
-        try {
-            res.json(links);
-        } catch (err) {
-            console.log(err);
-        }
-    }
 };

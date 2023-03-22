@@ -2,13 +2,9 @@ const express = require('express')
 const router = express.Router()
 const dashboardController = require('../controllers/dashboardController')
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
-
-router.get('/', ensureAuth,dashboardController.getUserData)
-router.get('/notes', ensureAuth, dashboardController.getUserData)
-router.get('/assignments', ensureAuth, dashboardController.getAssignments)
+// "/api/dashboard"
 router.put('/updategrade',ensureAuth,dashboardController.updateGrade)
-router.post('/addtask',ensureAuth,dashboardController.addTask)
-router.put('/:id',ensureAuth,dashboardController.markComplete)
-
+// router.get('/',ensureAuth,dashboardController.getUserData)
+router.get('/quote',ensureAuth,dashboardController.getQuote)
 
 module.exports = router

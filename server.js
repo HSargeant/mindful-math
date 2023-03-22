@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose")
+const path = require('path')
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -9,26 +9,29 @@ const flash = require("express-flash");
 const logger = require("morgan");
 const PORT = 8000
 const cors = require("cors")
-// const connectDB = require("./config/database");
+const connectDB = require("./config/database");
 const indexRoutes = require('./routes/IndexRoutes')
 const dashboardRoutes = require('./routes/dashboardRoutes')
 const notesRoutes = require('./routes/notesRoutes')
 const flashcardRoutes = require('./routes/flashcardRoutes')
 const resourceRoutes = require('./routes/resourceRoutes')
+const taskRoutes = require('./routes/taskRoutes.js')
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" })
 
 // Passport config
 require("./config/passport")(passport);
 
-
 //Using EJS for views
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 
-app.use(cors())
+app.use(cors({
+  origin: (origin, callback) => callback(null, true),
+  credentials: true
+}));
 
 //Static Folder
-app.use(express.static("public"));
+app.use(express.static("client/build"));
 
 //Body Parsing
 app.use(express.urlencoded({ extended: false }));
@@ -56,26 +59,18 @@ app.use(passport.session());
 app.use(flash());
 
 app.use('/', indexRoutes)
-app.use('/dashboard', dashboardRoutes)
-app.use('/notes', notesRoutes)
-app.use('/flashcards', flashcardRoutes)
-app.use('/resources', resourceRoutes)
+app.use('/api/dashboard', dashboardRoutes)
+app.use('/api/assignments', taskRoutes)
+app.use('/api/notes', notesRoutes)
+app.use('/api/flashcards', flashcardRoutes)
+app.use('/api/resources', resourceRoutes)
+
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build/index.html'));
+});
 
 
 //cyclic mongo fix
-const connectDB = async ()=>{
-    try {
-        const conn = await mongoose.connect(process.env.MONGO_URL,{
-            useNewURLParser: true,
-            useUnifiedTopology: true,
-        })
-
-        console.log("conneceted to database")
-    } catch (error) {
-        console.log(error)
-        process.exit(1)
-    }
-}
 
 //Connect To Database
 connectDB().then(()=>{

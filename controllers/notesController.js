@@ -5,15 +5,20 @@ module.exports = {
     getNotes: async (req, res) => {
         try {
             const notes = await Notes.find({user: req.user.id}).lean().sort({createdAt: -1})
-            
-            res.render("allNotes.ejs", { notes: notes, user: req.user, });
+            res.json(notes)
         } catch (err) {
             console.log(err);
         }
     },
-    newNote: async (req, res) => {  
-        res.render("newNote.ejs", { user: req.user});
+    getNotesDash: async (req, res) => {
+        try {
+            const notes = await Notes.find({user:req.user.id}).lean().sort({createdAt: -1}).limit(5)
+            res.json(notes)
+        } catch (err) {
+            console.log(err);
+        }
     },
+
     createNote: async (req, res) => {
         try {
             // Upload image to cloudinary
@@ -38,7 +43,7 @@ module.exports = {
                 }
 
                 console.log("note has been added!");
-                res.redirect("/notes");
+                res.json({succes:true});
             // }else{
             //     req.body.user = req.user.id
             //     await Notes.create(req.body);
@@ -58,26 +63,28 @@ module.exports = {
             _id: req.params.id
         }).lean()   
         if(!note){
-            res.redirect('/notes')
+            res.json("does not exist")
         }
     
         if(note.user != req.user.id){
-            res.redirect('/notes')
+            res.json("does not exist")
         }else{      
-            res.render('editNote.ejs',{note: note,user:req.user.id,})
+            res.json(note)
         }
     },
     updateNote: async (req, res)=>{
+        console.log(req.body)
         try{
             await Notes.findOneAndUpdate({_id: req.params.id},{
                 title: req.body.title,
                 content: req.body.content,
+                topic: req.body.topic,
                 user:req.user.id
             }, {
                 new: true,
                 runValidators: true
             })
-            res.redirect('/notes')
+            res.json('updated')
             console.log('updated')
         }catch(err){
             console.log(err)
@@ -95,9 +102,10 @@ module.exports = {
             // Delete post from db
             await Notes.deleteOne({ _id: req.params.id });
             console.log("Deleted Note");
-            res.redirect("/notes");
+            res.json("Deleted Note");
         } catch (err) {
-            res.redirect("/notes");
+            console.error(err)
+            res.json("not found")
         }
         },
 };
