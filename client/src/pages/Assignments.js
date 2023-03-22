@@ -6,7 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ErrorIcon from '@mui/icons-material/Error';
 import { IconButton,Tooltip } from "@mui/material";
 
-export default function Agenda(){
+export default function Assignments(){
     const navigate=useNavigate()
     const [items,setItems]= useState([])
     useEffect(()=>{

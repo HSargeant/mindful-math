@@ -9,14 +9,14 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export default function Login(){
   const {user,setUser,messages, setMessages} = useOutletContext()
-  const [errorMsg, setErrorMsg] = useState("");
   const navigate=useNavigate()
-  const [showPassword, setShowPassword] = useState(false);
   useEffect(()=>{
     if(user){
       navigate("/dashboard")
     }
-  },[])
+  })
+  const [errorMsg, setErrorMsg] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };

@@ -18,13 +18,14 @@ import {
 
 export default function Signup(){
     const { setUser, user } = useOutletContext();
-    const [errorMsg, setErrorMsg] = useState("");
     const navigate = useNavigate();
     useEffect(()=>{
       if(user){
         navigate("/dashboard")
+        return
       }
     })
+    const [errorMsg, setErrorMsg] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const handleMouseDownPassword = (event) => {
       event.preventDefault();

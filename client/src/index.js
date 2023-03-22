@@ -11,7 +11,7 @@ import Signup from './pages/Signup';
 import Logout from './pages/Logout';
 import Flashcards from './pages/Flashcards';
 import Notes from './pages/Notes';
-import Agenda from './pages/Agenda';
+import Assignments from './pages/Assignments';
 import Resources from './pages/Resources';
 import EditNote from "./pages/EditNote.js"
 import EditFlashcard from "./pages/EditFlashcard.js"
@@ -29,13 +29,9 @@ const router = createBrowserRouter([
     element: <Root />,
     // errorElement: <ErrorPage />,
     children: [
-      // {
-        //   path: "login",
-        //   element: <Login />,
-        // },
         {
           index: true,
-          element: <Index /> //users will land at the login page
+          element: <Index />
         },
         {
           path: "/login",
@@ -76,17 +72,12 @@ const router = createBrowserRouter([
         },
         {
           path: "/agenda",
-          element: <ProtectedRoute><Agenda /></ProtectedRoute>,
+          element: <ProtectedRoute><Assignments /></ProtectedRoute>,
         },
         {
           path: "/resources",
           element: <ProtectedRoute><Resources /></ProtectedRoute>,
         },
-
-      // {
-      //   path:"",
-      //   element:<ProtectedRoute/>
-      // }
     ]
   },
 ]);

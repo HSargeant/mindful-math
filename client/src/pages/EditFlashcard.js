@@ -26,7 +26,7 @@ export default function EditFlashcard(){
         try {
             const form = event.currentTarget;
             console.log(form.topic.value)
-            console.log(form.method)
+            
             
             const response = await fetch(API_BASE + form.getAttribute("action"), {
             method: 'put',

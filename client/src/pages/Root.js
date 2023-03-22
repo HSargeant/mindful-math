@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { API_BASE } from "../constants";
 export default function Root() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [messages, setMessages] = useState()
   // api call to get logged in user
   useEffect( () => {

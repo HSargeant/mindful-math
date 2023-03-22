@@ -36,7 +36,7 @@ export default function AddTaskModal({setItems,items}){
             }
             // if (data.messages) setMessages(data.messages);
   
-          };
+        };
           
     return(
         <div className="hidden py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">

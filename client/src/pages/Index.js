@@ -10,7 +10,7 @@ export default function Index() {
     if(user){
       navigate("/dashboard")
     }
-  },[])
+  })
   return (
     <>
     <div className="w-full">
