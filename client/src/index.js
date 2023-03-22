@@ -71,7 +71,7 @@ const router = createBrowserRouter([
           element: <ProtectedRoute><Notes /></ProtectedRoute>,
         },
         {
-          path: "/agenda",
+          path: "/assignments",
           element: <ProtectedRoute><Assignments /></ProtectedRoute>,
         },
         {

@@ -48,11 +48,11 @@ export default  function Notes(){
 			const confirm = window.confirm("Are you sure you want to delete this note?")
 			if(confirm){
 				try{
-					// const form = event.currentTarget;
-					// await fetch(form.getAttribute('action'), {
-					//   method: form.method,
-					//   credentials: "include"
-					// });  
+					const form = event.currentTarget;
+					await fetch(form.getAttribute('action'), {
+					  method: form.method,
+					  credentials: "include"
+					});  
 					setNotes(notes.filter(elem=>elem._id!==event.target.className))
 	 
 				}catch(err){

@@ -50,15 +50,19 @@ export default function AddFlashcard(){
                             defaultValue=""
                         />
                     </div>
-                    <div className="mb-5">
+                    <div className="mb-5 text-black">
                     <label htmlFor="answer" className="mb-3 block text-base font-medium text-[#07074D] dark:text-white">
                         Answer
                     </label>
                     <input name="answer" hidden value={answer}/>
+                    
+
                     <CK
                         setAnswer={setAnswer}
                         editorLoaded={editorLoaded}
+                        
                     />
+                    
        {/* {JSON.stringify(data)} */}
                         {/* <textarea
                             rows="4"

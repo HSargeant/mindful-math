@@ -61,25 +61,18 @@ export default function EditFlashcard(){
                             defaultValue={card?.question}
                         />
                     </div>
-                    <div className="mb-5">
+                    <div className="mb-5 text-black">
                     <label htmlFor="answer" className="mb-3 block text-base font-medium text-[#07074D] dark:text-white">
                         Answer
                     </label>
+                    
                     <CK
                         setAnswer={setAnswer}
                         editorLoaded={editorLoaded}
                         defaultValue={card?.answer}
 
                     />
-       {/* {JSON.stringify(data)} */}
-                        {/* <textarea
-                            rows="4"
-                            name="answer"
-                            id="answer"
-                            placeholder="Type your message"
-                            className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-black outline-none focus:border-[#6A64F1] focus:shadow-md"
-
-                        ></textarea> */}
+                  
                     </div>
 
                     <div className="mb-5">
