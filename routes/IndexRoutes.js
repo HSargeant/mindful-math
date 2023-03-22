@@ -10,12 +10,11 @@ router.post('/login', authController.postLogin)
 router.get('/logout', authController.logout)
 router.post('/signup', authController.postSignup)
 router.get('/auth/google',passport.authenticate('google',{scope: ['profile','email']}))
-router.get('/auth/google/callback',passport.authenticate('google',{failureRedirect:'http://localhost:3000/login'}),(req, res)=>{
+router.get('/auth/google/callback',passport.authenticate('google',{failureRedirect:'/login'}),(req, res)=>{
     console.log("redir")
-    if(process.env.NODE_ENV=="development"){
-        res.redirect('http://localhost:3000/dashboard')
+        // res.redirect('http://localhost:3000/dashboard') //dev
+        res.redirect('/dashboard') // prod
 
-    }else res.redirect('http://localhost:8000/dashboard')
 })
 
 module.exports = router
