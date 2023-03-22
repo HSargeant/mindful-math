@@ -45,8 +45,6 @@ export default  function Notes(){
     }
 		const handleDelete = async (event) => {
 			event.preventDefault();
-			console.log(event.target.className)
-				// console.log("Delete")
 			const confirm = window.confirm("Are you sure you want to delete this note?")
 			if(confirm){
 				try{

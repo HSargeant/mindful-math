@@ -12,7 +12,6 @@ export default function EditNote(){
 
     useEffect(()=>{
         const getData= async ()=>{
-            console.log("getting")
             const res= await fetch(API_BASE + "/api/notes/edit/"+noteId,{credentials:"include"})
             const data= await res.json()
             setTitle(data?.title)
@@ -37,7 +36,6 @@ export default function EditNote(){
                 credentials: "include"
               })
             const record = await response.json();
-            console.log(record)
             navigate(-1)
         }catch(err){
             console.log("Error:" ,err)
@@ -46,11 +44,10 @@ export default function EditNote(){
    
     };
 
-        const [file, setFile] = useState(null);
-        const handleFileChange = (event) => {
-        //   console.log(event.target.files[0].name)
-        setFile(event.target.files[0].name);
-        };
+        // const [file, setFile] = useState(null);
+        // const handleFileChange = (event) => {
+        // setFile(event.target.files[0].name);
+        // };
     return(
         <Main>
         <div className="flex items-center justify-center p-12">

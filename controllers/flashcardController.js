@@ -49,7 +49,6 @@ module.exports = {
         }
     },
     updateCard: async (req, res)=>{
-        console.log( req.body)
         try{
             await Cards.findOneAndUpdate({_id: req.params.id},{
                 question: req.body.question?.trim(),
@@ -68,7 +67,6 @@ module.exports = {
     },
 
     deleteCard: async (req, res) => {
-        console.log("hiy")
         try {
             // Find post by id
             let note = await Cards.findById({ _id: req.params.id });

@@ -11,7 +11,6 @@ useEffect(()=>{
   const getData= async ()=>{
     const res = await fetch(API_BASE+'/api/dashboard/quote',{ credentials: "include" })
     const  data = await res.json()
-    console.log("the quote: ",data)
     setQuote(data)
   }
   // getData()
@@ -29,7 +28,6 @@ useEffect(()=>{
         <FlashcardC />
       </div>          
       <NotesC />
-      {/* <script src="/main.js" /> */}
       </>
 
     </Main> 

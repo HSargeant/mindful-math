@@ -6,7 +6,6 @@ import Main from "../components/Main"
 
 export default function EditFlashcard(){
     const card = useLocation().state?.card
-    // console.log(card)
     const navigate=useNavigate()
     useEffect(() => {
         if(!card){
@@ -25,8 +24,6 @@ export default function EditFlashcard(){
         
         try {
             const form = event.currentTarget;
-            console.log(form.topic.value)
-            
             
             const response = await fetch(API_BASE + form.getAttribute("action"), {
             method: 'put',

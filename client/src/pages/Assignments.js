@@ -13,7 +13,6 @@ export default function Assignments(){
         const getData= async ()=>{
             const res = await fetch(API_BASE + '/api/assignments/', { credentials: "include" } )
             const data = await res.json()
-            // console.log("tasks: ", data)
             setItems(data)
         }
         getData()

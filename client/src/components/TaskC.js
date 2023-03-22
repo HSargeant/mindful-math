@@ -10,7 +10,6 @@ export default function TaskC(){
         const getData= async ()=>{
             const res = await fetch(API_BASE + '/api/assignments/dashboard', { credentials: "include" } )
             const data = await res.json()
-            // console.log("tasks: ", data)
             setItems(data)
         }
         getData()

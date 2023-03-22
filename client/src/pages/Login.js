@@ -31,9 +31,7 @@ export default function Login(){
         credentials: "include"
       });
       const data = await response.json();
-      console.log(data)
       if (data.errors) {
-        // console.log(data.messages.errors[0].msg)
         setErrorMsg(data.errors[0].msg);
       }
       if (data.user) {

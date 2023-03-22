@@ -21,7 +21,6 @@ export default function NewNote(){
     };
     const handleSubmit = async (event) => {
       event.preventDefault();
-      // console.log("sent")
           try {
             const form = event.currentTarget;
             const response = await fetch(API_BASE + form.getAttribute("action"), {
@@ -30,7 +29,6 @@ export default function NewNote(){
               credentials: "include",
             });
             const data = await response.json();
-            console.log("response: ",data)
           } catch (err) {
             console.log("Error:" + err);
           }
@@ -39,7 +37,6 @@ export default function NewNote(){
         };
         const [file, setFile] = useState(null);
         const handleFileChange = (event) => {
-        //   console.log(event.target.files[0].name)
           setFile(event.target.files[0].name);
         };
 console.log("asdfasdf")

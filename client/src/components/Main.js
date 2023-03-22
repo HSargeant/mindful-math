@@ -54,10 +54,7 @@ useEffect(()=>{
     
     if(window.document.querySelector('#addTask')){
     window.document.querySelector('#addTask').addEventListener('click',()=>{
-        console.log("click")
         modalHandler(true)
-    
-    
     })
     }
     window.document.querySelector('#modalCancel').addEventListener('click',()=>{

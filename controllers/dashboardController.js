@@ -20,7 +20,7 @@ module.exports = {
     },
     getQuote: async (req,res)=>{
         try{
-            const response = await fetch('https://zenquotes.io/api/quotes')
+            const response = await fetch('https://zenquotes.io/api/quotes') // find a quote source
             const quote= await response.json()
             let index = Math.floor(Math.random()*quote.length)
             res.json(quote[index])

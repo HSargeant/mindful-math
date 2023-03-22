@@ -18,7 +18,6 @@ useEffect(() => {
                     data={defaultValue}
                     onChange={(event, editor) => {
                         const data = editor.getData();
-                        console.log(data)
                         setAnswer(data);
                     }}
                 />

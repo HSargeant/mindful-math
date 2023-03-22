@@ -10,7 +10,6 @@ export default function NotesC(){
         const getData= async ()=>{
             const res = await fetch(API_BASE + '/api/notes/dashboard', { credentials: "include" } )
             const data = await res.json()
-            console.log(data)
             setNotes(data)
         }
         getData()
@@ -18,8 +17,6 @@ export default function NotesC(){
 
 const handleDelete = async (event) => {
 		event.preventDefault();
-    console.log(event.target.className)
-      // console.log("Delete")
     const confirm = window.confirm("Are you sure you want to delete this note?")
 		if(confirm){
       try{

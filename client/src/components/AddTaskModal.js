@@ -9,12 +9,9 @@ export default function AddTaskModal({setItems,items}){
  
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log( event.target.dueDate.value)
         try {
             const form = event.currentTarget;
-            console.log(API_BASE + form.getAttribute("action"),form.method)
             const x = new FormData(form)
-            console.log(x.get("dueDate"),x.get("taskItem"))
             let dateString = dueDate;
             let date = new Date(dateString + 'T12:00:00Z');
             const response = await fetch(API_BASE + form.getAttribute("action"), {
@@ -24,7 +21,6 @@ export default function AddTaskModal({setItems,items}){
                 credentials: "include",
             });
             const data = await response.json();
-            console.log("response: ",data)
             setItems([data,...items])
             setAdded(true)
             setTimeout(() => {
