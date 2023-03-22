@@ -2,7 +2,7 @@
  
 Full-stack application for helping students stay organized while studying and get access to helpful resources from across the web all in one place.
  
-demo site - https://math-study-app-demo.herokuapp.com/
+demo site - https://mindful-math.cyclic.app/
  
 ## Features
  
