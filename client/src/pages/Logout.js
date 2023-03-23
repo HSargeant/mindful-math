@@ -9,7 +9,7 @@ export default function Logout() {
 		fetch(API_BASE + "/logout", { credentials: "include" })
 			.then((res) => {
 				setUser(null);  
-				navigate("/login");
+				navigate("/login",{ replace: true });
 			});
 	},);
 
