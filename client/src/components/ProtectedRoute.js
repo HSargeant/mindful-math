@@ -5,6 +5,6 @@ const ProtectedRoute = ({children}) => {
   const {user} = useOutletContext()
   const navigate = useNavigate()
 
-  return user? children: <Login/>
+  return user? children: navigate("/login")
 };
 export default ProtectedRoute
