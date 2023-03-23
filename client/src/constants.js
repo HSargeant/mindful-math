@@ -1,4 +1,4 @@
-export const API_BASE = process.env.NODE_ENV =='production' ? "https://mindful-math.cyclic.app" :'http://localhost:8000'
+export const API_BASE = process.env.NODE_ENV ==='production' ? "https://mindful-math.cyclic.app" :'http://localhost:8000'
 // console.log(API_BASE)
 
 export const links = {
@@ -81,14 +81,14 @@ export const links = {
         "other sites": {},
     },
     "3rd Grade": {
-        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving", "Area", "Perimeter"],
+        topics: ["1-digit multiplication", "Addition, Subtraction and Estimation", "Intro to Division", "Fractions", "Comparing Fractions", "Problem Solving", "Area", "Perimeter"],
         khan: {
             "1-digit multiplication": "https://www.khanacademy.org/math/cc-third-grade-math/3rd-basic-multiplication",
             "Addition, Subtraction and Estimation": "https://www.khanacademy.org/math/cc-third-grade-math/imp-addition-and-subtraction",
             "Intro to Division": "https://www.khanacademy.org/math/cc-third-grade-math/intro-to-division",
             "Fractions": "https://www.khanacademy.org/math/cc-third-grade-math/imp-fractions",
-            "Compairing Fractions": "https://www.khanacademy.org/math/cc-third-grade-math/equivalent-fractions-and-comparing-fractions",
-            "Problem solving": "https://www.khanacademy.org/math/cc-third-grade-math/arithmetic-patterns-and-problem-solving",
+            "Comparing Fractions": "https://www.khanacademy.org/math/cc-third-grade-math/equivalent-fractions-and-comparing-fractions",
+            "Problem Solving": "https://www.khanacademy.org/math/cc-third-grade-math/arithmetic-patterns-and-problem-solving",
             "Geometry": "https://www.khanacademy.org/math/cc-third-grade-math/quadrilaterals-3rd",
             "Area": "https://www.khanacademy.org/math/cc-third-grade-math/imp-geometry",
             "Perimeter": "https://www.khanacademy.org/math/cc-third-grade-math/3rd-perimeter",
@@ -98,8 +98,8 @@ export const links = {
             "Addition, Subtraction and Estimation": "https://www.ixl.com/math/grade-3/addition-and-subtraction-word-problems",
             "Intro to Division": "https://www.ixl.com/math/grade-3/write-division-sentences-for-groups",
             "Fractions": "https://www.ixl.com/math/grade-3/understand-fractions-area-models",
-            "Compairing Fractions": "https://www.ixl.com/math/grade-3/find-equivalent-fractions-using-fraction-strips",
-            "Problem solving": "https://www.ixl.com/math/grade-3/age-puzzles",
+            "Comparing Fractions": "https://www.ixl.com/math/grade-3/find-equivalent-fractions-using-fraction-strips",
+            "Problem Solving": "https://www.ixl.com/math/grade-3/age-puzzles",
             "Geometry": "https://www.ixl.com/math/grade-3/classify-quadrilaterals",
             "Area": "https://www.ixl.com/math/grade-3/find-the-area-of-rectangles-and-squares",
             "Perimeter": "https://www.ixl.com/math/grade-3/perimeter-of-rectilinear-shapes",

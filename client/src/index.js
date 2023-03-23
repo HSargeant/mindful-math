@@ -5,7 +5,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Root from './pages/Root';
-// import ErrorPage from './pages/ErrorPage';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Logout from './pages/Logout';
@@ -19,15 +18,15 @@ import NewNote from './pages/NewNote';
 import ProtectedRoute from './components/ProtectedRoute.js';
 import Index from "./pages/Index"
 import Dashboard from "./pages/Dashboard"
+import ErrorPage from './pages/ErrorPage';
 import './index.css';
 import "./dark.css"
-import { element } from 'prop-types';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
         {
           index: true,

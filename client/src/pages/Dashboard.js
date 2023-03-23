@@ -6,28 +6,36 @@ import { useState,useEffect } from "react";
 import { API_BASE } from "../constants";
 
 export default function Dashboard() { 
-const [quote,setQuote]= useState({})
+
+const [quote,setQuote]= useState([])
+const [notes,setNotes]= useState([])
+const [cards,setCards]= useState([])
+const [items,setItems]= useState([])
+
 useEffect(()=>{
   const getData= async ()=>{
-    const res = await fetch(API_BASE+'/api/dashboard/quote',{ credentials: "include" })
+    const res = await fetch(API_BASE+'/api/dashboard/',{ credentials: "include" })
     const  data = await res.json()
-    setQuote(data)
+    // setQuote(data)
+    setCards(data.cards)
+    setNotes(data.notes)
+    setItems(data.items)
   }
-  // getData()
+  getData()
   },[])
 
   return (
-    <Main >
+    <Main items={items} setItems={setItems} >
     <> 
-      <div className="p-2 text-center quote">
+      {/* <div className="p-2 text-center quote">
         <p className="quoteP">{quote.q}</p>
         <span className="quoteAuthor">{quote.a}</span>
-      </div>
+      </div> */}
       <div id="userData" className="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
-        <TaskC />
-        <FlashcardC />
+        <TaskC items={items} />
+        <FlashcardC cards={cards}/>
       </div>          
-      <NotesC />
+      <NotesC notes={notes} setNotes={setNotes}/>
       </>
 
     </Main> 

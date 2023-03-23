@@ -1,20 +1,6 @@
 import {Link} from "react-router-dom"
-import { useEffect,useState } from "react"
-import {API_BASE} from "../constants"
 
-export default function FlashcardC(){
-    const [cards,setCards]= useState([])
-    useEffect(()=>{
-        const getData= async ()=>{
-            const res = await fetch(API_BASE + '/api/flashcards/dashboard', { credentials: "include" } )
-            const data = await res.json()
-            // console.log("cards: ", data)
-            setCards(data)
-        }
-        getData()
-    },[setCards])
-
-
+export default function FlashcardC({cards}){
     function showansw(elem){
         elem.target.nextElementSibling.classList.toggle("hidden")
       }

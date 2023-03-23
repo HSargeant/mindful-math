@@ -16,32 +16,9 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import AddTaskModal from "./AddTaskModal";
 
-
 export default function Main({children,setItems,items}){
     const {user}= useOutletContext()
     const [dark,setDark] = useState(localStorage.getItem("theme")==="dark")
-    
-    const options = [
-        {value: '', text: 'Choose your grade/subject'},
-        {value: 'kindergarten', text: 'Kindergarten'},
-        {value: '1st Grade', text: '1st Grade'},
-        {value: '2nd Grade', text: '2nd Grade'},
-        {value: '3rd Grade', text: '3rd Grade'},
-        {value: '4th Grade', text: '4th Grade'},
-        {value: '5th Grade', text: '5th Grade'},
-        {value: '6th Grade', text: '6th Grade'},
-        {value: '7th Grade', text: '7th Grade'},
-        {value: '8th Grade', text: '8th Grade'},
-        {value: 'Algebra 1', text: 'Algebra 1'},
-        {value: 'Geometry', text: 'Geometry'},
-        {value: 'Algebra 2', text: 'Algebra 2'},
-        {value: 'Pre-Calculus', text: 'Pre-Calculus'},
-      ];
-      const [selected, setSelected] = useState(options[0].value);
-      const handleChange = event => {
-        setSelected(event.target.value);
-      };
-
 useEffect(()=>{
     if(typeof window.document!=undefined){
         if(!localStorage.getItem("theme")){
@@ -117,28 +94,7 @@ const handleLightDark=()=>{
                         </div>
                         <div className="flex justify-between items-center h-14 bg-blue-800 dark:bg-gray-800 header-right">
                             <div className="">
-                            {/* <div className="bg-white rounded flex items-center text-black max-w-xl shadow-sm border border-gray-200"> */}
-                                {/* <FormControl action="/dashboard/updategrade?_method=PUT" method="POST" sx={{ m: 1, minWidth: 120 }} size="small">
-        <Select
-          labelId="demo-simple-select-helper-label"
-          id="demo-simple-select-helper"
-          displayEmpty
-         
-
-        //   value={age}
-        //   label="Age"
-        //   onChange={handleChange}
-        >
-            {options.map(option=>{
-                return(
-                    <MenuItem value={option.value}>
-                    <em>{option.text}</em>
-                  </MenuItem>
-
-                )
-            })}
-        </Select>
-                                </FormControl> */}
+                            
                             </div>
                             <ul className="flex items-center">
                                     {/* <!-- light /dark toggle --> */}
@@ -222,7 +178,7 @@ const handleLightDark=()=>{
                                         <span className="inline-flex justify-center items-center ml-4">
                                         <ContentPasteIcon fontSize="small"/>
                                         </span>
-                                        <span className="ml-2 text-sm tracking-wide truncate">Agenda</span>
+                                        <span className="ml-2 text-sm tracking-wide truncate">Assignments</span>
                                         
                                     </Link>
                                 </li>

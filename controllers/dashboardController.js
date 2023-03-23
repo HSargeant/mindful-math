@@ -28,4 +28,17 @@ module.exports = {
             console.log(err)
         }
     },
+    getUserData: async (req,res)=>{
+        try {
+            const items = await Task.find({user:req.user.id,completed:false}).lean().sort({dueDate: 1}).limit(5)
+            const notes = await Note.find({user:req.user.id}).lean().sort({createdAt: -1}).limit(5)
+            const cards = await Cards.find({user:req.user.id}).lean().sort({createdAt: -1}).limit(8)
+            // const response = await fetch('https://zenquotes.io/api/quotes')
+            // const data= await response.json()
+            res.json({ items: items, notes:notes,cards:cards})
+        } catch (error) {
+            console.error(error)
+            res.json({error})
+        }
+    }
 }

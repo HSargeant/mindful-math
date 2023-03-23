@@ -99,7 +99,7 @@ export default function Resources(){
                         <div className="rounded-t mb-0 px-0 border-0">
                             <div className="flex flex-wrap items-center px-4 py-2">
                                 <div className="relative w-full max-w-full flex-grow flex-1">
-                                    <h3 className="font-semibold text-base text-gray-900 dark:text-gray-50">Website</h3>
+                                    <h3 className="font-semibold text-base text-gray-900 dark:text-gray-50">Resources</h3>
                                 </div>
                             </div>
                             <div className="block w-full overflow-x-auto">
@@ -135,7 +135,7 @@ export default function Resources(){
                                                 IXL.com
                                             </th>
                                             <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4" id="ixlTopicLink">
-                                            {
+                                            {   
                                                     links[userLevel]?.ixl[linkOption]&&<a href={links[userLevel].ixl[linkOption]} target="_blank">click here</a>
                                                 }
                                             </td>

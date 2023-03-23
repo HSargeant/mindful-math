@@ -23,9 +23,9 @@ export default function AddTaskModal({setItems,items}){
             const data = await response.json();
             setItems([data,...items])
             setAdded(true)
-            setTimeout(() => {
-                setAdded(false)
-            }, 3000);
+            // setTimeout(() => {
+            //     setAdded(false)
+            // }, 3000);
 
             } catch (err) {
               console.log("Error:" + err);
