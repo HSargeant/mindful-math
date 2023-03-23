@@ -10,7 +10,7 @@ Within *Mindful Math*, users sign up for a free account, select their grade leve
  
 ## Packages
  
-This node.js application utilizes ejs for templating, express for server framework, mongoDB and mongoose for database storage and Tailwind CSS as a css framework. Users can sign up with an email and password (bcrypt for password encryption) or with a Google account through Google Oauth2.0 authentication.
+This node.js application utilizes React for frontend, express for server framework, mongoDB and mongoose for database storage and Tailwind CSS as a css framework. Users can sign up with an email and password (bcrypt for password encryption) or with a Google account through Google Oauth2.0 authentication.
  
 ## Current Objectives
  
