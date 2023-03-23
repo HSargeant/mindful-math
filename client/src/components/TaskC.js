@@ -61,7 +61,7 @@ return(
                             </td>
                             <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4">
                                 <div className="flex flex-col">
-                                    <form action={`dashboard/${item._id}?_method=PUT`} method="POST" className="">
+                                    <form action={`/api/assignments/${item._id}?_method=PUT`} method="POST" className="">
                                     <button type="submit" className="white"><DeleteIcon/></button>
                                     </form>
                                 </div>
