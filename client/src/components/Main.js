@@ -245,12 +245,12 @@ const handleLightDark=()=>{
                                     </Link>
                                 </li>
                             </ul>
-                            <p className="mb-14 px-5 py-3 hidden md:block text-center text-xs">
+                            <p className="mb-14 px-5 py-3  hidden md:block text-center text-xs">
                             &copy; 
-                            <a to="https://hendersonsargeant.netlify.app" target="_blank" className="profile">
+                            <a href="https://hendersonsargeant.netlify.app" target="_blank" className="profile ml-1">
                                 Henderson Sargeant
-                            </a>
-                                All rights reserved. 2022</p>
+                            </a ><br/>
+                                All rights reserved 2022</p>
                         </div>
                     </div>
                     {/* <!-- ./Sidebar --> */}

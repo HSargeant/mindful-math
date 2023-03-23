@@ -68,7 +68,7 @@ export default function Assignments(){
     return(
         <Main setItems={setItems} items={items}>
 <div className="p-2 text-center quote">
-							<h2 className="text-4xl">Class Notes</h2>
+							{/* <h2 className="text-4xl"></h2> */}
 							{howmanyTasks()}
 					</div>
 					<section className="mx-auto w-3/4 ">
