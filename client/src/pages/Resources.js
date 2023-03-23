@@ -49,12 +49,10 @@ export default function Resources(){
 
     return(
         <Main>
+             <div className="mt-4 mx-4 grid place-items-center">
             <div className="p-2 text-center quote overflow-hidden">
                 <h2 className="text-4xl">Resources</h2>
-                <h5><i className="fa-solid fa-person-digging"></i>--Under Contruction--<i className="fa-solid fa-person-digging"></i></h5>
-                
-       
-                                
+                <h5><i className="fa-solid fa-person-digging"></i>--Under Contruction--<i className="fa-solid fa-person-digging"></i></h5>              
             </div>
             <section className="flex justify-center overflow-hidden" >
      
@@ -93,8 +91,8 @@ export default function Resources(){
       </FormControl>
                
             </section>
-            <div className="mt-4 mx-4 grid place-items-center">
-                <div className="w-2/3 overflow-hidden rounded-lg shadow-xs">
+           
+                <div className="w-full md:w-2/3 sm:w-full  overflow-hidden rounded-lg shadow-xs">
                     <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
                         <div className="rounded-t mb-0 px-0 border-0">
                             <div className="flex flex-wrap items-center px-4 py-2">

@@ -52,6 +52,7 @@ module.exports = {
     });
   },
   postSignup: (req, res, next) => {
+    console.log(req.body)
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
     if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' })
@@ -59,7 +60,7 @@ module.exports = {
   
     if (validationErrors.length) {
       req.flash('errors', validationErrors)
-      return res.json(req.flash() );
+      return res.json({ messages: req.flash() } );
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
   
@@ -78,7 +79,7 @@ module.exports = {
       if (err) { return next(err) }
       if (existingUser) {
         req.flash('errors', { msg: 'Account with that email address or username already exists.' })
-        return res.json(req.flash());
+        return res.json({ messages: req.flash() });
       }
       user.save((err) => {
         if (err) { return next(err) }

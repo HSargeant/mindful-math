@@ -41,12 +41,13 @@ export default function Signup(){
         credentials: "include",
       });
       const data = await response.json();
+      console.log(data)
       if (data?.messages?.errors?.length) {
         setErrorMsg(data.messages.errors[0]?.msg);
       }
       if (data.user?.email) {
         setUser(data.user);
-        navigate("/exams");
+        navigate("/dashboard");
       }
     };
     const cancelError=()=>{
@@ -116,23 +117,12 @@ export default function Signup(){
             <TextField
             required={true}
               fullWidth
-              label="First Name"
-			  id="firstName"
+              label="Username"
+			  id="username"
               margin="normal"
-              name="firstName"
+              name="username"
               variant="outlined"
 			  type="text"
-            />
-            <TextField
-				required={true}
-				fullWidth
-				label="Last Name"
-				id="lastName"
-				margin="normal"
-				name="lastName"
-				variant="outlined"
-				type="text"
-        		onChange={cancelError}
             />
             <TextField
 				required={true}
@@ -162,6 +152,8 @@ export default function Signup(){
 				id="password"
 				variant="outlined"
 				onChange={cancelError}
+        helperText="At least 8 characters"
+
 
               	type={showPassword ? 'text' : 'password'}
               	InputProps={{
@@ -212,6 +204,33 @@ export default function Signup(){
               
             </Box>
             {errorMsg ? <div style={{fontWeight:"bold",color:"red"}}> {errorMsg}</div>:""}
+            <TextField
+            required={true}
+            fullWidth
+            label="Select Grade Level/Subject"
+            margin="normal"
+            name="gradeLevel"
+            type="select"
+            variant="outlined"
+            select
+            SelectProps={{ native: true }}
+              >
+                <option value="" disabled>Choose your grade</option>
+                            <option value="Kindergarten">Kindergarten</option>
+                            <option value="1st Grade">1st Grade</option>
+                            <option value="2nd Grade">2nd Grade</option>
+                            <option value="3rd Grade">3rd Grade</option>
+                            <option value="4th Grade">4th Grade</option>
+                            <option value="5th Grade">5th Grade</option>
+                            <option value="6th Grade">6th Grade</option>
+                            <option value="7th Grade">7th Grade</option>
+                            <option value="8th Grade">8th Grade</option>
+                            <option value="Algebra 1">Algebra 1</option>
+                            <option value="Geometry">Geometry</option>
+                            <option value="Algebra 2">Algebra 2</option>
+                            <option value="Pre-Calculus">Pre-Calculus</option>
+
+                </TextField>
             <Box sx={{ py: 2 }}>
               <Button style={{ backgroundColor:"#2563eb"}}
                 
