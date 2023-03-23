@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
-import { useOutletContext,Navigate, useNavigate } from 'react-router-dom';
-import Login from "../pages/Login"
+import { useOutletContext,useNavigate } from 'react-router-dom';
 const ProtectedRoute = ({children}) => {
   const {user} = useOutletContext()
   const navigate = useNavigate()

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { API_BASE } from "../constants";
 export default function Root() {
   const [user, setUser] = useState();
-  const [messages, setMessages] = useState()
+  // const [messages, setMessages] = useState()
   // const [loggedIn,setLoggedIn] =useState(false)
   // api call to get logged in user
   useEffect( () => {
@@ -17,8 +17,8 @@ export default function Root() {
       getUser()
 
   }, []);
-  console.log("logged in:",user)
+  // console.log("logged in:",user)
   return (
-      <Outlet context={{ user, setUser, setMessages,messages}} />
+      <Outlet context={{ user, setUser}} />
   );
 }

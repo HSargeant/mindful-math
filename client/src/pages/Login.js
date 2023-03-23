@@ -8,7 +8,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export default function Login(){
-  const {user,setUser,messages, setMessages} = useOutletContext()
+  const {user,setUser} = useOutletContext()
   const navigate=useNavigate()
   useEffect(()=>{
     if(user){
