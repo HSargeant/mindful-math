@@ -160,10 +160,12 @@ export default  function Notes(){
             </div>
             {/* <!-- note modal -->
           	<!-- note modal --> */}
-            {notes.map((note,i)=>{
+           
+          </div>
+          {notes.map((note,i)=>{
               return(
                 <div className="modal w-full h-full" id={note._id} key={i}>
-                  <div className="modal-box dark:bg-gray-600">
+                  <div className="modal-box dark:bg-gray-600 max-w-3xl" >
                       <h3 className="font-bold text-lg text-black dark:text-white">{note.title}</h3>
                         <span className="text-black text-sm dark:text-white">{note.topic}</span>
                       <a href={note?.image} target="_blank" alt="note image"><img src={note?.image} className="w-full" /></a>
@@ -175,7 +177,6 @@ export default  function Notes(){
                 </div>
               )
             })}
-          </div>
         </Main>
     )
 }

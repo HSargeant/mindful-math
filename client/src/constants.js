@@ -1,5 +1,4 @@
 export const API_BASE = process.env.NODE_ENV ==='production' ? "https://mindful-math.cyclic.app" :'http://localhost:8000'
-// console.log(API_BASE)
 
 export const links = {
     "Kindergarten": {
@@ -63,7 +62,7 @@ export const links = {
             "Add and Subtract within 20": "https://www.ixl.com/math/grade-2/addition-sentences-using-number-lines-sums-up-to-20",
             "Add and Subtract within 100": "https://www.ixl.com/math/grade-2/addition-and-subtraction-word-problems-up-to-100",
             "Add and Subtract within 1000": "",
-            "Place Value": "https://www.ixl.com/math/grade-2/place-value-models-up-to-thousands",
+            "Place Value": "<a href= 'https://www.ixl.com/math/grade-2/addition-sentences-using-number-lines-sums-up-to-20' target='_blank'>click here</a>",
             "Money": "https://www.ixl.com/math/grade-2/count-money-up-to-5-dollars",
             "Time":"https://www.ixl.com/math/grade-2/match-analog-and-digital-clocks",
             "Measurement": "https://www.ixl.com/math/grade-2/measure-using-an-inch-ruler",
@@ -100,8 +99,18 @@ export const links = {
         "other sites": {},
     },
     "4th Grade": {
-        topics: ["Place VAlue", "Multiply by 1-digit numbers", "Multiply by 2-digit numbers", "Division", "Factors multiples and patterns","Add and Subtract fractions","multiply fractions","decimals","area and perimeter","units of measurement"],
+        topics: ["Place Value", "Multiply by 1-digit numbers", "Multiply by 2-digit numbers", "Division", "Factors multiples and patterns","Add and Subtract fractions","Multiply Fractions","Decimals","Area and Perimeter","Units of Measurement"],
         khan: {
+            "Place Value": "https://www.khanacademy.org/math/cc-fourth-grade-math/imp-place-value-and-rounding-2",
+            "Multiply by 1-digit numbers": "https://www.khanacademy.org/math/cc-fourth-grade-math/imp-multiply-1-digit-numbers",
+            "Multiply by 2-digit numbers": "https://www.khanacademy.org/math/cc-fourth-grade-math/imp-multiply-2-digit-numbers",
+            "Division": "https://www.khanacademy.org/math/cc-fourth-grade-math/imp-division",
+            "Factors multiples and patterns": "https://www.khanacademy.org/math/cc-fourth-grade-math/imp-factors-multiples-patterns",
+            "Add and Subtract fractions": "https://www.khanacademy.org/math/cc-fourth-grade-math/imp-add-subtract-fractions",
+            "multiply fractions": "https://www.khanacademy.org/math/cc-fourth-grade-math/imp-multiply-fractions",
+            "decimals": "https://www.khanacademy.org/math/cc-fourth-grade-math/imp-decimals",
+            "area and perimeter": "https://www.khanacademy.org/math/cc-fourth-grade-math/imp-area-perimeter",
+            "units of measurement": "https://www.khanacademy.org/math/cc-fourth-grade-math/imp-units-of-measurement"
         
         },
         ixl: {
@@ -112,48 +121,135 @@ export const links = {
     "5th Grade": {
         topics: ["Decimal place value","add decimals","Add and Subtract fractions","multi-digit multiplication and division","multiply fractions","divide fractions","powers of ten","volume","coordinate plane","algebraic thinking"
     ],
+    
         khan: {},
         ixl: {},
         "other sites": {},
     },
     "6th Grade": {
-        topics: [],
+        topics: [
+            "Ratios",
+            "Arithmetic with rational numbers",
+            "Rates and percentages",
+            "Exponents and order of operations",
+            "Negative numbers",
+            "Variables & expressions",
+            "Equations & inequalities",
+            "Plane figures",
+            "Coordinate plane",
+            "3D figures",
+            "Data and statistics"
+          ],
         khan: {},
         ixl: {},
         "other sites": {},
     },
     "7th Grade": {
-        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
-        khan: {},
-        ixl: {},
+        topics: [
+            "Negative numbers: addition and subtraction",
+            "Negative numbers: multiplication and division",
+            "Fractions, decimals, & percentages",
+            "Rates & proportional relationships",
+            "Expressions, equations, & inequalities",
+            "Geometry",
+            "Statistics and probability"
+          ],
+        khan: {
+          
+        },
+        ixl: {
+            "Negative numbers: addition and subtraction": "<a href='https://www.ixl.com/math/grade-7#text:~:C.%20Operations%20with%20integers&text=Operations%20with%20integers' target='_blank'>Section: C. Operations with integers</a>",
+
+        },
         "other sites": {},
     },
     "8th Grade": {
-        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
+        topics: [
+            "Numbers and operations",
+            "Solving equations with one unknown",
+            "Linear equations and functions",
+            "Systems of equations",
+            "Geometry",
+            "Geometric transformations",
+            "Data and modeling"
+          ],
         khan: {},
         ixl: {},
         "other sites": {},
     },
     "Algebra 1": {
-        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
+        topics: [
+            "Algebra foundations",
+            "Solving equations & inequalities",
+            "Working with units",
+            "Linear equations & graphs",
+            "Forms of linear equations",
+            "Systems of equations",
+            "Inequalities (systems & graphs)",
+            "Functions",
+            "Sequences",
+            "Absolute value & piecewise functions",
+            "Exponents & radicals",
+            "Exponential growth & decay",
+            "Quadratics: Multiplying & factoring"
+          ],
         khan: {},
         ixl: {},
         "other sites": {},
     },
     Geometry: {
-        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
+        topics: [
+            "Lines",
+            "Angles",
+            "Shapes",
+            "Triangles",
+            "Quadrilaterals",
+            "Coordinate plane",
+            "Area and perimeter",
+            "Volume and surface area",
+            "Pythagorean theorem",
+            "Transformations",
+            "Congruence",
+            "Similarity",
+            "Trigonometry",
+            "Circles"
+          ],
         khan: {},
         ixl: {},
         "other sites": {},
     },
     "Algebra 2": {
-        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
+        topics: [
+            "Polynomial arithmetic",
+            "Complex numbers",
+            "Polynomial factorization",
+            "Polynomial division",
+            "Polynomial graphs",
+            "Rational exponents and radicals",
+            "Exponential models",
+            "Logarithms",
+            "Transformations of functions",
+            "Equations",
+            "Trigonometry",
+            "Modeling"
+          ],
         khan: {},
         ixl: {},
         "other sites": {},
     },
     "Pre-Calculus": {
-        topics: ["1-digit multiplication", "Addition, subtraction, and estimation", "Intro to division", "Fractions", "Comparing fractions", "Problem Solving"],
+        topics: [
+            "Composite and inverse functions",
+            "Trigonometry",
+            "Complex numbers",
+            "Rational functions",
+            "Conic sections",
+            "Vectors",
+            "Matrices",
+            "Probability and combinatorics",
+            "Series",
+            "Limits and continuity"
+          ],
         khan: {},
         ixl: {},
         "other sites": {},

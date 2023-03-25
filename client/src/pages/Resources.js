@@ -46,7 +46,9 @@ export default function Resources(){
         {value: 'Algebra 2', text: 'Algebra 2'},
         {value: 'Pre-Calculus', text: 'Pre-Calculus'},
       ];
-
+      const createHTML=(text)=>{
+        return {__html: text};
+      }
     return(
         <Main>
              <div className="mt-4 mx-4 grid place-items-center">
@@ -56,7 +58,7 @@ export default function Resources(){
             </div>
             <section className="flex justify-center overflow-hidden" >
      
-                <FormControl sx={{ m: 1, minWidth: 120, width:200 }} >
+                <FormControl sx={{ m: 1, minWidth: 120, width:150 }} >
         <InputLabel id="demo-simple-select-helper-label"  className="dark:text-gray-200 text-black">Choose Grade Level</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
@@ -74,7 +76,7 @@ export default function Resources(){
         </Select>
       </FormControl>
 {/*  */}
-      <FormControl sx={{ m: 1, minWidth: 120 }} >
+      <FormControl sx={{ m: 1, minWidth: 150}} >
         <InputLabel id="demo-simple-select-helper-label1" className="dark:text-gray-200 text-black">Choose Topic</InputLabel>
         <Select
           id="demo-simple-select-helper-label1"
@@ -84,9 +86,9 @@ export default function Resources(){
           className="dark:text-gray-200 text-black"
           value={linkOption}
         >
-              {   
-                    links[userLevel]?.topics.map(topic=><MenuItem value={topic}>{topic}</MenuItem>)
-                }
+            {
+                links[userLevel]?.topics.map(topic=><MenuItem value={topic}>{topic}</MenuItem>)
+            }
         </Select>
       </FormControl>
                
@@ -132,11 +134,20 @@ export default function Resources(){
                                                 {/* enter site  */}
                                                 IXL.com
                                             </th>
-                                            <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4" id="ixlTopicLink">
+                                            {
+                                                links[userLevel]?.ixl[linkOption]? links[userLevel]?.ixl[linkOption][0]+links[userLevel]?.ixl[linkOption][1]=="<a" &&(
+                                                    <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4" id="ixlTopicLink" dangerouslySetInnerHTML={createHTML(links[userLevel]?.ixl[linkOption])}>
+                                            </td>
+
+                                                ):(
+                                                    <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4" id="ixlTopicLink">
                                             {   
                                                     links[userLevel]?.ixl[linkOption]&&<a href={links[userLevel].ixl[linkOption]} target="_blank">click here</a>
                                                 }
                                             </td>
+                                                )
+                                            }
+                                 
                                         </tr>
                                         <tr className="text-gray-700 dark:text-gray-100">
                                             <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left">
