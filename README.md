@@ -17,4 +17,3 @@ This node.js application utilizes React for frontend, express for server framewo
 - improve UX/UI
 - incorporate grade level standards and link to online resources
 - add flipcards to flashcard page
-- render error pages
