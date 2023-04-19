@@ -1,10 +1,10 @@
 import Main from "../components/Main"
 import { useState,useEffect } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../constants";
 import DeleteIcon from '@mui/icons-material/Delete';
 import ErrorIcon from '@mui/icons-material/Error';
-import { IconButton,Tooltip } from "@mui/material";
+import {Tooltip } from "@mui/material";
 
 export default function Assignments(){
     const navigate=useNavigate()
@@ -33,13 +33,9 @@ export default function Assignments(){
         let tasks=window.document.querySelectorAll('.item')
         let filter = e.currentTarget.value.toUpperCase();
         let title = window.document.querySelectorAll('.title')
-        let date = window.document.querySelectorAll('.date')
-        
         for (let i = 0; i < tasks.length; i++) {
-            let noteTitle=title[i].innerText.toUpperCase().indexOf(filter)>-1
-            let noteDate=date[i].innerText.toUpperCase().indexOf(filter)>-1
-
-            if (noteTitle||noteDate) {
+            let taskTitle=title[i].innerText.toUpperCase().indexOf(filter)>-1
+            if (taskTitle) {
                 tasks[i].style.display = "";
             } else {
                     tasks[i].style.display = "none";
@@ -115,15 +111,15 @@ export default function Assignments(){
                         <tbody>
                             {items.map((item,i)=>{
                             return(
-                            <tr key={item._id} className="text-gray-700 dark:text-gray-100">
-                            <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left">{item.name}</th>
+                            <tr key={item._id} className="text-gray-700 dark:text-gray-100 item">
+                            <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left title">{item.name}</th>
                             <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4">{new Date(item.dueDate).toDateString()}
                             {(new Date()>new Date(item.dueDate))?<Tooltip title="Overdue" placement="top"><ErrorIcon className="text-red-600 ml-2"/></Tooltip>:""}
                             </td>
                             <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4">
                                 <div className="flex flex-col">
                                     <form action={`/api/assignments/${item._id}?_method=PUT`} method="POST" className={item._id} onSubmit={handleDelete}>
-                                    <button type="submit" className="white"><DeleteIcon/></button>
+                                    <button type="submit" className="white"><Tooltip title="Delete" placement="top"><DeleteIcon/></Tooltip></button>
                                     </form>
                                 </div>
                             </td>

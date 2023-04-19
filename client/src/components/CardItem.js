@@ -2,6 +2,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link,navigate, useNavigate} from 'react-router-dom';
 import { API_BASE } from '../constants';
+import { Tooltip } from '@mui/material';
 
 export default function CardItem({card,setCards,cards}){
     const navigate=useNavigate()
@@ -38,12 +39,12 @@ export default function CardItem({card,setCards,cards}){
             <div className="answer-div hide dark:text-white" ><span> </span><p dangerouslySetInnerHTML={createHTML(card.answer)}></p></div>
             <div className="buttons-con">
                 <Link to={`/flashcards/edit/${card._id}`} state={{card:card}}>
-                    <button className="edit"><EditIcon/></button>
+                    <button className="edit"><Tooltip title="Edit" placement="bottom"><EditIcon/></Tooltip></button>
                 </Link>
                 <form action={`/api/flashcards/${card._id}?_method=DELETE`} method="POST" 
                     onSubmit={handleDelete}
                     >
-                    <button  className="delete" type="submit"><DeleteIcon/></button>
+                    <button  className="delete" type="submit"><Tooltip title="Delete" placement="bottom"><DeleteIcon/></Tooltip></button>
                 </form>
             </div>
             <span className="dark:text-white topic">Topic: {card.topic}</span>

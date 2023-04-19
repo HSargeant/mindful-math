@@ -5,7 +5,7 @@ export default function FlashcardC({cards}){
         elem.target.nextElementSibling.classList.toggle("hidden")
       }
       const create=(x)=>{
-        return {__html: "Answer: "+ x};
+        return {__html: "A: "+ x};
 
       }
     return(
@@ -39,7 +39,7 @@ export default function FlashcardC({cards}){
                                 <div className="self-center">
                                 <p className="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100 cursor-pointer question" onClick={showansw}>{card.question||""}</p>
                         
-                                    <span className="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100 hidden answer">{"Answer: "+  `${card.answer.replace(/(<([^>]+)>)/ig, '')}`} </span>
+                                    <span dangerouslySetInnerHTML={create(card.answer)}className="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-50 dark:hover:text-gray-100 hidden answer"></span>
 
                 
                                 </div>
