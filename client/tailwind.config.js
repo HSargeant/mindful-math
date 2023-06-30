@@ -5,4 +5,3 @@ module.exports = {
     },
     plugins: [require("daisyui")],
   }
-  // npx tailwindcss -i ./public/css/tail.css -o ./public/css/output.css --watch
