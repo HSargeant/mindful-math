@@ -4,7 +4,7 @@ import AddTaskModal from "./AddTaskModal";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 
-export default function Main({children,setItems,items}){
+export default function Main({children,items}){
     const [dark,setDark] = useState(localStorage.getItem("theme")==="dark")
 useEffect(()=>{
     if(typeof window.document!=undefined){
@@ -80,7 +80,7 @@ const handleLightDark=()=>{
                 </div>
             </div>
             {/* <!-- modal --> */}
-            <AddTaskModal setItems={setItems} items={items}/>
+            <AddTaskModal  items={items}/>
             {/* <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer /> */}
         </>
     )

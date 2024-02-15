@@ -21,11 +21,14 @@ import Dashboard from "./pages/Dashboard"
 import ErrorPage from './pages/ErrorPage';
 import './index.css';
 import "./dark.css"
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
+const queryClient = new QueryClient();
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <QueryClientProvider client={queryClient}><Root /></QueryClientProvider>,
     errorElement: <ErrorPage />,
     children: [
         {

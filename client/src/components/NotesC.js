@@ -3,7 +3,7 @@ import { useEffect,useState } from "react"
 import {API_BASE} from "../constants"
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function NotesC({notes,setNotes}){
+export default function NotesC({notes}){
   const handleDelete = async (event) => {
 		event.preventDefault();
     const confirm = window.confirm("Are you sure you want to delete this note?")
@@ -14,7 +14,7 @@ export default function NotesC({notes,setNotes}){
         //   method: form.method,
         //   credentials: "include"
         // });  
-        setNotes(notes.filter(elem=>elem._id!==event.target.className))
+        // setNotes(notes.filter(elem=>elem._id!==event.target.className))
  
       }catch(err){
         console.error(err)

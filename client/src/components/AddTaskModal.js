@@ -1,7 +1,7 @@
 import { API_BASE } from "../constants";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-export default function AddTaskModal({setItems,items}){
+export default function AddTaskModal({items}){
     const navigate=useNavigate()
     const [title, setTitle] = useState("")
     const [dueDate,setDueDate] = useState("")
@@ -21,7 +21,7 @@ export default function AddTaskModal({setItems,items}){
                 credentials: "include",
             });
             const data = await response.json();
-            setItems([data,...items])
+            // setItems([data,...items])
             setAdded(true)
             // setTimeout(() => {
             //     setAdded(false)

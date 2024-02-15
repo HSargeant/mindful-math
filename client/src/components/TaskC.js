@@ -3,7 +3,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ErrorIcon from '@mui/icons-material/Error';
 import { API_BASE } from "../constants";
 
-export default function TaskC({items,setItems}){
+export default function TaskC({items}){
     const handleDelete = async (event) => {
 		event.preventDefault();
         console.log(event.target.className)
@@ -15,7 +15,7 @@ export default function TaskC({items,setItems}){
                     method: form.method,
                     credentials: "include"
                 }); 
-                setItems(items.filter(elem=>elem._id!==event.target.className))
+                // setItems(items.filter(elem=>elem._id!==event.target.className))
             }catch(err){
                 console.log(err)
                 
