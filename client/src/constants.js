@@ -62,7 +62,7 @@ export const links = {
             "Add and Subtract within 20": "https://www.ixl.com/math/grade-2/addition-sentences-using-number-lines-sums-up-to-20",
             "Add and Subtract within 100": "https://www.ixl.com/math/grade-2/addition-and-subtraction-word-problems-up-to-100",
             "Add and Subtract within 1000": "",
-            "Place Value": "<a href= 'https://www.ixl.com/math/grade-2/addition-sentences-using-number-lines-sums-up-to-20' target='_blank'>click here</a>",
+            "Place Value": "https://www.ixl.com/math/grade-2/addition-sentences-using-number-lines-sums-up-to-20",
             "Money": "https://www.ixl.com/math/grade-2/count-money-up-to-5-dollars",
             "Time":"https://www.ixl.com/math/grade-2/match-analog-and-digital-clocks",
             "Measurement": "https://www.ixl.com/math/grade-2/measure-using-an-inch-ruler",
@@ -158,7 +158,7 @@ export const links = {
           
         },
         ixl: {
-            "Negative numbers: addition and subtraction": "<a href='https://www.ixl.com/math/grade-7#text:~:C.%20Operations%20with%20integers&text=Operations%20with%20integers' target='_blank'>Section: C. Operations with integers</a>",
+            "Negative numbers: addition and subtraction": "https://www.ixl.com/math/grade-7#text:~:C.%20Operations%20with%20integers&text=Operations%20with%20integers",
 
         },
         "other sites": {},
