@@ -1,6 +1,6 @@
 import Main from "../components/Main"
 import { useState } from "react"
-import { Link, useNavigate, useOutletContext } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { API_BASE, links } from "../constants"
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -8,7 +8,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function Resources() {
-  const { user } = useOutletContext()
+  const user = JSON.parse(window.localStorage.getItem("user"))
+  // const { user } = useOutletContext()
   const navigate = useNavigate()
   const [userLevel, setUserLevel] = useState(user?.gradeLevel || "")
   const [linkOption, setLinkOption] = useState("")

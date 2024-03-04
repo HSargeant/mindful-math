@@ -21,6 +21,7 @@ import Dashboard from "./pages/Dashboard"
 import ErrorPage from './pages/ErrorPage';
 import './index.css';
 import "./dark.css"
+import { loader as indexLoader } from './loaders/indexLoginLoader.js';
 
 const router = createBrowserRouter([
   {
@@ -28,55 +29,58 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-        {
-          index: true,
-          element: <Index />
-        },
-        {
-          path: "/login",
-          element: <Login />
-        },
-        {
-          path: "/signup",
-          element: <Signup />,
-        },
-        {
-          path: "/logout",
-          element: <Logout />,
-        },
-        {
-          path:"/dashboard",
-          element: <ProtectedRoute><Dashboard /></ProtectedRoute>,
-        
-        },
-        {
-          path: "/notes/new",
-          element: <ProtectedRoute><NewNote /></ProtectedRoute>,
-        },
-        {
-          path: "/flashcards",
-          element: <ProtectedRoute><Flashcards /></ProtectedRoute>,
-        },
-        {
-          path:"/flashcards/edit/:id",
-          element: <ProtectedRoute><EditFlashcard /></ProtectedRoute>
-        },
-        {
-          path:"/notes/edit/:id",
-          element: <ProtectedRoute><EditNote /></ProtectedRoute>
-        },
-        {
-          path: "/notes",
-          element: <ProtectedRoute><Notes /></ProtectedRoute>,
-        },
-        {
-          path: "/assignments",
-          element: <ProtectedRoute><Assignments /></ProtectedRoute>,
-        },
-        {
-          path: "/resources",
-          element: <ProtectedRoute><Resources /></ProtectedRoute>,
-        },
+      {
+        index: true,
+        element: <Index />,
+        loader: indexLoader
+      },
+      {
+        path: "/login",
+        element: <Login />,
+        loader: indexLoader
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+        loader: indexLoader
+      },
+      {
+        path: "/logout",
+        element: <Logout />,
+      },
+      {
+        path: "/dashboard",
+        element: <ProtectedRoute><Dashboard /></ProtectedRoute>,
+
+      },
+      {
+        path: "/notes/new",
+        element: <ProtectedRoute><NewNote /></ProtectedRoute>,
+      },
+      {
+        path: "/flashcards",
+        element: <ProtectedRoute><Flashcards /></ProtectedRoute>,
+      },
+      {
+        path: "/flashcards/edit/:id",
+        element: <ProtectedRoute><EditFlashcard /></ProtectedRoute>
+      },
+      {
+        path: "/notes/edit/:id",
+        element: <ProtectedRoute><EditNote /></ProtectedRoute>
+      },
+      {
+        path: "/notes",
+        element: <ProtectedRoute><Notes /></ProtectedRoute>,
+      },
+      {
+        path: "/assignments",
+        element: <ProtectedRoute><Assignments /></ProtectedRoute>,
+      },
+      {
+        path: "/resources",
+        element: <ProtectedRoute><Resources /></ProtectedRoute>,
+      },
     ]
   },
 ]);
