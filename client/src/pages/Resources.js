@@ -6,10 +6,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { useLoaderData } from "react-router-dom"
 
 export default function Resources() {
-  const user = JSON.parse(window.localStorage.getItem("user"))
-  // const { user } = useOutletContext()
+  const user = useLoaderData()
   const navigate = useNavigate()
   const [userLevel, setUserLevel] = useState(user?.gradeLevel || "")
   const [linkOption, setLinkOption] = useState("")
@@ -19,7 +19,7 @@ export default function Resources() {
     setUserLevel(e.target.value)
     if (e.target.value === '') return
     try {
-      const response = await fetch(API_BASE + "/api/dashboard/updategrade", {
+      await fetch(API_BASE + "/api/dashboard/updategrade", {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -52,7 +52,7 @@ export default function Resources() {
     return { __html: text };
   }
   return (
-    <Main>
+    <Main user={user}>
       <div className="mt-4 mx-4 grid place-items-center">
         <div className="p-2 text-center quote overflow-hidden">
           <h2 className="text-4xl">Resources</h2>
@@ -73,7 +73,7 @@ export default function Resources() {
 
             >
               {
-                options.map(option => <MenuItem value={option?.value}>{option?.text}</MenuItem>)
+                options.map(option => <MenuItem key={option?.value} value={option?.value}>{option?.text}</MenuItem>)
               }
             </Select>
           </FormControl>
@@ -87,16 +87,12 @@ export default function Resources() {
               className="dark:text-gray-200 text-black"
               value={linkOption}
             >
-              {console.log(links[userLevel])}
               {
-
-                links[userLevel]?.topics.map(topic => <MenuItem value={topic}>{topic}</MenuItem>)
+                links[userLevel]?.topics.map(topic => <MenuItem key={topic} value={topic}>{topic}</MenuItem>)
               }
             </Select>
           </FormControl>
-
         </section>
-
         <div className="w-full md:w-2/3 sm:w-full  overflow-hidden rounded-lg shadow-xs">
           <div className="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
             <div className="rounded-t mb-0 px-0 border-0">

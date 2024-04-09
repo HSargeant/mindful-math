@@ -4,8 +4,8 @@ import { API_BASE } from "../constants"
 export async function loader() {
   const res = await fetch(API_BASE + "/api/user", { credentials: "include" })
   const data = await res.json()
-  if (data.user?.email) {
-    return redirect("/dashboard")
+  if (data.user===null) {
+    return redirect("/login")
   }
-  return null
+  return data.user
 }

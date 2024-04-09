@@ -42,7 +42,6 @@ export default function Signup() {
       credentials: "include",
     });
     const data = await response.json();
-    console.log(data)
     if (data?.messages?.errors?.length) {
       setErrorMsg(data.messages.errors[0]?.msg);
     }

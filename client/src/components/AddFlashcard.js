@@ -1,13 +1,13 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import CK from './CK';
 import { API_BASE } from '../constants';
 import { useNavigate } from 'react-router-dom';
 
-export default function AddFlashcard(){
+export default function AddFlashcard() {
     const [editorLoaded, setEditorLoaded] = useState(false);
     const [answer, setAnswer] = useState("");
-    const navigate=useNavigate()
-    const addCard=()=>{
+    const navigate = useNavigate()
+    const addCard = () => {
         const addQuestionCard = window.document.getElementById("add-question-card");
         const container = window.document.querySelector(".container1");
         container.classList.toggle("hide");
@@ -15,16 +15,16 @@ export default function AddFlashcard(){
     }
     useEffect(() => {
         setEditorLoaded(true);
-      }, []);
+    }, []);
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
+
         try {
             const form = event.currentTarget;
             const response = await fetch(API_BASE + form.getAttribute("action"), {
-            method: form.method,
-            body: new FormData(form),
-            credentials: "include",
+                method: form.method,
+                body: new FormData(form),
+                credentials: "include",
             });
             const data = await response.json();
         } catch (err) {
@@ -51,19 +51,19 @@ export default function AddFlashcard(){
                         />
                     </div>
                     <div className="mb-5 text-black">
-                    <label htmlFor="answer" className="mb-3 block text-base font-medium text-[#07074D] dark:text-white">
-                        Answer
-                    </label>
-                    <input name="answer" hidden value={answer}/>
-                    
+                        <label htmlFor="answer" className="mb-3 block text-base font-medium text-[#07074D] dark:text-white">
+                            Answer
+                        </label>
+                        <input name="answer" hidden defaultValue={answer} />
 
-                    <CK
-                        setAnswer={setAnswer}
-                        editorLoaded={editorLoaded}
-                        
-                    />
-                    
-       {/* {JSON.stringify(data)} */}
+
+                        <CK
+                            setAnswer={setAnswer}
+                            editorLoaded={editorLoaded}
+
+                        />
+
+                        {/* {JSON.stringify(data)} */}
                         {/* <textarea
                             rows="4"
                             name="answer"
@@ -78,7 +78,7 @@ export default function AddFlashcard(){
                         <label htmlFor="topic" className="mb-3 block text-base font-medium text-[#07074D] dark:text-white">
                             Topic
                         </label>
-                        
+
                         <input
                             type="text"
                             name="topic"

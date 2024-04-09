@@ -4,15 +4,7 @@ module.exports = {
     getAssignments: async (req,res)=>{
         try{
             const taskItems = await Task.find({user:req.user.id,completed:false}).lean().sort({dueDate: 1})
-            res.json(taskItems)
-        }catch(err){
-            console.log(err)
-        }
-    },
-    getAssignmentsDash: async (req,res)=>{
-        try{
-            const taskItems = await Task.find({user:req.user.id,completed:false}).lean().sort({dueDate: 1}).limit(5)
-            res.json(taskItems)
+            res.json({items:taskItems,user:req.user})
         }catch(err){
             console.log(err)
         }

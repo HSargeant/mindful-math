@@ -4,6 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import Root from './pages/Root';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -15,18 +16,24 @@ import Resources from './pages/Resources';
 import EditNote from "./pages/EditNote.js"
 import EditFlashcard from "./pages/EditFlashcard.js"
 import NewNote from './pages/NewNote';
-import ProtectedRoute from './components/ProtectedRoute.js';
 import Index from "./pages/Index"
 import Dashboard from "./pages/Dashboard"
 import ErrorPage from './pages/ErrorPage';
+import { loader as indexLoader } from './loaders/indexLoginLoader.js';
+import { loader as dashboardLoader } from "./loaders/dashboardLoader.js"
+import { loader as flashcardLoader } from './loaders/flashcardsLoader.js';
+import { loader as notesLoader } from './loaders/notesLoader.js';
+import { loader as assignmentLoader } from "./loaders/assignmentLoader.js"
+import { loader as authCheck } from "./loaders/authCheck.js"
 import './index.css';
 import "./dark.css"
-import { loader as indexLoader } from './loaders/indexLoginLoader.js';
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <QueryClientProvider client={queryClient}><Root /></QueryClientProvider>,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -50,36 +57,43 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <ProtectedRoute><Dashboard /></ProtectedRoute>,
-
+        element: <Dashboard />,
+        loader: dashboardLoader
       },
       {
         path: "/notes/new",
-        element: <ProtectedRoute><NewNote /></ProtectedRoute>,
+        element: <NewNote />,
+        loader: authCheck
       },
       {
         path: "/flashcards",
-        element: <ProtectedRoute><Flashcards /></ProtectedRoute>,
+        element: <Flashcards />,
+        loader: flashcardLoader
       },
       {
         path: "/flashcards/edit/:id",
-        element: <ProtectedRoute><EditFlashcard /></ProtectedRoute>
+        element: <EditFlashcard />,
+        loader: authCheck
       },
       {
         path: "/notes/edit/:id",
-        element: <ProtectedRoute><EditNote /></ProtectedRoute>
+        element: <EditNote />,
+        loader: authCheck
       },
       {
         path: "/notes",
-        element: <ProtectedRoute><Notes /></ProtectedRoute>,
+        element: <Notes />,
+        loader: notesLoader
       },
       {
         path: "/assignments",
-        element: <ProtectedRoute><Assignments /></ProtectedRoute>,
+        element: <Assignments />,
+        loader: assignmentLoader
       },
       {
         path: "/resources",
-        element: <ProtectedRoute><Resources /></ProtectedRoute>,
+        element: <Resources />,
+        loader: authCheck
       },
     ]
   },
@@ -91,8 +105,3 @@ root.render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();

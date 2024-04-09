@@ -1,6 +1,23 @@
 import {Link} from "react-router-dom"
+import { useQuery } from '@tanstack/react-query'
+import { API_BASE } from "../constants"
 
-export default function FlashcardC({cards}){
+
+
+export default function FlashcardC(){
+    const getCards = async () => {
+        const res = await fetch(API_BASE+"/api/dashboard/cards",{credentials:"include"})
+        const data = await res.json()
+        return data.cards
+    }
+    const { isPending, data: cards, refetch } = useQuery({
+        queryKey: ['dashCards'],
+        queryFn: getCards,
+        refetchOnWindowFocus: false,
+        initialData: [],
+        // staleTime: 1000,
+    })
+
     function showansw(elem){
         elem.target.nextElementSibling.classList.toggle("hidden")
       }

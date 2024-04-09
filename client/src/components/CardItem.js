@@ -4,7 +4,7 @@ import { Link,navigate, useNavigate} from 'react-router-dom';
 import { API_BASE } from '../constants';
 import { Tooltip } from '@mui/material';
 
-export default function CardItem({card,setCards,cards}){
+export default function CardItem({card,refetch}){
     const navigate=useNavigate()
     const showHide=(elem)=>{
         elem.target.parentElement.classList.toggle("flipped")
@@ -23,7 +23,7 @@ export default function CardItem({card,setCards,cards}){
                     method: form.method,
                     credentials: "include"
                 }); 
-                setCards(cards.filter(elem=>elem._id!==card._id))
+                refetch()
                 navigate("/flashcards")
             }catch(err){
                 console.log(err)

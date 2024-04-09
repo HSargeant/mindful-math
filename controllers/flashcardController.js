@@ -5,7 +5,7 @@ module.exports = {
     getCards: async (req, res) => {
         try {
             const cards = await Cards.find({user: req.user.id}).lean().sort({createdAt: -1})     
-            res.json(cards)
+            res.send({cards:cards,user:req.user})
         } catch (err) {
             console.log(err);
         }
