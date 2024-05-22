@@ -88,7 +88,7 @@ export default function Resources() {
               value={linkOption}
             >
               {
-                links[userLevel]?.topics.map(topic => <MenuItem key={topic} value={topic}>{topic}</MenuItem>)
+                links[userLevel]?.topics.map((topic,i) => <MenuItem key={i} value={topic}>{topic}</MenuItem>)
               }
             </Select>
           </FormControl>

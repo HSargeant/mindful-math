@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Main from "../components/Main"
 import { API_BASE } from "../constants";

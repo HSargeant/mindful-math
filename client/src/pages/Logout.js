@@ -9,7 +9,6 @@ export default function Logout() {
 		fetch(API_BASE + "/logout", { credentials: "include" })
 			.then((res) => {
 				// setUser(null); 
-				window.localStorage.removeItem("user");
 				navigate("/login");
 			});
 	}, []);

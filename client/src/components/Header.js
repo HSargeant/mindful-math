@@ -1,7 +1,7 @@
 import avatar from "../images/dummy-avatar.jpg"
 import { Link } from "react-router-dom";
 
-export default function ({ dark, handleLightDark, user }) {
+export default function Header({ dark, handleLightDark, user }) {
     return (
         <div className="fixed w-full flex items-center justify-between h-14 text-white z-10">
             <div className="flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-800 dark:bg-gray-800 border-none">

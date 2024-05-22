@@ -129,7 +129,6 @@ export default function NewNote() {
           </form>
         </div>
       </div>
-
     </Main>
   )
 }

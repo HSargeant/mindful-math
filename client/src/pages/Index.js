@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import image from "../images/40274.jpg"
-import { useEffect } from "react"
+
 export default function Index() {
   return (
     <>
