@@ -26,24 +26,10 @@ module.exports = function (passport) {
 
 
   // google
-  let url=""
-  switch(process.env.HOST){
-    case "heroku":
-      url="https://math-study-app-demo.herokuapp.com/auth/google/callback"
-      break
-    case "cyclic":
-      url="https://mindful-math.cyclic.app/auth/google/callback"
-      break
-    case "railway":
-      url="https://minful-math-demo.up.railway.app/auth/google/callback"
-      break
-    default:
-      url="http://localhost:8000/auth/google/callback"
-  }
   passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: url
+    callbackURL: process.env.NODE_ENV === "production" ? "https://mindful-math.onrender.com/auth/google/callback" : "http://localhost:8000/auth/google/callback"
    },
    async(accessToken,refreshToken,profile,done)=>{ 
  
