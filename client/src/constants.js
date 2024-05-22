@@ -1,4 +1,4 @@
-export const API_BASE = process.env.NODE_ENV ==='production' ? "https://mindful-math.cyclic.app" :'http://localhost:8000'
+export const API_BASE = process.env.NODE_ENV ==='production' ? "https://mindful-math.onrender.com" :'http://localhost:8000'
 
 export const links = {
     "Kindergarten": {
