@@ -58,6 +58,9 @@ app.use(passport.session());
 //Use flash messages for errors, info, ect...
 app.use(flash());
 
+//Connect To Database
+connectDB()
+
 app.use('/', indexRoutes)
 app.use('/api/dashboard', dashboardRoutes)
 app.use('/api/assignments', taskRoutes)
@@ -70,11 +73,6 @@ app.use('*', (req, res) => {
 });
 
 
-//cyclic mongo fix
-
-//Connect To Database
-connectDB().then(()=>{
-  app.listen(process.env.PORT||PORT, ()=>{
-    console.log(`running on port ${PORT}`)
-  })
+app.listen(process.env.PORT||PORT, ()=>{
+  console.log(`running on port ${PORT}`)
 })
