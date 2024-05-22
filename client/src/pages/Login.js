@@ -8,14 +8,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export default function Login() {
-  // const {user,setUser} = useOutletContext()
   const navigate = useNavigate()
-  const user = JSON.parse(window.localStorage.getItem("user"))
-  useEffect(() => {
-    if (user) {
-      navigate("/dashboard")
-    }
-  }, [])
   const [errorMsg, setErrorMsg] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const handleMouseDownPassword = (event) => {
@@ -37,7 +30,7 @@ export default function Login() {
       }
       if (data.user) {
         // setUser(data.user);
-        window.localStorage.setItem("user", JSON.stringify(data.user));
+        // window.localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/dashboard");
       }
     } catch (err) {
