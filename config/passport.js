@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const User = require('../models/User')
 
 module.exports = function (passport) {
-//local
+  //local
   passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
     User.findOne({ email: email.toLowerCase() }, (err, user) => {
       if (err) { return done(err) }
@@ -29,11 +29,11 @@ module.exports = function (passport) {
   passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.NODE_ENV === "production" ? "https://mindful-math.onrender.com/auth/google/callback" : "http://localhost:8000/auth/google/callback"
-   },
-   async(accessToken,refreshToken,profile,done)=>{ 
- 
-    const newUser = {
+    callbackURL: process.env.NODE_ENV === "development" ? "http://localhost:8000/auth/google/callback" : "https://mindful-math.onrender.com/auth/google/callback"
+  },
+    async (accessToken, refreshToken, profile, done) => {
+
+      const newUser = {
         googleId: profile.id,
         username: profile.displayName,
         firstName: profile.name.givenName,
@@ -43,7 +43,7 @@ module.exports = function (passport) {
       }
       try {
         let user = await User.findOne({ googleId: profile.id })
- 
+
         if (user) {
           done(null, user)
         } else {
@@ -53,12 +53,12 @@ module.exports = function (passport) {
       } catch (err) {
         console.error(err)
       }
-   }))
+    }))
 
-   passport.serializeUser((user, done) => {
+  passport.serializeUser((user, done) => {
     done(null, user.id)
   })
-  
+
   passport.deserializeUser((id, done) => {
     User.findById(id, (err, user) => done(err, user))
   })
