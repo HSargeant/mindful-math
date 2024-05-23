@@ -15,5 +15,5 @@ This node.js application utilizes React for frontend, express for server framewo
 ## Current Objectives
  
 - improve UX/UI
-- incorporate grade level standards and link to online resources
+- Add AI "tutor" to resources section to suggest helpful resources, study tips and answer students questions. 
 - add flipcards to flashcard page
