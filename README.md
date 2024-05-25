@@ -2,8 +2,8 @@
  
 Full-stack application for helping students stay organized while studying and get access to helpful resources from across the web all in one place.
  
-demo site - [https://mindful-math.cyclic.app/](https://mindful-math.onrender.com/)
- 
+demo site - [https://mindful-math.onrender.com/](https://mindful-math.onrender.com/)
+
 ## Features
  
 Within *Mindful Math*, users sign up for a free account, select their grade level and can begin uploading notes/ create flash cards and keep track of upcoming assignments. In the resources tab users will have a curated selection of online resources based on their current learning objectives.
