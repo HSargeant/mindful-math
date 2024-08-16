@@ -13,7 +13,6 @@ export default function AddTaskModal() {
         event.preventDefault();
         try {
             const form = event.currentTarget;
-            const x = new FormData(form)
             let dateString = dueDate;
             let date = new Date(dateString + 'T12:00:00Z');
             await fetch(API_BASE + form.getAttribute("action"), {

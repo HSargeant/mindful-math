@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { API_BASE } from "../constants"
 import image from "../Login-Register-Images"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Box, Button, Container, Grid, TextField, Typography, Link as MLink, InputAdornment, IconButton } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import VisibilityIcon from '@mui/icons-material/Visibility';

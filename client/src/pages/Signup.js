@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { API_BASE } from "../constants"
 import image from "../Login-Register-Images"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import {
   Box,
   Button,

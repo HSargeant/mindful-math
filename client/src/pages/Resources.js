@@ -7,6 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useLoaderData } from "react-router-dom"
+import ChatBot from "../components/Chat";
 
 export default function Resources() {
   const user = useLoaderData()
@@ -48,16 +49,18 @@ export default function Resources() {
     { value: 'Algebra 2', text: 'Algebra 2' },
     { value: 'Pre-Calculus', text: 'Pre-Calculus' },
   ];
-  const createHTML = (text) => {
-    return { __html: text };
-  }
+  // const createHTML = (text) => {
+  //   return { __html: text };
+  // }
   return (
     <Main user={user}>
-      <div className="mt-4 mx-4 grid place-items-center">
         <div className="p-2 text-center quote overflow-hidden">
-          <h2 className="text-4xl">Resources</h2>
+          <h2 className="text-4xl">Tutor</h2>
           <h5><i className="fa-solid fa-person-digging"></i>--Under Contruction--<i className="fa-solid fa-person-digging"></i></h5>
         </div>
+              <ChatBot/>
+
+      <div className="mt-4 mx-4 grid place-items-center">
         <section className="flex justify-center overflow-hidden" >
 
           <FormControl sx={{ m: 1, minWidth: 120, width: 150 }} >
@@ -124,7 +127,7 @@ export default function Resources() {
                       </th>
                       <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4" id="khanTopicLink">
                         {
-                          links[userLevel]?.khan[linkOption] && <a href={links[userLevel].khan[linkOption]} target="_blank">click here</a>
+                          links[userLevel]?.khan[linkOption] && <a href={links[userLevel].khan[linkOption]} target="_blank" rel="noopener noreferrer">click here</a>
                         }
                       </td>
                     </tr>
@@ -136,7 +139,7 @@ export default function Resources() {
                       {
                         <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 whitespace-nowrap p-4" id="ixlTopicLink">
                           {
-                            links[userLevel]?.ixl[linkOption] && <a href={links[userLevel].ixl[linkOption]} target="_blank">click here</a>
+                            links[userLevel]?.ixl[linkOption] && <a href={links[userLevel].ixl[linkOption]} target="_blank" rel="noopener noreferrer">click here</a>
                           }
                         </td>
                       }

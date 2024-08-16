@@ -26,10 +26,10 @@ export default function Assignments() {
 
 
     function howmanyTasks() {
-        if (items.length == 1) {
+        if (items.length === 1) {
             return <h3 className="page-title">You have 1 assignment</h3>;
         }
-        if (items.length == 0) {
+        if (items.length === 0) {
             return <h3 className="page-title">Add an assignment</h3>;
         }
         if (items.length > 1) {

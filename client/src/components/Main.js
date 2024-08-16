@@ -57,7 +57,7 @@ export default function Main({ children,user }) {
 
     }, [])
     const handleLightDark = () => {
-        localStorage.getItem("theme") == "dark" ? localStorage.setItem("theme", "light") : localStorage.setItem("theme", "dark")
+        localStorage.getItem("theme") === "dark" ? localStorage.setItem("theme", "light") : localStorage.setItem("theme", "dark")
         setDark(!dark)
     }
 

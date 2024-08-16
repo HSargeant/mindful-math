@@ -16,34 +16,26 @@ const notesRoutes = require('./routes/notesRoutes')
 const flashcardRoutes = require('./routes/flashcardRoutes')
 const resourceRoutes = require('./routes/resourceRoutes')
 const taskRoutes = require('./routes/taskRoutes.js')
-//Use .env file in config folder
+
 require("dotenv").config({ path: "./config/.env" })
 
-// Passport config
 require("./config/passport")(passport);
-
-//Using EJS for views
-// app.set("view engine", "ejs");
 
 app.use(cors({
   origin: (origin, callback) => callback(null, true),
   credentials: true
 }));
 
-//Static Folder
 app.use(express.static("client/build"));
 
-//Body Parsing
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-//Logging
 app.use(logger("dev"));
 
 //Use forms for put / delete
 app.use(methodOverride("_method"));
 
-// Setup Sessions - stored in MongoDB
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
@@ -51,14 +43,11 @@ app.use(session({
   store: MongoStore.create({mongoUrl: process.env.MONGO_URL})
 }))
 
-// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Use flash messages for errors, info, ect...
 app.use(flash());
 
-//Connect To Database
 connectDB()
 
 app.use('/', indexRoutes)

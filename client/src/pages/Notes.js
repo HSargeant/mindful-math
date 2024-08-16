@@ -23,10 +23,10 @@ export default function Notes() {
   })
 
   function howmanyNotes() {
-    if (notes.length == 1) {
+    if (notes.length === 1) {
       return <h3 className="page-title">You have 1 note</h3>;
     }
-    if (notes.length == 0) {
+    if (notes.length === 0) {
       return <h3 className="page-title">Add a Note</h3>;
     }
     if (notes.length > 1) {
@@ -156,7 +156,7 @@ export default function Notes() {
             <div className="modal-box dark:bg-gray-600 max-w-3xl" >
               <h3 className="font-bold text-lg text-black dark:text-white">{note.title}</h3>
               <span className="text-black text-sm dark:text-white">{note.topic}</span>
-              <a href={note?.image} target="_blank" alt="note image"><img src={note?.image} className="w-full" /></a>
+              <a href={note?.image} target="_blank" rel="noopener noreferrer"><img src={note?.image} className="w-full" alt="note"/></a>
               <div dangerouslySetInnerHTML={createHTML(note.content)} className="py-4 text-black dark:text-white"></div>
               <div className="modal-action">
                 <a href="#" className="btn">Close</a>

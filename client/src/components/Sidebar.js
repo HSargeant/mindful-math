@@ -102,7 +102,7 @@ export default function Sidebar(){
             </ul>
             <p className="mb-14 px-5 py-3  hidden md:block text-center text-xs">
             &copy; 
-            <a href="https://hendersonsargeant.netlify.app" target="_blank" className="profile ml-1">
+            <a href="https://hendersonsargeant.netlify.app" target="_blank" className="profile ml-1" rel="noopener noreferrer">
                 Henderson Sargeant
             </a ><br/>
                 All rights reserved 2022</p>
