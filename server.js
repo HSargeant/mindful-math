@@ -72,7 +72,20 @@ app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
 
-
 app.listen(process.env.PORT||PORT, ()=>{
   console.log(`running on port ${PORT}`)
 })
+const makeRequest = async () => { 
+
+  try {
+      const url=process.env.NODE_ENV =="development" ? "http://localhost:8000/api/user" : "https://mindful-math.onrender.com/api/user"
+      const res = await fetch(url)
+      const data=  await res.text()
+    
+  } catch (error) {
+    console.log("ERROR: ",error)
+    
+  }
+}
+
+setInterval(makeRequest, 10*60*1000);
