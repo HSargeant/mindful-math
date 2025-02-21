@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import CK from './CK';
 import { API_BASE } from '../constants';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import {toast} from "react-toastify"
 
-export default function AddFlashcard() {
+export default function AddFlashcard({refetch}) {
     const [editorLoaded, setEditorLoaded] = useState(false);
     const [answer, setAnswer] = useState("");
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const addCard = () => {
         const addQuestionCard = window.document.getElementById("add-question-card");
         const container = window.document.querySelector(".container1");
@@ -27,11 +28,14 @@ export default function AddFlashcard() {
                 credentials: "include",
             });
             const data = await response.json();
+            toast.success("Flashcard has been added")
+            refetch()
+            addCard()
         } catch (err) {
             console.log("Error:" + err);
         }
         // if (data.messages) setMessages(data.messages);
-        navigate(0); //change to update state and close modal
+        // navigate(0); //change to update state and close modal
     };
     return (
         <div className="flex items-center justify-center p-12">

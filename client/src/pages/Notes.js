@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useLoaderData } from "react-router-dom"
 import { useQuery } from '@tanstack/react-query'
+import {toast} from "react-toastify"
 
 export default function Notes() {
   const { loaderData, user } = useLoaderData()
@@ -44,6 +45,7 @@ export default function Notes() {
           credentials: "include"
         });
         refetch()
+        toast.success("Note Deleted")
 
       } catch (err) {
         console.error(err)

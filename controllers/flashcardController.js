@@ -43,7 +43,7 @@ module.exports = {
                 topic: req.body.topic?.trim()
             });
             console.log("card has been added!");
-            res.send("card has been added");
+            res.send({msg:"card has been added"});
         } catch (err) {
             console.log(err);
         }

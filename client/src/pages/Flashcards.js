@@ -27,7 +27,6 @@ export default function Flashcards() {
     const container = window.document.querySelector(".container1");
     container.classList.toggle("hide");
     addQuestionCard.classList.toggle("hide");
-
   }
 
   return (
@@ -48,7 +47,7 @@ export default function Flashcards() {
           </div>
         </div>
       </div>
-      <AddFlashcard />
+      <AddFlashcard  refetch={refetch}/>
     </Main>
   )
 }

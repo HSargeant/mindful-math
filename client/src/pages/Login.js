@@ -6,10 +6,11 @@ import { Box, Button, Container, Grid, TextField, Typography, Link as MLink, Inp
 import GoogleIcon from '@mui/icons-material/Google';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { toast } from 'react-toastify';
+
 
 export default function Login() {
   const navigate = useNavigate()
-  const [errorMsg, setErrorMsg] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -26,7 +27,7 @@ export default function Login() {
       });
       const data = await response.json();
       if (data.errors) {
-        setErrorMsg(data.errors[0].msg);
+        toast.error(data.errors[0].msg)
       }
       if (data.user) {
         // setUser(data.user);
@@ -34,12 +35,10 @@ export default function Login() {
         navigate("/dashboard");
       }
     } catch (err) {
-      console.error(err)
+      console.log(err)
     }
   };
-  const cancelError = () => {
-    setErrorMsg("")
-  }
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="flex justify-center min-h-screen">
@@ -117,7 +116,6 @@ export default function Login() {
                 type="email"
                 variant="outlined"
                 className="form-label"
-                onChange={cancelError}
               />
               <TextField
                 fullWidth
@@ -126,7 +124,6 @@ export default function Login() {
                 name="password"
                 type={showPassword ? 'text' : 'password'}
                 variant="outlined"
-                onChange={cancelError}
                 InputProps={{
                   endAdornment: <InputAdornment position="end">
                     <IconButton
@@ -140,7 +137,6 @@ export default function Login() {
                   </InputAdornment>,
                 }}
               />
-              {errorMsg ? <div style={{ fontWeight: "bold", color: "red" }}> {errorMsg}</div> : ""}
               <Box sx={{ py: 2 }}>
                 <Button
                   style={{ backgroundColor: "#2563eb" }}

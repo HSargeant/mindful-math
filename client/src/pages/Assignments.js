@@ -6,6 +6,8 @@ import ErrorIcon from '@mui/icons-material/Error';
 import { Tooltip } from "@mui/material";
 import { useLoaderData } from "react-router-dom"
 import { useQuery,useQueryClient } from '@tanstack/react-query'
+import {toast} from "react-toastify"
+
 
 export default function Assignments() {
     const navigate = useNavigate()
@@ -61,6 +63,7 @@ export default function Assignments() {
                 });
                 queryClient.invalidateQueries({ queryKey: ['tasks']})
                 refetch()
+                toast.success("Assignment Deleted")
             } catch (err) {
                 console.log(err)
                 navigate("/assignments")

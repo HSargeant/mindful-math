@@ -15,6 +15,7 @@ import {
 import GoogleIcon from "@mui/icons-material/Google";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { toast } from 'react-toastify';
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -35,7 +36,8 @@ export default function Signup() {
     });
     const data = await response.json();
     if (data?.messages?.errors?.length) {
-      setErrorMsg(data.messages.errors[0]?.msg);
+      // setErrorMsg(data.messages.errors[0]?.msg);
+      toast.error(data.messages.errors[0]?.msg)
     }
     if (data.user?.email) {
       navigate("/dashboard");
