@@ -11,7 +11,7 @@ export default function Index() {
               <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">Mindful <span className="text-blue-600 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">Math</span></h2>
               <p className="mt-3 text-base text-gray-900 sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0">Mindful Math is an online study aid that allows you to keep track of all your assignments, class notes, create and study flashcards, and gain access to resources from all over the web. Mindful Math will help you organize your academic life, ensuring that you never miss a piece of homework, or forget a lesson.</p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                <div className="rounded-md shadow">
+                <div className="rounded-md shadow" data-testid="login button">
                   <Link to="/login" className="flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-8 py-3 text-base font-medium text-white hover:bg-blue-700 md:py-4 md:px-10 md:text-lg">
                     Log In
                   </Link>
