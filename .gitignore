@@ -2,3 +2,7 @@
 .env
 build
 test
+client/playwright-report
+client/tests
+client/test-results
+client/tests-examples
